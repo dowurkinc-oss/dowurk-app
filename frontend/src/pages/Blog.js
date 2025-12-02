@@ -324,6 +324,201 @@ Together, we're not just building businesses—we're building generational wealt
       image: null,
       videoUrl: 'https://www.youtube.com/embed/videoseries?list=UUDFERb6RQLbxlErcPrUA94w',
       featured: false
+    },
+    {
+      id: 5,
+      title: 'From Camera to Community: The Robert Jerrod Brown Story',
+      slug: 'rj-brown-success-story',
+      excerpt: 'How a stolen camera and a mother\'s battle with cancer led to the creation of DowUrk Inc. - a movement empowering thousands of Louisiana entrepreneurs.',
+      content: `
+# From Camera to Community: The Robert Jerrod Brown Story
+
+## Every Story Has a Spark
+
+Mine began in the summer of 2007, when I was a high school upperclassman at Hammond High. My dad went half with me on my first DSLR camera—a decision that would unknowingly plant the seeds of a lifelong journey. Alongside my friend Triston Manuel, I co-founded **Manuel & Brown Photography**, capturing moments for my father's Hammond Jr. Tors Youth Football League.
+
+That camera became my passport to creativity, connection, and a sense of purpose.
+
+## The Early Years: Finding My Voice
+
+By 2009, I was taking senior portraits for my classmates, winning Beta Club awards for photography, and expanding my worldview through the **Upward Bound Math & Science Program**—a program that would later come full circle in my career.
+
+When I attended the **University of Louisiana at Monroe**, I became Photo Editor for The Hawkeye newspaper, joined **Alpha Phi Alpha Fraternity, Inc.**, and began shaping my identity as a Black creative and leader. I developed **Culturati Noire**, a photo series that explores African heritage and self-identity—my first significant act of cultural storytelling.
+
+## The Trials That Defined Me
+
+But my path wasn't without obstacles.
+
+Between 2012 and 2014, I experienced **two devastating instances of equipment theft**, both while pursuing my dream. At the same time, my mother was battling breast cancer, and I lost my teaching job under unfair circumstances.
+
+Those moments tested my resilience—but they also defined me.
+
+I realized photography wasn't just my passion; it was my calling. **I decided to build a business that couldn't be stolen from me again**—a foundation that would outlive the setbacks.
+
+## DowUrk Inc. is Born
+
+That's when **DowUrk Inc.** was born.
+
+Inspired by my experiences with the **Professional Photographers of America** and the lack of accessible business resources for creatives like me, I envisioned an organization that would **bridge the gap between creative passion and sustainable entrepreneurship**—especially for underrepresented voices.
+
+I wanted to create for others what I didn't have: **a guide, a community, and a blueprint for success.**
+
+## Building the Vision Through Education
+
+Over the years, DowUrk evolved through lived experience and education:
+
+- **2016**: Founded DowUrk Inc.
+- **2021**: Completed Louisiana Economic Development SEBD Roundtable
+- **2022**: Nexus Louisiana Ignition Program
+- **2023**: 501(c)(3) Public Charity Status Achieved
+- **2024**: Earned Master's in Strategic Communication from Southeastern Louisiana University (DowUrk was my capstone project)
+- **2025**: Certified as Disadvantaged Business Enterprise (DBE)
+- Joined National Minority Supplier Development Council
+
+## The Mission Becomes Clear
+
+Through it all, I've learned that **DowUrk isn't just a brand—it's a movement.**
+
+It's proof that you can:
+- Turn adversity into strategy
+- Transform vision into structure
+- Convert purpose into progress
+
+DowUrk exists for:
+- Every dreamer who needs guidance
+- Every entrepreneur who's been counted out
+- Every creative ready to transform their gifts into generational impact
+
+## The Seven F's Framework
+
+What started as a photography business evolved into a comprehensive life philosophy—**The Seven F's**:
+
+1. **Faith** - Spiritual foundation
+2. **Fitness** - Physical and mental wellness
+3. **Foundation** - Business fundamentals
+4. **Fashion** - Professional branding
+5. **Film** - Content creation and storytelling
+6. **Food** - Nutrition and culinary arts
+7. **Finances** - Wealth building and money management
+
+This framework guides everything we do at DowUrk—from our podcast topics to our training programs.
+
+## Impact by the Numbers (2016-2025)
+
+- **10,000+** entrepreneurs served
+- **$2.1M+** in capital accessed
+- **1,247** businesses supported
+- **345** jobs created
+- **89** workshops delivered
+
+## Why They Call Me Mr. DowUrk
+
+As we enter 2026, my mission is clear: **to make it all make sense**—why they call me Mr. DowUrk.
+
+It's because DowUrk represents more than business support. It represents:
+
+- **Resilience** in the face of adversity
+- **Innovation** born from necessity  
+- **Community** built from isolation
+- **Opportunity** created from obstacles
+- **Legacy** forged from loss
+
+## The Message to You
+
+If you're reading this and you've faced setbacks, lost equipment, lost jobs, or watched loved ones battle illness while pursuing your dreams—**you're not alone.**
+
+Your struggles aren't signs to quit. They're signals to **build something bigger than yourself.**
+
+Photography taught me to see. Loss taught me to build. DowUrk taught me that **my story could become a roadmap for others.**
+
+## Join the Movement
+
+This isn't just my story—it's **our** story. 
+
+Every Louisiana entrepreneur who's been overlooked, underfunded, and underestimated—DowUrk was built for you.
+
+**Ready to write your own success story?**
+
+- [Join our community](/register)
+- [Access our resources](/resources)
+- [Listen to the podcast](https://podcasts.apple.com/us/podcast/the-dowurk-mobile-podcast/id1630233933)
+- [Get AI-powered guidance](/ai-assistant)
+
+---
+
+*Robert Jerrod Brown is the CEO, Founder, and Executive Director of DowUrk Inc., a Louisiana-based 501(c)(3) nonprofit empowering underrepresented entrepreneurs since 2016.*
+      `,
+      author: 'Robert Jerrod Brown',
+      date: '2025-01-20',
+      category: 'Success Stories',
+      image: 'https://customer-assets.emergentagent.com/job_1dc8832b-f338-4702-aaed-8947f56a5ae3/artifacts/32k48xoe_About%20Us.png',
+      videoUrl: null,
+      featured: true
+    },
+    {
+      id: 6,
+      title: '5 Steps to Start Your Louisiana Business in 2025',
+      slug: 'start-louisiana-business-2025',
+      excerpt: 'A practical guide to launching your business in Louisiana, from business formation to opening day.',
+      content: '',
+      author: 'DowUrk Team',
+      date: '2025-01-18',
+      category: 'Entrepreneurship',
+      image: 'https://customer-assets.emergentagent.com/job_equity-focus/artifacts/875dlk3n_dowurk_color_shield.png',
+      videoUrl: null,
+      featured: false
+    },
+    {
+      id: 7,
+      title: 'How to Access Small Business Grants in Louisiana',
+      slug: 'louisiana-small-business-grants',
+      excerpt: 'Navigate the grant application process and discover funding opportunities for your Louisiana business.',
+      content: '',
+      author: 'DowUrk Team',
+      date: '2025-01-16',
+      category: 'Entrepreneurship',
+      image: 'https://customer-assets.emergentagent.com/job_equity-focus/artifacts/875dlk3n_dowurk_color_shield.png',
+      videoUrl: null,
+      featured: false
+    },
+    {
+      id: 8,
+      title: 'Building Your Brand on a Bootstrap Budget',
+      slug: 'bootstrap-branding-guide',
+      excerpt: 'Create a professional brand identity without breaking the bank. Free tools and strategies for new entrepreneurs.',
+      content: '',
+      author: 'DowUrk Team',
+      date: '2025-01-12',
+      category: 'Entrepreneurship',
+      image: 'https://customer-assets.emergentagent.com/job_equity-focus/artifacts/875dlk3n_dowurk_color_shield.png',
+      videoUrl: null,
+      featured: false
+    },
+    {
+      id: 9,
+      title: 'The Minority Business Certification Guide',
+      slug: 'minority-business-certification-guide',
+      excerpt: 'Everything you need to know about MBE, WBE, DBE, and other certifications that can transform your business opportunities.',
+      content: '',
+      author: 'DowUrk Team',
+      date: '2025-01-08',
+      category: 'Entrepreneurship',
+      image: 'https://customer-assets.emergentagent.com/job_equity-focus/artifacts/875dlk3n_dowurk_color_shield.png',
+      videoUrl: null,
+      featured: false
+    },
+    {
+      id: 10,
+      title: 'Social Media Marketing for Local Businesses',
+      slug: 'social-media-marketing-local',
+      excerpt: 'Master social media marketing to attract local customers and build a loyal community around your Louisiana business.',
+      content: '',
+      author: 'DowUrk Team',
+      date: '2025-01-06',
+      category: 'Entrepreneurship',
+      image: 'https://customer-assets.emergentagent.com/job_equity-focus/artifacts/875dlk3n_dowurk_color_shield.png',
+      videoUrl: null,
+      featured: false
     }
   ];
 
