@@ -8,6 +8,7 @@ import AddBusiness from '@/pages/AddBusiness';
 import AIAssistant from '@/pages/AIAssistant';
 import Events from '@/pages/Events';
 import Resources from '@/pages/Resources';
+import LouisianaBizResources from '@/pages/LouisianaBizResources';
 import Grants from '@/pages/Grants';
 import CommunityFeed from '@/pages/CommunityFeed';
 import Shop from '@/pages/Shop';
@@ -41,6 +42,7 @@ function App() {
             <Route path="ai-assistant" element={<AIAssistant />} />
             <Route path="events" element={<Events />} />
             <Route path="resources" element={<Resources />} />
+            <Route path="louisiana-biz-resources" element={<LouisianaBizResources />} />
             <Route path="grants" element={<Grants />} />
             <Route path="community" element={<CommunityFeed />} />
             <Route path="shop" element={<Shop />} />
