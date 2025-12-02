@@ -5,6 +5,7 @@ from datetime import datetime, timezone
 import os
 from uuid import uuid4
 import logging
+import asyncio
 
 from emergentintegrations.llm.chat import LlmChat, UserMessage
 from security.dependencies import apply_rate_limit
