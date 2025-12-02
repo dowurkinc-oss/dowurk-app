@@ -451,7 +451,7 @@ Every Louisiana entrepreneur who's been overlooked, underfunded, and underestima
       author: 'Robert Jerrod Brown',
       date: '2025-01-20',
       category: 'Success Stories',
-      image: 'https://customer-assets.emergentagent.com/job_1dc8832b-f338-4702-aaed-8947f56a5ae3/artifacts/32k48xoe_About%20Us.png',
+      image: 'https://customer-assets.emergentagent.com/job_1dc8832b-f338-4702-aaed-8947f56a5ae3/artifacts/yfqh5qwc_IMG_7907.jpg',
       videoUrl: null,
       featured: true
     },
