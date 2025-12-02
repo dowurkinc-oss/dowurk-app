@@ -199,6 +199,75 @@ function HomePage() {
         </div>
       </section>
 
+      {/* Peaceful Video Section */}
+      <motion.section
+        className="relative overflow-hidden rounded-3xl h-96 shadow-2xl"
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
+        {/* Video Background - Replace with your video URL */}
+        <VideoBackground 
+          videoUrl="/video/peaceful-nature.mp4"
+          opacity={0.5}
+          overlay={true}
+        />
+        
+        {/* Content overlay */}
+        <div className="relative z-10 h-full flex flex-col items-center justify-center text-center space-y-6 px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+          >
+            <h2 className="text-5xl font-bold text-[#006847] mb-4">
+              Find Your Peace
+            </h2>
+            <p className="text-2xl text-gray-800 max-w-3xl mx-auto font-medium">
+              Where Technology Meets Tranquility. Experience the perfect blend of innovation and nature.
+            </p>
+          </motion.div>
+          
+          <motion.div
+            className="flex gap-4"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.6 }}
+          >
+            <Link to="/mental-health">
+              <Button size="lg" className="bg-white text-[#006847] hover:bg-gray-100 border-2 border-[#006847]">
+                Explore Wellness Tools
+              </Button>
+            </Link>
+            <Link to="/framework">
+              <Button size="lg" variant="outline" className="bg-white/90 border-[#A4D65E] text-[#006847] hover:bg-white">
+                Discover Seven F's
+              </Button>
+            </Link>
+          </motion.div>
+        </div>
+        
+        {/* Video Setup Instructions (Overlay) */}
+        <div className="absolute top-4 right-4 z-20">
+          <details className="bg-white/90 backdrop-blur rounded-lg p-3 text-xs shadow-lg">
+            <summary className="cursor-pointer font-semibold text-[#006847]">📹 Add Your Video</summary>
+            <div className="mt-2 space-y-1 text-gray-700 max-w-xs">
+              <p className="font-semibold">To add peaceful scenery video:</p>
+              <ol className="list-decimal list-inside space-y-1 ml-2">
+                <li>Download from Mixkit, Coverr, or Pexels</li>
+                <li>Save to: <code className="bg-gray-100 px-1 rounded">/app/frontend/public/video/peaceful-nature.mp4</code></li>
+                <li>Recommended: Nature, water, forest, clouds (10-30 seconds)</li>
+                <li>Keep file under 5MB for fast loading</li>
+              </ol>
+              <p className="text-xs italic mt-2">Current: Placeholder (white overlay visible)</p>
+            </div>
+          </details>
+        </div>
+      </motion.section>
+
       {/* Mission Section */}
       <motion.section 
         className="bg-gray-50 rounded-2xl p-12 space-y-6 relative overflow-hidden"
