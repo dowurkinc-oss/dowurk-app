@@ -41,7 +41,10 @@ function Layout() {
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-6">
+            <div className="hidden lg:flex items-center space-x-5">
+              <Link to="/about" className="text-gray-700 hover:text-[#006847] transition">
+                About
+              </Link>
               <Link to="/businesses" className="text-gray-700 hover:text-[#006847] transition">
                 Businesses
               </Link>
@@ -57,8 +60,11 @@ function Layout() {
               <Link to="/grants" className="text-gray-700 hover:text-[#006847] transition">
                 Grants
               </Link>
-              <Link to="/community" className="text-gray-700 hover:text-[#006847] transition">
-                Community
+              <Link to="/shop" className="text-gray-700 hover:text-[#006847] transition">
+                Shop
+              </Link>
+              <Link to="/donate" className="text-gray-700 hover:text-[#006847] transition font-semibold">
+                Donate
               </Link>
 
               {user ? (
