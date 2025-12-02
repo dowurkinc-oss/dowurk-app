@@ -61,6 +61,9 @@ function Layout() {
               <Link to="/grants" className="text-gray-700 hover:text-[#006847] transition">
                 Grants
               </Link>
+              <Link to="/blog" className="text-gray-700 hover:text-[#006847] transition">
+                Blog
+              </Link>
               <Link to="/shop" className="text-gray-700 hover:text-[#006847] transition">
                 Shop
               </Link>
