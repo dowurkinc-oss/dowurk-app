@@ -388,14 +388,45 @@ async def get_grants(category: Optional[str] = None, active_only: bool = True):
             grant['deadline'] = datetime.fromisoformat(grant['deadline'])
     return grants
 
-# AI Chat Route (will be implemented with OpenAI)
+# AI Chat Route
 @api_router.post("/ai/chat", response_model=ChatResponse)
 async def ai_chat(chat_request: ChatRequest):
-    # This will be implemented in the next file
+    from ai_service import generate_ai_response
+    
+    response_text = await generate_ai_response(
+        user_message=chat_request.message,
+        conversation_history=[msg.model_dump() for msg in chat_request.conversation_history],
+        context_type=chat_request.context_type
+    )
+    
     return ChatResponse(
-        response="AI assistant is being initialized. This feature will be available shortly.",
+        response=response_text,
         conversation_id=str(uuid.uuid4())
     )
+
+# AI Business Plan Generation
+@api_router.post("/ai/business-plan")
+async def generate_business_plan(business_idea: str, industry: str):
+    from ai_service import generate_business_plan_outline
+    
+    plan = await generate_business_plan_outline(business_idea, industry)
+    return plan
+
+# AI Grant Analysis
+@api_router.post("/ai/grant-analysis")
+async def analyze_grant(business_description: str, grant_criteria: List[str]):
+    from ai_service import analyze_grant_eligibility
+    
+    analysis = await analyze_grant_eligibility(business_description, grant_criteria)
+    return analysis
+
+# AI Marketing Content Generation
+@api_router.post("/ai/marketing-content")
+async def create_marketing_content(business_name: str, business_description: str, content_type: str):
+    from ai_service import generate_marketing_content
+    
+    content = await generate_marketing_content(business_name, business_description, content_type)
+    return {"content": content}
 
 # Include router
 app.include_router(api_router)
