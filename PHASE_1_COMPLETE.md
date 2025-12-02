@@ -234,7 +234,7 @@ OPENAI_API_KEY="sk-emergent-d80Fd40DcEb594fBb2"
 
 ### Frontend (.env)
 ```
-REACT_APP_BACKEND_URL=https://equity-focus.preview.emergentagent.com
+REACT_APP_BACKEND_URL=https://biz-hub-9.preview.emergentagent.com
 ```
 
 ---
