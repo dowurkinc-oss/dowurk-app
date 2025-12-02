@@ -103,7 +103,8 @@ def generate_business_data(index):
     # Generate contact info
     area_codes = ["504", "225", "318", "337", "985", "985"]
     phone = f"({random.choice(area_codes)}) 555-{random.randint(1000, 9999)}"
-    email_domain = business_name.lower().replace(' ', '').replace('..', '.').replace(',', '').replace("'", '')
+    # Clean business name for email: remove spaces, periods, special chars
+    email_domain = business_name.lower().replace(' ', '').replace('.', '').replace(',', '').replace("'", '').replace('-', '')
     email = f"{owner_name.lower().replace(' ', '.')}@{email_domain}.com"
     
     # Generate address
