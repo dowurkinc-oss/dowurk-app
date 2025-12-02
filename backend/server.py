@@ -43,6 +43,14 @@ except ImportError:
     DOCS_AVAILABLE = False
     logging.warning("Docs routes not found. Documentation endpoints will not be available.")
 
+# Import AI routes
+try:
+    from ai_routes import router as ai_router
+    AI_AVAILABLE = True
+except ImportError:
+    AI_AVAILABLE = False
+    logging.warning("AI routes not found. AI endpoints will not be available.")
+
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
