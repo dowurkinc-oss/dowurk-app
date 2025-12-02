@@ -398,6 +398,7 @@ Together, we're not just building businesses—we're building generational wealt
                   <div className="flex items-center space-x-2 mb-3">
                     <Badge className="bg-[#A4D65E] text-black">{post.category}</Badge>
                     {post.videoUrl && <Video className="h-5 w-5 text-[#006847]" />}
+                    {post.podcastUrl && <Mic className="h-5 w-5 text-[#006847]" />}
                   </div>
                   <CardTitle className="text-3xl mb-4">{post.title}</CardTitle>
                   <CardDescription className="text-base">{post.excerpt}</CardDescription>
@@ -413,7 +414,14 @@ Together, we're not just building businesses—we're building generational wealt
                       {new Date(post.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
                     </div>
                   </div>
-                  {!post.videoUrl && (
+                  {post.podcastUrl ? (
+                    <a href={post.podcastUrl} target="_blank" rel="noopener noreferrer">
+                      <Button className="bg-gradient-to-r from-[#A4D65E] to-[#006847] hover:opacity-90 w-full">
+                        <Mic className="mr-2 h-4 w-4" />
+                        Listen on Apple Podcasts
+                      </Button>
+                    </a>
+                  ) : !post.videoUrl && (
                     <Link to={`/blog/${post.slug}`}>
                       <Button className="bg-gradient-to-r from-[#A4D65E] to-[#006847] hover:opacity-90">
                         Read Full Article <ArrowRight className="ml-2 h-4 w-4" />
