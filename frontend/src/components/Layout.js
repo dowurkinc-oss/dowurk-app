@@ -13,6 +13,7 @@ import {
 import { Menu, X, User } from 'lucide-react';
 import { useState } from 'react';
 import ChatbotWidget from '@/components/ChatbotWidget';
+import MusicPlayer from '@/components/MusicPlayer';
 
 function Layout() {
   const { user, logout } = useAuth();
@@ -261,6 +262,9 @@ function Layout() {
       
       {/* Chatbot Widget */}
       <ChatbotWidget />
+      
+      {/* Music Player */}
+      <MusicPlayer />
     </div>
   );
 }
