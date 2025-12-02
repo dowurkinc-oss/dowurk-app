@@ -153,7 +153,7 @@ function ChatbotWidget() {
         {!isMinimized && (
           <CardContent className="p-0">
             {/* Messages */}
-            <div className="h-96 overflow-y-auto p-4 space-y-4 bg-gray-50">
+            <div className="h-80 overflow-y-auto p-4 space-y-4 bg-gray-50">
               {messages.map((message, index) => (
                 <div
                   key={index}
