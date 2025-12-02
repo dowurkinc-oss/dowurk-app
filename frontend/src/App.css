@@ -3,18 +3,6 @@
     pointer-events: none;
 }
 
-/* Custom Cursor - Commented out temporarily */
-/* Will be re-implemented with proper path */
-/*
-* {
-    cursor: url(/cursor.png), auto !important;
-}
-
-a, button, [role="button"], input[type="submit"], input[type="button"], .cursor-pointer {
-    cursor: url(/cursor.png), pointer !important;
-}
-*/
-
 /* Smooth scrolling */
 html {
     scroll-behavior: smooth;
