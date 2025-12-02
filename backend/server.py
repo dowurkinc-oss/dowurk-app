@@ -166,6 +166,7 @@ async def startup_event():
     logger.info(f"Security features: {'✅ Enabled' if SECURITY_AVAILABLE else '❌ Disabled'}")
     logger.info(f"Metrics API: {'✅ Enabled' if METRICS_AVAILABLE else '❌ Disabled'}")
     logger.info(f"Authentication API: {'✅ Enabled' if AUTH_AVAILABLE else '❌ Disabled'}")
+    logger.info(f"Documentation API: {'✅ Enabled' if DOCS_AVAILABLE else '❌ Disabled'}")
 
 @app.on_event("shutdown")
 async def shutdown_db_client():
