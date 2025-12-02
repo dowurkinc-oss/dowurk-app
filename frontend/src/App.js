@@ -25,6 +25,7 @@ import PrivacyPolicy from '@/pages/PrivacyPolicy';
 import Login from '@/pages/Login';
 import Register from '@/pages/Register';
 import Dashboard from '@/pages/Dashboard';
+import Partnerships from '@/pages/Partnerships';
 import SevenFPage from '@/pages/SevenFPage';
 import SevenFramework from '@/pages/SevenFramework';
 import { AuthProvider } from '@/context/AuthContext';
@@ -49,6 +50,7 @@ function App() {
             <Route path="louisiana-biz-resources" element={<LouisianaBizResources />} />
             <Route path="mental-health" element={<MentalHealthTips />} />
             <Route path="gratitude-wall" element={<GratitudeWall />} />
+            <Route path="partnerships" element={<Partnerships />} />
             <Route path="grants" element={<Grants />} />
             <Route path="community" element={<CommunityFeed />} />
             <Route path="shop" element={<Shop />} />
