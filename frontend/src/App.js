@@ -2,12 +2,17 @@ import { useState } from 'react';
 import '@/App.css';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import HomePage from '@/pages/HomePage';
+import AboutUs from '@/pages/AboutUs';
 import BusinessDirectory from '@/pages/BusinessDirectory';
 import AIAssistant from '@/pages/AIAssistant';
 import Events from '@/pages/Events';
 import Resources from '@/pages/Resources';
 import Grants from '@/pages/Grants';
 import CommunityFeed from '@/pages/CommunityFeed';
+import Shop from '@/pages/Shop';
+import VirtualBooths from '@/pages/VirtualBooths';
+import Donate from '@/pages/Donate';
+import Contact from '@/pages/Contact';
 import Login from '@/pages/Login';
 import Register from '@/pages/Register';
 import Dashboard from '@/pages/Dashboard';
@@ -21,12 +26,17 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<HomePage />} />
+            <Route path="about" element={<AboutUs />} />
             <Route path="businesses" element={<BusinessDirectory />} />
             <Route path="ai-assistant" element={<AIAssistant />} />
             <Route path="events" element={<Events />} />
             <Route path="resources" element={<Resources />} />
             <Route path="grants" element={<Grants />} />
             <Route path="community" element={<CommunityFeed />} />
+            <Route path="shop" element={<Shop />} />
+            <Route path="virtual-booths" element={<VirtualBooths />} />
+            <Route path="donate" element={<Donate />} />
+            <Route path="contact" element={<Contact />} />
             <Route path="dashboard" element={<Dashboard />} />
           </Route>
           <Route path="/login" element={<Login />} />
