@@ -1,41 +1,84 @@
 import { useState, useEffect } from 'react';
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
+import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { MapPin, Phone, Globe, ExternalLink, Building2 } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { MapPin, Phone, Globe, Mail, Navigation, Filter, Star } from 'lucide-react';
 import axios from 'axios';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
-// Louisiana parish coordinates (approximate centers)
+// Fix Leaflet default marker icon issue
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
+  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+});
+
+// Create custom green marker
+const greenIcon = new L.Icon({
+  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
+
+// Louisiana center coordinates
+const LA_CENTER = [31.0, -91.9];
+
+// Parish coordinates with actual locations
 const PARISH_COORDS = {
-  'Orleans': { lat: 29.95, lng: -90.07 },
-  'East Baton Rouge': { lat: 30.45, lng: -91.15 },
-  'Caddo': { lat: 32.50, lng: -93.75 },
-  'Lafayette': { lat: 30.22, lng: -92.02 },
-  'Calcasieu': { lat: 30.23, lng: -93.34 },
-  'Jefferson': { lat: 29.70, lng: -90.15 },
-  'Tangipahoa': { lat: 30.63, lng: -90.48 },
-  'St. Tammany': { lat: 30.38, lng: -89.98 },
-  'Ouachita': { lat: 32.48, lng: -92.13 },
-  'Rapides': { lat: 31.18, lng: -92.48 }
+  'Orleans': [29.95, -90.07],
+  'East Baton Rouge': [30.45, -91.15],
+  'Caddo': [32.50, -93.75],
+  'Lafayette': [30.22, -92.02],
+  'Calcasieu': [30.23, -93.34],
+  'Jefferson': [29.70, -90.15],
+  'Tangipahoa': [30.63, -90.48],
+  'St. Tammany': [30.38, -89.98],
+  'Ouachita': [32.48, -92.13],
+  'Rapides': [31.18, -92.48],
+  'Terrebonne': [29.38, -90.77],
+  'Bossier': [32.62, -93.60],
+  'Lincoln': [32.60, -92.65],
+  'Natchitoches': [31.70, -93.10]
 };
 
 function BusinessMap() {
   const [businesses, setBusinesses] = useState([]);
-  const [selectedBusiness, setSelectedBusiness] = useState(null);
+  const [filteredBusinesses, setFilteredBusinesses] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedBusiness, setSelectedBusiness] = useState(null);
 
   useEffect(() => {
     fetchBusinesses();
   }, []);
 
+  useEffect(() => {
+    filterBusinesses();
+  }, [searchTerm, selectedCategory, businesses]);
+
   const fetchBusinesses = async () => {
     try {
       const response = await axios.get(`${API}/businesses`);
-      setBusinesses(response.data);
+      // Add coordinates to each business
+      const businessesWithCoords = response.data.map(b => ({
+        ...b,
+        coordinates: PARISH_COORDS[b.parish] || LA_CENTER
+      }));
+      setBusinesses(businessesWithCoords);
+      setFilteredBusinesses(businessesWithCoords);
     } catch (error) {
       console.error('Error fetching businesses:', error);
     } finally {
@@ -43,77 +86,149 @@ function BusinessMap() {
     }
   };
 
-  const getParishPosition = (parish) => {
-    return PARISH_COORDS[parish] || { lat: 30.5, lng: -91.5 }; // Default to center LA
+  const filterBusinesses = () => {
+    let filtered = businesses;
+
+    if (searchTerm) {
+      filtered = filtered.filter(b => 
+        b.business_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        b.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        b.parish.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+
+    if (selectedCategory !== 'all') {
+      filtered = filtered.filter(b => b.category === selectedCategory);
+    }
+
+    setFilteredBusinesses(filtered);
   };
+
+  const categories = ['all', ...new Set(businesses.map(b => b.category))];
 
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div className="text-center space-y-4">
+      <motion.div
+        className="text-center space-y-4"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+      >
         <h1 className="text-5xl font-bold">
           <span className="bg-gradient-to-r from-[#A4D65E] to-[#006847] bg-clip-text text-transparent">
-            Louisiana Business Map
+            Interactive Louisiana Business Map
           </span>
         </h1>
         <p className="text-xl text-gray-600">
-          Explore {businesses.length} businesses across the Pelican State
+          Discover {filteredBusinesses.length} businesses across the Pelican State
         </p>
-      </div>
+      </motion.div>
 
-      {/* Visual Map Representation */}
+      {/* Search & Filter */}
+      <Card className="border-2 border-[#A4D65E]">
+        <CardHeader>
+          <CardTitle className="flex items-center">
+            <Filter className="mr-2 h-5 w-5" />
+            Find Businesses Near You
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Input
+              placeholder="Search by business name, city, or parish..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+              <SelectTrigger>
+                <SelectValue placeholder="All Categories" />
+              </SelectTrigger>
+              <SelectContent>
+                {categories.map(cat => (
+                  <SelectItem key={cat} value={cat}>
+                    {cat === 'all' ? 'All Categories' : cat.charAt(0).toUpperCase() + cat.slice(1)}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Map Container */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Map Area */}
+        {/* Interactive Map */}
         <div className="lg:col-span-2">
           <Card className="border-2 border-[#A4D65E] overflow-hidden">
             <CardContent className="p-0">
-              <div className="relative bg-gradient-to-br from-blue-50 to-green-50 h-[600px] overflow-hidden">
-                {/* Louisiana Outline SVG */}
-                <svg viewBox="0 0 400 300" className="absolute inset-0 w-full h-full opacity-20">
-                  <path d="M 50 150 Q 100 100 200 120 T 350 150 Q 340 200 280 220 T 100 210 Z" 
-                        fill="#006847" stroke="#A4D65E" strokeWidth="2" />
-                </svg>
-                
-                {/* Business Pins */}
-                {businesses.map((business, index) => {
-                  const pos = getParishPosition(business.parish);
-                  const x = ((pos.lng + 94) / 4) * 100; // Normalize to 0-100%
-                  const y = ((32 - pos.lat) / 3) * 100;
+              {!loading && (
+                <MapContainer 
+                  center={LA_CENTER} 
+                  zoom={7} 
+                  style={{ height: '600px', width: '100%' }}
+                  scrollWheelZoom={true}
+                >
+                  <TileLayer
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  />
                   
-                  return (
-                    <motion.div
+                  {filteredBusinesses.map((business) => (
+                    <Marker 
                       key={business.id}
-                      className="absolute cursor-pointer group"
-                      style={{ left: `${x}%`, top: `${y}%` }}
-                      initial={{ scale: 0, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      transition={{ delay: index * 0.01 }}
-                      whileHover={{ scale: 1.5, zIndex: 10 }}
-                      onClick={() => setSelectedBusiness(business)}
+                      position={business.coordinates}
+                      icon={greenIcon}
+                      eventHandlers={{
+                        click: () => setSelectedBusiness(business)
+                      }}
                     >
-                      <MapPin className="h-8 w-8 text-[#006847] drop-shadow-lg" fill="#A4D65E" />
-                      <div className="absolute hidden group-hover:block bg-white p-2 rounded shadow-lg -top-12 left-6 w-48 text-xs z-20">
-                        <p className="font-semibold">{business.business_name}</p>
-                        <p className="text-gray-600">{business.city}, {business.parish}</p>
-                      </div>
-                    </motion.div>
-                  );
-                })}
-                
-                {/* Legend */}
-                <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur p-3 rounded-lg shadow">
-                  <div className="flex items-center space-x-2 text-sm">
-                    <MapPin className="h-5 w-5 text-[#006847]" fill="#A4D65E" />
-                    <span className="font-semibold">{businesses.length} Businesses</span>
-                  </div>
-                  <p className="text-xs text-gray-600 mt-1">Click pins for details</p>
-                </div>
-              </div>
+                      <Popup>
+                        <div className="text-sm">
+                          <h3 className="font-bold text-[#006847] mb-1">{business.business_name}</h3>
+                          <Badge className="mb-2 bg-[#A4D65E] text-black text-xs">
+                            {business.category}
+                          </Badge>
+                          <p className="text-xs text-gray-600 mb-2">{business.description}</p>
+                          <div className="space-y-1 text-xs">
+                            <p><strong>Location:</strong> {business.city}, {business.parish}</p>
+                            {business.phone && <p><strong>Phone:</strong> {business.phone}</p>}
+                          </div>
+                          {business.website && (
+                            <a 
+                              href={business.website} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="text-[#006847] hover:underline text-xs mt-2 inline-block"
+                            >
+                              Visit Website →
+                            </a>
+                          )}
+                        </div>
+                      </Popup>
+                    </Marker>
+                  ))}
+                </MapContainer>
+              )}
             </CardContent>
           </Card>
+          
+          {/* Map Instructions */}
+          <div className="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <h4 className="font-semibold text-blue-900 mb-2 flex items-center">
+              <Navigation className="h-4 w-4 mr-2" />
+              How to Use the Map
+            </h4>
+            <ul className="text-sm text-blue-800 space-y-1">
+              <li>• <strong>Zoom:</strong> Use mouse wheel or +/- buttons</li>
+              <li>• <strong>Pan:</strong> Click and drag to move around Louisiana</li>
+              <li>• <strong>View Business:</strong> Click green pins for details</li>
+              <li>• <strong>Filter:</strong> Use search or category dropdown above</li>
+              <li>• <strong>Navigate:</strong> Click "Get Directions" in popup for Google Maps</li>
+            </ul>
+          </div>
         </div>
 
-        {/* Selected Business Details */}
+        {/* Selected Business Panel */}
         <div className="lg:col-span-1">
           {selectedBusiness ? (
             <motion.div
@@ -122,61 +237,105 @@ function BusinessMap() {
             >
               <Card className="border-2 border-[#A4D65E] sticky top-24">
                 <CardHeader className="bg-gradient-to-r from-[#A4D65E]/10 to-[#006847]/10">
-                  <Badge className="w-fit mb-2 bg-[#A4D65E] text-black">
-                    {selectedBusiness.category}
-                  </Badge>
+                  <div className="flex items-start justify-between">
+                    <Badge className="bg-[#A4D65E] text-black mb-2">
+                      {selectedBusiness.category}
+                    </Badge>
+                    {selectedBusiness.is_verified && (
+                      <Badge variant="outline" className="border-green-600 text-green-600">
+                        ✓ Verified
+                      </Badge>
+                    )}
+                  </div>
                   <CardTitle className="text-xl">{selectedBusiness.business_name}</CardTitle>
+                  <p className="text-sm text-gray-600">{selectedBusiness.owner_name}</p>
                 </CardHeader>
                 <CardContent className="space-y-4 pt-4">
-                  <div className="flex items-start space-x-2">
-                    <MapPin className="h-5 w-5 text-[#006847] flex-shrink-0 mt-0.5" />
-                    <div className="text-sm">
-                      <p>{selectedBusiness.address}</p>
-                      <p>{selectedBusiness.city}, {selectedBusiness.parish} {selectedBusiness.zip_code}</p>
+                  <p className="text-sm text-gray-700">{selectedBusiness.description}</p>
+                  
+                  <div className="space-y-2">
+                    <div className="flex items-start space-x-2">
+                      <MapPin className="h-5 w-5 text-[#006847] flex-shrink-0 mt-0.5" />
+                      <div className="text-sm">
+                        <p>{selectedBusiness.address}</p>
+                        <p>{selectedBusiness.city}, {selectedBusiness.parish} {selectedBusiness.zip_code}</p>
+                      </div>
                     </div>
+                    
+                    {selectedBusiness.phone && (
+                      <div className="flex items-center space-x-2">
+                        <Phone className="h-5 w-5 text-[#006847]" />
+                        <a href={`tel:${selectedBusiness.phone}`} className="text-sm hover:text-[#A4D65E]">
+                          {selectedBusiness.phone}
+                        </a>
+                      </div>
+                    )}
+                    
+                    {selectedBusiness.email && (
+                      <div className="flex items-center space-x-2">
+                        <Mail className="h-5 w-5 text-[#006847]" />
+                        <a href={`mailto:${selectedBusiness.email}`} className="text-sm hover:text-[#A4D65E]">
+                          {selectedBusiness.email}
+                        </a>
+                      </div>
+                    )}
+                    
+                    {selectedBusiness.website && (
+                      <div className="flex items-center space-x-2">
+                        <Globe className="h-5 w-5 text-[#006847]" />
+                        <a 
+                          href={selectedBusiness.website} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-sm hover:text-[#A4D65E]"
+                        >
+                          Visit Website
+                        </a>
+                      </div>
+                    )}
+
+                    {selectedBusiness.rating > 0 && (
+                      <div className="flex items-center space-x-2">
+                        <Star className="h-5 w-5 text-yellow-500" fill="currentColor" />
+                        <span className="text-sm font-semibold">
+                          {selectedBusiness.rating} ({selectedBusiness.review_count} reviews)
+                        </span>
+                      </div>
+                    )}
                   </div>
-                  
-                  {selectedBusiness.phone && (
-                    <div className="flex items-center space-x-2">
-                      <Phone className="h-5 w-5 text-[#006847]" />
-                      <a href={`tel:${selectedBusiness.phone}`} className="text-sm hover:text-[#A4D65E]">
-                        {selectedBusiness.phone}
-                      </a>
+
+                  {selectedBusiness.services_offered && selectedBusiness.services_offered.length > 0 && (
+                    <div>
+                      <h4 className="font-semibold text-sm mb-2">Services:</h4>
+                      <div className="flex flex-wrap gap-1">
+                        {selectedBusiness.services_offered.map((service, i) => (
+                          <Badge key={i} variant="outline" className="text-xs">
+                            {service}
+                          </Badge>
+                        ))}
+                      </div>
                     </div>
                   )}
-                  
-                  {selectedBusiness.website && (
-                    <div className="flex items-center space-x-2">
-                      <Globe className="h-5 w-5 text-[#006847]" />
-                      <a 
-                        href={selectedBusiness.website} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="text-sm hover:text-[#A4D65E] flex items-center"
-                      >
-                        Visit Website <ExternalLink className="h-3 w-3 ml-1" />
-                      </a>
-                    </div>
-                  )}
-                  
-                  <p className="text-sm text-gray-600 leading-relaxed">
-                    {selectedBusiness.description}
-                  </p>
                   
                   <Button 
                     className="w-full bg-gradient-to-r from-[#A4D65E] to-[#006847]"
-                    onClick={() => window.location.href = `/businesses`}
+                    onClick={() => window.open(
+                      `https://www.google.com/maps/dir//${selectedBusiness.address}, ${selectedBusiness.city}, LA`,
+                      '_blank'
+                    )}
                   >
-                    View Full Directory
+                    <Navigation className="mr-2 h-4 w-4" />
+                    Get Directions
                   </Button>
                 </CardContent>
               </Card>
             </motion.div>
           ) : (
-            <Card className="border-2 border-gray-200 h-full flex items-center justify-center">
+            <Card className="border-2 border-gray-200 h-full flex items-center justify-center sticky top-24">
               <CardContent className="text-center py-12">
-                <Building2 className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-                <p className="text-gray-500">Click a pin on the map to see business details</p>
+                <MapPin className="h-16 w-16 text-gray-300 mx-auto mb-4" />
+                <p className="text-gray-500 mb-2">Click a green pin on the map</p>
+                <p className="text-xs text-gray-400">to see business details and get directions</p>
               </CardContent>
             </Card>
           )}
@@ -186,17 +345,26 @@ function BusinessMap() {
       {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
-          { label: 'Total Businesses', value: businesses.length },
-          { label: 'Parishes Covered', value: new Set(businesses.map(b => b.parish)).size },
-          { label: 'Categories', value: new Set(businesses.map(b => b.category)).size },
-          { label: 'Cities', value: new Set(businesses.map(b => b.city)).size }
+          { label: 'Total Businesses', value: businesses.length, icon: '🏢' },
+          { label: 'Parishes Covered', value: new Set(businesses.map(b => b.parish)).size, icon: '🗺️' },
+          { label: 'Categories', value: new Set(businesses.map(b => b.category)).size, icon: '📊' },
+          { label: 'Showing Now', value: filteredBusinesses.length, icon: '📍' }
         ].map((stat, i) => (
-          <Card key={i} className="text-center">
-            <CardContent className="pt-6">
-              <div className="text-3xl font-bold text-[#006847]">{stat.value}</div>
-              <div className="text-sm text-gray-600">{stat.label}</div>
-            </CardContent>
-          </Card>
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.1 }}
+          >
+            <Card className="text-center hover:shadow-lg transition-shadow">
+              <CardContent className="pt-6">
+                <div className="text-3xl mb-2">{stat.icon}</div>
+                <div className="text-3xl font-bold text-[#006847]">{stat.value}</div>
+                <div className="text-sm text-gray-600">{stat.label}</div>
+              </CardContent>
+            </Card>
+          </motion.div>
         ))}
       </div>
     </div>
