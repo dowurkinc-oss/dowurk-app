@@ -86,9 +86,11 @@ app = FastAPI(
 
 # Add security middleware if available
 if SECURITY_AVAILABLE:
+    app.add_middleware(IPProtectionMiddleware)
+    app.add_middleware(RateLimitByIPMiddleware, requests_per_minute=100)
     app.add_middleware(SecurityHeadersMiddleware)
     app.add_middleware(RequestLoggingMiddleware)
-    logging.info("Security middleware enabled")
+    logging.info("Security and IP protection middleware enabled")
 
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
