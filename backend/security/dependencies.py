@@ -19,9 +19,15 @@ async def apply_rate_limit(request: Request) -> dict:
     user_role = "anonymous"
     user_id = None
     
-    if current_user:
-        user_role = current_user.get('role', 'free')
-        user_id = current_user.get('user_id')
+    # Try to get current user from token if available
+    try:
+        from .auth import get_current_user_optional
+        current_user = await get_current_user_optional(request)
+        if current_user:
+            user_role = current_user.get('role', 'free')
+            user_id = current_user.get('user_id')
+    except:
+        pass  # Continue with anonymous
     
     return await rate_limiter.check_rate_limit(
         request=request,
