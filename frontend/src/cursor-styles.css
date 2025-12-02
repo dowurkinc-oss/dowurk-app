@@ -1,0 +1,16 @@
+/* Custom Hummingbird Cursor Styles */
+
+/* Simple hummingbird-themed cursor using emoji/SVG approach */
+* {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="%23A4D65E" opacity="0.6"/><circle cx="16" cy="16" r="8" fill="%23006847"/><path d="M16 8 L20 12 L16 10 L12 12 Z" fill="%23A4D65E"/></svg>') 16 16, auto;
+}
+
+/* Pointer for clickable elements */
+a, button, [role="button"], input[type="submit"], input[type="button"], select, .cursor-pointer {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="%23006847" opacity="0.8"/><circle cx="16" cy="16" r="10" fill="%23A4D65E"/><path d="M16 8 L20 12 L16 10 L12 12 Z" fill="%23006847"/></svg>') 16 16, pointer;
+}
+
+/* Text inputs get text cursor */
+input[type="text"], input[type="email"], input[type="password"], textarea {
+    cursor: text;
+}
