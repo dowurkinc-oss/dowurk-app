@@ -200,14 +200,17 @@ function HomePage() {
 
       {/* Mission Section */}
       <motion.section 
-        className="bg-gray-50 rounded-2xl p-12 space-y-6"
+        className="bg-gray-50 rounded-2xl p-12 space-y-6 relative overflow-hidden"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
+        {/* Inspirational Particles Animation */}
+        <InspirationalParticles theme="light" />
+        
         <motion.div 
-          className="flex items-center justify-center space-x-3 mb-6"
+          className="flex items-center justify-center space-x-3 mb-6 relative z-10"
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
@@ -217,7 +220,7 @@ function HomePage() {
           <h2 className="text-3xl font-bold">Our Mission</h2>
         </motion.div>
         <motion.p 
-          className="text-lg text-gray-700 max-w-4xl mx-auto text-center leading-relaxed"
+          className="text-lg text-gray-700 max-w-4xl mx-auto text-center leading-relaxed relative z-10"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -228,7 +231,7 @@ function HomePage() {
           self-affirmation and solidarity among entrepreneurs while advocating for regional social and economic growth.
         </motion.p>
         <motion.div 
-          className="flex items-center justify-center space-x-8 pt-6"
+          className="flex items-center justify-center space-x-8 pt-6 relative z-10"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
