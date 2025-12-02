@@ -380,10 +380,28 @@ Generate the complete pitch deck now:"""
         
         logger.info(f"Pitch deck generated for {req.business_name}: {len(slides)} slides")
         
+        # PROTECTED: Add watermark to each slide's content
+        watermarked_slides = []
+        for slide in slides:
+            watermarked_content = ContentWatermark.add_watermark(
+                slide.content,
+                {
+                    "content_type": "pitch_deck_slide",
+                    "business_name": req.business_name,
+                    "slide_number": slide.slide_number,
+                    "user_id": "system"  # Update with actual user ID when available
+                }
+            )
+            watermarked_slides.append(PitchDeckSlide(
+                slide_number=slide.slide_number,
+                title=slide.title,
+                content=watermarked_content
+            ))
+        
         return PitchDeckResponse(
             business_name=req.business_name,
-            slides=slides,
-            total_slides=len(slides),
+            slides=watermarked_slides,
+            total_slides=len(watermarked_slides),
             timestamp=datetime.now(timezone.utc)
         )
         
