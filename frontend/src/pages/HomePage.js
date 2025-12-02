@@ -67,9 +67,10 @@ function HomePage() {
       <section className="text-center space-y-8 py-12" data-testid="hero-section">
         <div className="inline-block">
           <img 
-            src="https://customer-assets.emergentagent.com/job_equity-focus/artifacts/875dlk3n_dowurk_color_shield.png" 
-            alt="DowUrk Shield" 
-            className="h-24 w-24 mx-auto mb-6"
+            src="https://customer-assets.emergentagent.com/job_equity-focus/artifacts/uvi8zp1o_Dowurk%20CUSTOM%20COMBO%20PLAQUE%209X12.png" 
+            alt="DowUrk Custom Logo" 
+            className="w-full max-w-md mx-auto mb-6 h-auto"
+            style={{ aspectRatio: '9/12', objectFit: 'contain' }}
           />
         </div>
         <h1 className="text-5xl md:text-6xl font-bold leading-tight">
