@@ -71,6 +71,12 @@ function BusinessDirectory() {
         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
           Discover and support Black-owned and underrepresented businesses across Louisiana
         </p>
+        <Link to="/add-business">
+          <Button className="bg-gradient-to-r from-[#A4D65E] to-[#006847] hover:opacity-90">
+            <Building2 className="mr-2 h-5 w-5" />
+            Add Your Business
+          </Button>
+        </Link>
       </div>
 
       {/* Filters */}
