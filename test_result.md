@@ -378,12 +378,11 @@ metadata:
 
 test_plan:
   current_focus: 
-    - "AI Business Planning Assistant API"
-    - "Documentation API"
+    - "AI Pitch Deck Creator API"
   stuck_tasks:
     - "AI Business Planning Assistant API"
     - "Documentation API"
-  test_all: true
+  test_all: false
   test_priority: "high_first"
 
 agent_communication:
