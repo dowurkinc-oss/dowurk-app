@@ -286,8 +286,8 @@ async def generate_pitch_deck(req: PitchDeckRequest):
         if not api_key:
             raise HTTPException(status_code=500, detail="AI service not configured")
         
-        # Build comprehensive prompt
-        system_message = """You are an expert pitch deck consultant who has helped hundreds of startups raise millions in funding. You specialize in creating compelling, investor-ready pitch decks that tell a clear story and highlight key business strengths."""
+        # PROTECTED: Get proprietary system prompt from secure vault
+        system_message = ProprietaryPrompts.get_system_prompt("pitch_deck")
         
         user_prompt = f"""Create a complete pitch deck for a business with the following details:
 
