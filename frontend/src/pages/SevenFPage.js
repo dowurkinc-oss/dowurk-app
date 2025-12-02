@@ -77,7 +77,7 @@ function SevenFPage({ fName }) {
       {/* Hero */}
       <section className="text-center space-y-6">
         <div className="text-8xl mb-4">{currentF.icon}</div>
-        <Badge className="bg-[#A4D65E] text-black text-lg px-6 py-2">The Seven F's Framework</Badge>
+        <Badge className="bg-[#A4D65E] text-black text-lg px-6 py-2">The Seven F's FramewUrk</Badge>
         <h1 className="text-6xl font-bold">
           <span className={`bg-gradient-to-r ${currentF.color} bg-clip-text text-transparent`}>
             {fName}
