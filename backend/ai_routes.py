@@ -248,3 +248,144 @@ Length: {length_guidance.get(req.length, 'short')}"""
     except Exception as e:
         logger.error(f"Error generating content: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Content generation error: {str(e)}")
+
+# ========================================
+# AI PITCH DECK CREATOR
+# ========================================
+
+class PitchDeckRequest(BaseModel):
+    business_name: str = Field(..., description="Name of the business")
+    industry: str = Field(..., description="Industry/sector")
+    problem: str = Field(..., description="Problem you're solving")
+    solution: str = Field(..., description="Your solution")
+    target_market: Optional[str] = None
+    competitive_advantage: Optional[str] = None
+    funding_goal: Optional[str] = None
+
+class PitchDeckSlide(BaseModel):
+    slide_number: int
+    title: str
+    content: str
+
+class PitchDeckResponse(BaseModel):
+    business_name: str
+    slides: List[PitchDeckSlide]
+    total_slides: int
+    timestamp: datetime
+
+@router.post("/pitch-deck", response_model=PitchDeckResponse)
+async def generate_pitch_deck(req: PitchDeckRequest):
+    """
+    AI Pitch Deck Creator
+    Generates a complete pitch deck structure with content for each slide
+    """
+    try:
+        # Get API key
+        api_key = os.environ.get('EMERGENT_LLM_KEY')
+        if not api_key:
+            raise HTTPException(status_code=500, detail="AI service not configured")
+        
+        # Build comprehensive prompt
+        system_message = """You are an expert pitch deck consultant who has helped hundreds of startups raise millions in funding. You specialize in creating compelling, investor-ready pitch decks that tell a clear story and highlight key business strengths."""
+        
+        user_prompt = f"""Create a complete pitch deck for a business with the following details:
+
+Business Name: {req.business_name}
+Industry: {req.industry}
+Problem: {req.problem}
+Solution: {req.solution}"""
+        
+        if req.target_market:
+            user_prompt += f"\nTarget Market: {req.target_market}"
+        if req.competitive_advantage:
+            user_prompt += f"\nCompetitive Advantage: {req.competitive_advantage}"
+        if req.funding_goal:
+            user_prompt += f"\nFunding Goal: {req.funding_goal}"
+        
+        user_prompt += """
+
+Generate a 10-slide pitch deck with the following structure. For each slide, provide the title and detailed bullet-point content:
+
+Slide 1: Title/Cover
+Slide 2: Problem
+Slide 3: Solution
+Slide 4: Market Opportunity
+Slide 5: Product/Service
+Slide 6: Business Model
+Slide 7: Competitive Landscape
+Slide 8: Go-to-Market Strategy
+Slide 9: Financial Projections
+Slide 10: Team & Ask
+
+Format each slide exactly like this:
+SLIDE [number]: [Title]
+- [Bullet point 1]
+- [Bullet point 2]
+- [etc.]
+
+Generate the complete pitch deck now:"""
+        
+        # Generate pitch deck using GPT-5
+        session_id = f"pitch-deck-{uuid4()}"
+        chat = LlmChat(
+            api_key=api_key,
+            session_id=session_id,
+            system_message=system_message
+        ).with_model("openai", "gpt-5")
+        
+        user_msg = UserMessage(text=user_prompt)
+        generated_content = await chat.send_message(user_msg)
+        
+        # Parse the generated content into slides
+        slides = []
+        current_slide = None
+        current_content = []
+        
+        for line in generated_content.split('\n'):
+            line = line.strip()
+            if not line:
+                continue
+                
+            if line.upper().startswith('SLIDE '):
+                # Save previous slide if exists
+                if current_slide:
+                    slides.append(PitchDeckSlide(
+                        slide_number=current_slide['number'],
+                        title=current_slide['title'],
+                        content='\n'.join(current_content)
+                    ))
+                    current_content = []
+                
+                # Parse new slide
+                parts = line.split(':', 1)
+                if len(parts) == 2:
+                    slide_num_str = parts[0].replace('SLIDE', '').strip()
+                    try:
+                        slide_num = int(slide_num_str)
+                        slide_title = parts[1].strip()
+                        current_slide = {'number': slide_num, 'title': slide_title}
+                    except ValueError:
+                        continue
+            elif current_slide and line:
+                current_content.append(line)
+        
+        # Add last slide
+        if current_slide:
+            slides.append(PitchDeckSlide(
+                slide_number=current_slide['number'],
+                title=current_slide['title'],
+                content='\n'.join(current_content)
+            ))
+        
+        logger.info(f"Pitch deck generated for {req.business_name}: {len(slides)} slides")
+        
+        return PitchDeckResponse(
+            business_name=req.business_name,
+            slides=slides,
+            total_slides=len(slides),
+            timestamp=datetime.now(timezone.utc)
+        )
+        
+    except Exception as e:
+        logger.error(f"Error generating pitch deck: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Pitch deck generation error: {str(e)}")
