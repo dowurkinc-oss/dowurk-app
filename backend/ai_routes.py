@@ -9,6 +9,8 @@ import asyncio
 
 from emergentintegrations.llm.chat import LlmChat, UserMessage
 from security.dependencies import apply_rate_limit
+from ip_protection.prompts_vault import ProprietaryPrompts, ContentWatermark
+from ip_protection.access_control import AccessControl
 
 logger = logging.getLogger(__name__)
 
