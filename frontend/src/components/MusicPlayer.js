@@ -10,8 +10,6 @@ function MusicPlayer() {
   const audioRef = useRef(null);
 
   useEffect(() => {
-    // Note: Replace this URL with actual lo-fi nature/hummingbird audio file
-    // For now, this is a placeholder for the audio integration
     if (audioRef.current) {
       audioRef.current.volume = volume;
       if (isPlaying) {
@@ -32,73 +30,55 @@ function MusicPlayer() {
 
   if (isMinimized) {
     return (
-      <div className="fixed bottom-24 left-6 z-40">
+      <div className="fixed bottom-24 left-6 z-30">
         <Button
           onClick={() => setIsMinimized(false)}
-          className="rounded-full w-14 h-14 bg-gradient-to-r from-[#A4D65E] to-[#006847] hover:opacity-90 shadow-lg"
+          className="rounded-full w-12 h-12 bg-white/20 backdrop-blur-md border border-white/30 hover:bg-white/30 shadow-lg"
           title="Open Music Player"
         >
-          <Music className="h-6 w-6" />
+          <Music className="h-5 w-5 text-[#006847]" />
         </Button>
       </div>
     );
   }
 
   return (
-    <div className="fixed bottom-24 left-6 z-40 bg-white rounded-2xl shadow-2xl border-2 border-[#A4D65E] p-4 w-72">
-      {/* Audio element with blended hummingbird nature sounds */}
-      <audio
-        ref={audioRef}
-        loop
-        preload="auto"
-      >
+    <div className="fixed bottom-24 left-6 z-30 bg-white/70 backdrop-blur-md rounded-2xl shadow-lg border border-white/40 p-3 w-64">
+      <audio ref={audioRef} loop preload="auto">
         <source src="/audio/nature-lofi-hummingbird.mp3" type="audio/mpeg" />
-        Your browser does not support the audio element.
       </audio>
 
-      <div className="flex items-center justify-between mb-3">
+      <div className="flex items-center justify-between mb-2">
         <div className="flex items-center space-x-2">
-          <Music className="h-5 w-5 text-[#006847]" />
-          <h3 className="font-semibold text-sm">Ambient Sounds</h3>
+          <Music className="h-4 w-4 text-[#006847]" />
+          <h3 className="font-semibold text-xs text-[#006847]">Ambient Sounds</h3>
         </div>
         <button
           onClick={() => setIsMinimized(true)}
-          className="text-gray-400 hover:text-gray-600 text-xl leading-none"
+          className="text-gray-400 hover:text-gray-600 text-lg leading-none"
         >
           −
         </button>
       </div>
 
-      <div className="space-y-3">
-        <div className="bg-gradient-to-r from-[#A4D65E]/10 to-[#006847]/10 rounded-lg p-3">
-          <p className="text-xs text-gray-600 mb-1">Now Playing:</p>
-          <p className="text-sm font-semibold text-[#006847]">
-            🦜 Nature Lo-Fi • Hummingbird Vibes
+      <div className="space-y-2">
+        <div className="bg-[#006847]/10 backdrop-blur-sm rounded-lg p-2">
+          <p className="text-xs text-[#006847] font-medium truncate">
+            🦜 Nature Lo-Fi
           </p>
         </div>
 
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center space-x-2">
           <Button
             onClick={togglePlay}
-            variant="outline"
+            variant="ghost"
             size="sm"
-            className="border-[#006847] text-[#006847] hover:bg-[#006847] hover:text-white"
+            className="h-7 px-2 text-[#006847] hover:bg-[#006847]/10"
           >
-            {isPlaying ? (
-              <>
-                <VolumeX className="h-4 w-4 mr-1" />
-                Pause
-              </>
-            ) : (
-              <>
-                <Volume2 className="h-4 w-4 mr-1" />
-                Play
-              </>
-            )}
+            {isPlaying ? <VolumeX className="h-3 w-3" /> : <Volume2 className="h-3 w-3" />}
           </Button>
 
-          <div className="flex-1 flex items-center space-x-2">
-            <VolumeX className="h-4 w-4 text-gray-400" />
+          <div className="flex-1 flex items-center space-x-1">
             <Slider
               value={[volume]}
               onValueChange={handleVolumeChange}
@@ -106,26 +86,8 @@ function MusicPlayer() {
               step={0.1}
               className="flex-1"
             />
-            <Volume2 className="h-4 w-4 text-gray-600" />
           </div>
         </div>
-
-        <div className="text-xs text-gray-500 text-center pt-2 border-t">
-          <p>Peaceful ambient sounds to enhance your browsing experience</p>
-        </div>
-
-        {/* Audio file setup instructions */}
-        <details className="text-xs text-gray-500">
-          <summary className="cursor-pointer hover:text-[#006847]">Setup Instructions</summary>
-          <div className="mt-2 p-2 bg-gray-50 rounded space-y-1">
-            <p>To add your audio file:</p>
-            <ol className="list-decimal list-inside space-y-1 ml-2">
-              <li>Add audio file to <code>/app/frontend/public/audio/</code></li>
-              <li>Update src in MusicPlayer.js</li>
-              <li>Recommended: Lo-fi nature sounds with hummingbird ambience</li>
-            </ol>
-          </div>
-        </details>
       </div>
     </div>
   );

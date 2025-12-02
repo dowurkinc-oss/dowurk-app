@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Card } from '@/components/ui/card';
-import { TrendingUp, Heart, Building2, UserPlus, Sparkles } from 'lucide-react';
+import { TrendingUp, Heart, Building2, UserPlus } from 'lucide-react';
 import axios from 'axios';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
@@ -13,39 +12,38 @@ function LiveActivityFeed() {
 
   useEffect(() => {
     fetchRecentActivity();
-    const interval = setInterval(fetchRecentActivity, 30000); // Refresh every 30s
+    const interval = setInterval(fetchRecentActivity, 30000);
     return () => clearInterval(interval);
   }, []);
 
   const fetchRecentActivity = async () => {
     try {
       const response = await axios.get(`${API}/recent-activity`);
-      setActivities(response.data.slice(0, 5)); // Show last 5 activities
+      setActivities(response.data.slice(0, 3));
     } catch (error) {
-      // Fallback to mock data if endpoint doesn't exist
       setActivities([
-        { type: 'blessing', name: 'Someone', time: 'Just now', icon: 'heart' },
-        { type: 'business', name: 'New business', time: '5 min ago', icon: 'building' },
-        { type: 'signup', name: 'New member', time: '12 min ago', icon: 'user' }
+        { type: 'blessing', name: 'Someone', time: 'Just now' },
+        { type: 'business', name: 'A business', time: '5m ago' },
+        { type: 'signup', name: 'New member', time: '12m ago' }
       ]);
     }
   };
 
   const getIcon = (type) => {
     switch(type) {
-      case 'blessing': return <Heart className="h-4 w-4 text-red-500" />;
-      case 'business': return <Building2 className="h-4 w-4 text-[#006847]" />;
-      case 'signup': return <UserPlus className="h-4 w-4 text-blue-500" />;
-      default: return <Sparkles className="h-4 w-4 text-[#A4D65E]" />;
+      case 'blessing': return <Heart className="h-3 w-3 text-red-400" />;
+      case 'business': return <Building2 className="h-3 w-3 text-[#006847]" />;
+      case 'signup': return <UserPlus className="h-3 w-3 text-blue-400" />;
+      default: return <TrendingUp className="h-3 w-3 text-[#A4D65E]" />;
     }
   };
 
   const getMessage = (activity) => {
     switch(activity.type) {
-      case 'blessing': return 'shared a blessing';
-      case 'business': return 'added their business';
-      case 'signup': return 'joined DowUrk';
-      default: return 'took action';
+      case 'blessing': return 'shared blessing';
+      case 'business': return 'added';
+      case 'signup': return 'joined';
+      default: return 'active';
     }
   };
 
@@ -53,52 +51,44 @@ function LiveActivityFeed() {
 
   return (
     <motion.div
-      className="fixed top-24 right-6 w-72 z-30"
+      className="fixed top-24 right-6 w-44 z-30"
       initial={{ opacity: 0, x: 100 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <Card className="border-2 border-[#A4D65E] bg-white shadow-xl">
-        <div className="p-4 bg-gradient-to-r from-[#A4D65E] to-[#006847] text-white flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <TrendingUp className="h-5 w-5" />
-            <h3 className="font-bold">Live Activity</h3>
+      <div className="bg-white/60 backdrop-blur-md border border-white/40 rounded-xl shadow-lg">
+        <div className="p-2 bg-gradient-to-r from-[#A4D65E]/70 to-[#006847]/70 text-white flex items-center justify-between rounded-t-xl">
+          <div className="flex items-center space-x-1">
+            <TrendingUp className="h-3 w-3" />
+            <h3 className="font-semibold text-xs">Live</h3>
           </div>
           <button 
             onClick={() => setIsVisible(false)}
-            className="text-white hover:text-gray-200 text-xl leading-none"
+            className="text-white hover:text-gray-200 text-sm leading-none"
           >
             ×
           </button>
         </div>
         
-        <div className="p-3 space-y-2 max-h-64 overflow-y-auto">
+        <div className="p-2 space-y-1">
           <AnimatePresence>
             {activities.map((activity, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 20 }}
-                transition={{ delay: index * 0.1 }}
-                className="flex items-start space-x-2 p-2 hover:bg-gray-50 rounded"
+                exit={{ opacity: 0 }}
+                className="flex items-center space-x-1 p-1 hover:bg-white/40 rounded"
               >
-                <div className="mt-0.5">{getIcon(activity.type)}</div>
-                <div className="flex-1 text-sm">
-                  <span className="font-semibold">{activity.name}</span>
-                  {' '}
-                  <span className="text-gray-600">{getMessage(activity)}</span>
-                  <div className="text-xs text-gray-500">{activity.time}</div>
-                </div>
+                {getIcon(activity.type)}
+                <span className="text-[10px] text-gray-700 truncate flex-1">
+                  <strong className="text-[11px]">{activity.name}</strong> {getMessage(activity)}
+                </span>
               </motion.div>
             ))}
           </AnimatePresence>
         </div>
-        
-        <div className="p-2 bg-gray-50 text-center text-xs text-gray-600 border-t">
-          Join the movement! 🚀
-        </div>
-      </Card>
+      </div>
     </motion.div>
   );
 }

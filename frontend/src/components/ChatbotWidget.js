@@ -1,9 +1,8 @@
-import { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
+import { useState } from 'react';
+import { MessageSquare, X, Send, Minimize2, Maximize2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { X, Send, MessageCircle, Sparkles, Minimize2, Maximize2 } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import axios from 'axios';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -11,228 +10,146 @@ const API = `${BACKEND_URL}/api`;
 function ChatbotWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState([
+    { role: 'assistant', content: 'Hello! I\'m your DowUrk AI Guide. How can I help you today?' }
+  ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
-  const [hasInteracted, setHasInteracted] = useState(false);
-  const messagesEndRef = useRef(null);
 
-  // Show welcome message on first visit
-  useEffect(() => {
-    const hasVisited = sessionStorage.getItem('chatbot_dismissed');
-    if (!hasVisited) {
-      setTimeout(() => {
-        setIsOpen(true);
-        setMessages([{
-          role: 'assistant',
-          content: "👋 Welcome to The DowUrk FramewUrk! I'm your AI guide. I can help you find the perfect resources for your entrepreneurial journey. What brings you here today?"
-        }]);
-      }, 2000); // Show after 2 seconds
-    }
-  }, []);
+  const quickActions = [
+    { text: 'Find businesses', icon: '🏢' },
+    { text: 'Get AI help', icon: '🤖' },
+    { text: 'Find grants', icon: '💰' }
+  ];
 
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
+  const sendMessage = async () => {
+    if (!input.trim()) return;
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const handleClose = () => {
-    setIsOpen(false);
-    sessionStorage.setItem('chatbot_dismissed', 'true');
-  };
-
-  const handleSend = async (messageText = null) => {
-    const textToSend = messageText || input;
-    if (!textToSend.trim()) return;
-
-    setHasInteracted(true);
-    const userMessage = { role: 'user', content: textToSend };
-    setMessages(prev => [...prev, userMessage]);
+    const userMessage = input;
     setInput('');
+    setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
     setLoading(true);
 
     try {
       const response = await axios.post(`${API}/ai/chat`, {
-        message: textToSend,
-        conversation_history: messages,
+        message: userMessage,
+        conversation_history: messages.slice(-6),
         context_type: 'general'
       });
-
-      // Parse response for navigation suggestions
-      let assistantMessage = response.data.response;
-      const assistantMsg = { role: 'assistant', content: assistantMessage };
-      setMessages(prev => [...prev, assistantMsg]);
+      setMessages(prev => [...prev, { role: 'assistant', content: response.data.response }]);
     } catch (error) {
-      console.error('Error:', error);
-      setMessages(prev => [...prev, {
-        role: 'assistant',
-        content: "I'm having trouble connecting right now, but I can still help! Try clicking one of the quick links below or use the navigation menu above."
+      setMessages(prev => [...prev, { 
+        role: 'assistant', 
+        content: 'I\'m having trouble right now. Please try again or contact support.' 
       }]);
     } finally {
       setLoading(false);
     }
   };
 
-  const quickActions = [
-    { text: 'Find businesses', emoji: '🏢', link: '/businesses' },
-    { text: 'Get AI help', emoji: '🤖', link: '/ai-assistant' },
-    { text: 'Find grants', emoji: '💰', link: '/grants' },
-    { text: 'Join events', emoji: '📅', link: '/events' },
-    { text: 'Learn more', emoji: '📚', link: '/resources' },
-    { text: 'Shop merch', emoji: '🛍️', link: '/shop' }
-  ];
-
   const handleQuickAction = (action) => {
-    window.location.href = action.link;
+    setInput(action);
   };
 
   if (!isOpen) {
     return (
-      <button
-        onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 h-16 w-16 rounded-full bg-gradient-to-r from-[#A4D65E] to-[#006847] shadow-lg hover:shadow-xl transition-all flex items-center justify-center z-50 group"
-        data-testid="chatbot-open-button"
-      >
-        <MessageCircle className="h-7 w-7 text-white" />
-        <span className="absolute -top-1 -right-1 h-5 w-5 bg-red-500 rounded-full flex items-center justify-center text-xs text-white font-bold animate-pulse">
-          !
-        </span>
-        <div className="absolute bottom-full right-0 mb-2 hidden group-hover:block">
-          <div className="bg-gray-900 text-white text-sm rounded-lg px-3 py-2 whitespace-nowrap">
-            Need help? Chat with me!
-            <div className="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
-          </div>
-        </div>
-      </button>
+      <div className="fixed bottom-6 right-6 z-40">
+        <Button
+          onClick={() => setIsOpen(true)}
+          className="rounded-full w-14 h-14 bg-white/70 backdrop-blur-md border border-white/40 hover:bg-white/80 shadow-lg"
+        >
+          <MessageSquare className="h-6 w-6 text-[#006847]" />
+        </Button>
+      </div>
+    );
+  }
+
+  if (isMinimized) {
+    return (
+      <div className="fixed bottom-6 right-6 z-40">
+        <Button
+          onClick={() => setIsMinimized(false)}
+          className="rounded-full w-12 h-12 bg-white/70 backdrop-blur-md border border-white/40 hover:bg-white/80 shadow-lg"
+        >
+          <Maximize2 className="h-5 w-5 text-[#006847]" />
+        </Button>
+      </div>
     );
   }
 
   return (
-    <div 
-      className={`fixed bottom-6 right-6 z-50 transition-all ${
-        isMinimized ? 'w-72' : 'w-80'
-      }`}
-      data-testid="chatbot-widget"
-    >
-      <Card className="shadow-2xl border-2 border-[#A4D65E]">
-        {/* Header */}
-        <CardHeader className="bg-gradient-to-r from-[#A4D65E] to-[#006847] text-white p-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className="h-10 w-10 rounded-full bg-white flex items-center justify-center">
-                <Sparkles className="h-6 w-6 text-[#006847]" />
-              </div>
-              <div>
-                <CardTitle className="text-lg">DowUrk AI Guide</CardTitle>
-                <Badge variant="secondary" className="bg-white/20 text-white text-xs">
-                  Online
-                </Badge>
-              </div>
-            </div>
-            <div className="flex items-center space-x-2">
-              <button
-                onClick={() => setIsMinimized(!isMinimized)}
-                className="hover:bg-white/20 p-2 rounded transition"
-              >
-                {isMinimized ? <Maximize2 className="h-4 w-4" /> : <Minimize2 className="h-4 w-4" />}
-              </button>
-              <button
-                onClick={handleClose}
-                className="hover:bg-white/20 p-2 rounded transition"
-                data-testid="chatbot-close-button"
-              >
-                <X className="h-5 w-5" />
-              </button>
+    <div className="fixed bottom-6 right-6 w-80 z-40 bg-white/70 backdrop-blur-md rounded-2xl shadow-xl border border-white/40">
+      {/* Header */}
+      <div className="p-3 bg-gradient-to-r from-[#A4D65E]/80 to-[#006847]/80 text-white flex items-center justify-between rounded-t-2xl">
+        <div className="flex items-center space-x-2">
+          <MessageSquare className="h-4 w-4" />
+          <span className="font-semibold text-sm">DowUrk AI</span>
+        </div>
+        <div className="flex items-center space-x-1">
+          <button onClick={() => setIsMinimized(true)} className="hover:bg-white/20 p-1 rounded">
+            <Minimize2 className="h-3 w-3" />
+          </button>
+          <button onClick={() => setIsOpen(false)} className="hover:bg-white/20 p-1 rounded">
+            <X className="h-3 w-3" />
+          </button>
+        </div>
+      </div>
+
+      {/* Messages */}
+      <div className="h-64 overflow-y-auto p-3 space-y-2">
+        {messages.map((msg, idx) => (
+          <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+            <div className={`max-w-[80%] p-2 rounded-lg text-xs ${
+              msg.role === 'user' 
+                ? 'bg-[#006847]/80 text-white' 
+                : 'bg-white/60 text-gray-800 border border-gray-200'
+            }`}>
+              {msg.content}
             </div>
           </div>
-        </CardHeader>
-
-        {!isMinimized && (
-          <CardContent className="p-0">
-            {/* Messages */}
-            <div className="h-80 overflow-y-auto p-4 space-y-4 bg-gray-50">
-              {messages.map((message, index) => (
-                <div
-                  key={index}
-                  className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
-                >
-                  <div
-                    className={`max-w-[80%] rounded-lg p-3 ${
-                      message.role === 'user'
-                        ? 'bg-[#006847] text-white'
-                        : 'bg-white text-gray-900 shadow'
-                    }`}
-                  >
-                    <p className="text-sm whitespace-pre-wrap">{message.content}</p>
-                  </div>
-                </div>
-              ))}
-              
-              {loading && (
-                <div className="flex justify-start">
-                  <div className="bg-white rounded-lg p-3 shadow">
-                    <div className="flex space-x-2">
-                      <div className="h-2 w-2 bg-[#A4D65E] rounded-full animate-bounce"></div>
-                      <div className="h-2 w-2 bg-[#A4D65E] rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                      <div className="h-2 w-2 bg-[#A4D65E] rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                    </div>
-                  </div>
-                </div>
-              )}
-              <div ref={messagesEndRef} />
+        ))}
+        {loading && (
+          <div className="flex justify-start">
+            <div className="bg-white/60 border border-gray-200 p-2 rounded-lg text-xs">
+              <span className="animate-pulse">Thinking...</span>
             </div>
-
-            {/* Quick Actions */}
-            {!hasInteracted && (
-              <div className="p-4 border-t bg-white">
-                <p className="text-xs text-gray-600 mb-3 font-semibold">Quick shortcuts:</p>
-                <div className="grid grid-cols-3 gap-2">
-                  {quickActions.map((action, index) => (
-                    <button
-                      key={index}
-                      onClick={() => handleQuickAction(action)}
-                      className="flex flex-col items-center p-2 rounded-lg hover:bg-gray-100 transition text-center"
-                    >
-                      <span className="text-2xl mb-1">{action.emoji}</span>
-                      <span className="text-xs text-gray-700">{action.text}</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Input */}
-            <div className="p-4 border-t bg-white">
-              <div className="flex space-x-2">
-                <input
-                  type="text"
-                  placeholder="Ask me anything..."
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                  className="flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A4D65E] text-sm"
-                  data-testid="chatbot-input"
-                />
-                <Button
-                  onClick={() => handleSend()}
-                  disabled={loading || !input.trim()}
-                  className="bg-gradient-to-r from-[#A4D65E] to-[#006847] hover:opacity-90"
-                  size="sm"
-                  data-testid="chatbot-send-button"
-                >
-                  <Send className="h-4 w-4" />
-                </Button>
-              </div>
-              <p className="text-xs text-gray-500 mt-2 text-center">
-                Powered by AI • Here to help 24/7
-              </p>
-            </div>
-          </CardContent>
+          </div>
         )}
-      </Card>
+      </div>
+
+      {/* Quick Actions */}
+      <div className="px-3 pb-2 flex gap-1 flex-wrap">
+        {quickActions.map((action, idx) => (
+          <button
+            key={idx}
+            onClick={() => handleQuickAction(action.text)}
+            className="text-xs px-2 py-1 bg-white/50 hover:bg-white/70 rounded-full border border-gray-200 transition"
+          >
+            {action.icon} {action.text}
+          </button>
+        ))}
+      </div>
+
+      {/* Input */}
+      <div className="p-3 border-t border-white/30">
+        <div className="flex space-x-2">
+          <Input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
+            placeholder="Ask me anything..."
+            className="text-xs bg-white/50 border-gray-200"
+          />
+          <Button
+            onClick={sendMessage}
+            disabled={loading || !input.trim()}
+            size="sm"
+            className="bg-[#006847]/80 hover:bg-[#006847] h-8 px-2"
+          >
+            <Send className="h-3 w-3" />
+          </Button>
+        </div>
+      </div>
     </div>
   );
 }
