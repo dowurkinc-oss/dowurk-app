@@ -442,6 +442,27 @@ async def create_marketing_content(business_name: str, business_description: str
     content = await generate_marketing_content(business_name, business_description, content_type)
     return {"content": content}
 
+# Blessings/Gratitude Wall Routes
+@api_router.post("/blessings", response_model=Blessing)
+async def create_blessing(blessing_data: BlessingBase):
+    blessing = Blessing(**blessing_data.model_dump())
+    doc = blessing.model_dump()
+    doc['created_at'] = doc['created_at'].isoformat()
+    
+    await db.blessings.insert_one(doc)
+    return blessing
+
+@api_router.get("/blessings")
+async def get_blessings():
+    total = await db.blessings.count_documents({})
+    blessings = await db.blessings.find({}, {"_id": 0}).sort("created_at", -1).limit(50).to_list(50)
+    
+    for blessing in blessings:
+        if isinstance(blessing.get('created_at'), str):
+            blessing['created_at'] = datetime.fromisoformat(blessing['created_at'])
+    
+    return {"total": total, "blessings": blessings}
+
 # Include router
 app.include_router(api_router)
 
