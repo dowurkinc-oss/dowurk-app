@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { motion } from 'framer-motion';
 import AIBackgroundAnimation from '@/components/AIBackgroundAnimation';
 import InspirationalParticles from '@/components/InspirationalParticles';
+import VideoBackground from '@/components/VideoBackground';
 import { 
   Building2, 
   Bot, 
