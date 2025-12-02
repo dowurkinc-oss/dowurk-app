@@ -45,7 +45,7 @@ function Login() {
           </div>
           <CardTitle className="text-2xl text-center">Welcome Back</CardTitle>
           <CardDescription className="text-center">
-            Log in to your DowUrk H.U.B. account
+            Log in to your The DowUrk FramewUrk account
           </CardDescription>
         </CardHeader>
         <CardContent>

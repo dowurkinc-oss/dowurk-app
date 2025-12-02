@@ -37,7 +37,7 @@ function Layout() {
                 className="h-10 w-10"
               />
               <span className="text-xl font-bold bg-gradient-to-r from-[#A4D65E] to-[#006847] bg-clip-text text-transparent">
-                DowUrk H.U.B.
+                The DowUrk FramewUrk
               </span>
             </Link>
 

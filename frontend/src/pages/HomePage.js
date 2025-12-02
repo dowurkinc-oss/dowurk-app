@@ -75,7 +75,7 @@ function HomePage() {
         <h1 className="text-5xl md:text-6xl font-bold leading-tight">
           Welcome to <br />
           <span className="bg-gradient-to-r from-[#A4D65E] to-[#006847] bg-clip-text text-transparent">
-            The DowUrk H.U.B.
+            The The DowUrk FramewUrk
           </span>
         </h1>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -168,7 +168,7 @@ function HomePage() {
       <section className="text-center space-y-6 py-12">
         <h2 className="text-4xl font-bold">Ready to Transform Your Business?</h2>
         <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-          Join thousands of Louisiana entrepreneurs building their dreams with DowUrk H.U.B.
+          Join thousands of Louisiana entrepreneurs building their dreams with The DowUrk FramewUrk
         </p>
         <Link to="/register">
           <Button 

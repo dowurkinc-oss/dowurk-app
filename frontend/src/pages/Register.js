@@ -54,7 +54,7 @@ function Register() {
               className="h-16 w-16"
             />
           </div>
-          <CardTitle className="text-2xl text-center">Join DowUrk H.U.B.</CardTitle>
+          <CardTitle className="text-2xl text-center">Join The DowUrk FramewUrk</CardTitle>
           <CardDescription className="text-center">
             Start your entrepreneurial journey with Louisiana's premier business community
           </CardDescription>

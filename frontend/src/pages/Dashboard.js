@@ -136,7 +136,7 @@ function Dashboard() {
         <Card className="md:col-span-2">
           <CardHeader>
             <CardTitle>Activity Summary</CardTitle>
-            <CardDescription>Your engagement with the DowUrk H.U.B. community</CardDescription>
+            <CardDescription>Your engagement with the The DowUrk FramewUrk community</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-3 gap-6 text-center">
@@ -160,7 +160,7 @@ function Dashboard() {
       {/* Welcome Alert */}
       <Alert className="border-[#A4D65E] bg-green-50">
         <AlertDescription>
-          🎉 <strong>Welcome to DowUrk H.U.B.!</strong> Start by exploring businesses, asking our AI assistant questions, 
+          🎉 <strong>Welcome to The DowUrk FramewUrk!</strong> Start by exploring businesses, asking our AI assistant questions, 
           or joining upcoming events. We're here to support your entrepreneurial journey.
         </AlertDescription>
       </Alert>
@@ -190,7 +190,7 @@ function Dashboard() {
       <Card>
         <CardHeader>
           <CardTitle>Recommended Next Steps</CardTitle>
-          <CardDescription>Complete these actions to get the most out of DowUrk H.U.B.</CardDescription>
+          <CardDescription>Complete these actions to get the most out of The DowUrk FramewUrk</CardDescription>
         </CardHeader>
         <CardContent className="space-y-3">
           <div className="flex items-start space-x-3 p-3 rounded-lg hover:bg-gray-50 cursor-pointer">

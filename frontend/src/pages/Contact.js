@@ -234,7 +234,7 @@ function Contact() {
         <div className="max-w-3xl mx-auto space-y-4">
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">How can I join the DowUrk H.U.B.?</CardTitle>
+              <CardTitle className="text-lg">How can I join the The DowUrk FramewUrk?</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-gray-600">Simply click on "Sign Up" in the navigation menu or <a href="/register" className="text-[#006847] font-semibold hover:underline">click here</a> to create your free account.</p>
