@@ -59,17 +59,8 @@ async def generate_business_plan(request: BusinessPlanRequest):
         if not api_key:
             raise HTTPException(status_code=500, detail="AI service not configured")
         
-        # Initialize chat with system message
-        system_message = """You are a business planning expert for DowUrk AI, specializing in helping underserved entrepreneurs, creatives, nonprofits, and minority-owned businesses. 
-
-Your role is to:
-- Provide actionable business planning advice
-- Help create comprehensive business strategies
-- Offer guidance on funding, marketing, and operations
-- Be culturally aware and sensitive to diverse business contexts
-- Focus on practical, real-world solutions for local economies
-
-Be concise, encouraging, and provide specific actionable steps."""
+        # PROTECTED: Get proprietary system prompt from secure vault
+        system_message = ProprietaryPrompts.get_system_prompt(\"business_planning\")
 
         chat = LlmChat(
             api_key=api_key,
