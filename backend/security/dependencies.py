@@ -11,10 +11,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-async def apply_rate_limit(
-    request: Request,
-    current_user: Optional[dict] = Depends(get_current_user)
-) -> dict:
+async def apply_rate_limit(request: Request) -> dict:
     """
     Global rate limiting dependency
     Apply to any route to enforce rate limits based on user role
