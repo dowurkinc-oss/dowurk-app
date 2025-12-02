@@ -186,16 +186,20 @@ function SevenFPage({ fName }) {
           Discover how each pillar of The DowUrk FramewUrk can transform your life and business
         </p>
         <div className="flex flex-wrap justify-center gap-3">
-          {Object.keys(fInfo).map((f) => (
-            <a key={f} href={`/framework/${f.toLowerCase()}`}>
-              <Button 
-                variant="secondary"
-                className={f === fName ? 'bg-[#A4D65E] text-black' : 'bg-white text-gray-900'}
-              >
-                {fInfo[f].icon} {f}
-              </Button>
-            </a>
-          ))}
+          {Object.keys(fInfo).map((f) => {
+            const linkName = f === 'Finance' ? 'finances' : f.toLowerCase();
+            const displayName = f === 'Finance' ? 'Finances' : f;
+            return (
+              <a key={f} href={`/framework/${linkName}`}>
+                <Button 
+                  variant="secondary"
+                  className={normalizedName === f ? 'bg-[#A4D65E] text-black' : 'bg-white text-gray-900'}
+                >
+                  {fInfo[f].icon} {displayName}
+                </Button>
+              </a>
+            );
+          })}
         </div>
       </section>
     </div>
