@@ -278,11 +278,7 @@ metadata:
   run_ui: true
 
 test_plan:
-  current_focus:
-    - "User Registration Component"
-    - "User Login Component"
-    - "Dashboard Component"
-    - "Authentication Flow Integration"
+  current_focus: []
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
