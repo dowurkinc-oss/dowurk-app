@@ -217,6 +217,7 @@ function Layout() {
               <ul className="space-y-2 text-sm text-gray-400">
                 <li><Link to="/donate" className="hover:text-white">Donate</Link></li>
                 <li><Link to="/community" className="hover:text-white">Community</Link></li>
+                <li><Link to="/gratitude-wall" className="hover:text-white">Gratitude Wall</Link></li>
                 <li><Link to="/virtual-booths" className="hover:text-white">Virtual Booths</Link></li>
                 <li><Link to="/contact" className="hover:text-white">Contact Us</Link></li>
                 <li><Link to="/register" className="hover:text-white">Join DowUrk</Link></li>
