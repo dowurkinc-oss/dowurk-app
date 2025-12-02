@@ -185,11 +185,15 @@ async def get_valuation_projection():
     """Get current valuation and projection to $1B"""
     current = get_sample_snapshot()
     
+    # Calculate valuation if not set
+    current_valuation = current.estimated_valuation or (current.arr * current.valuation_multiple)
+    progress_pct = (current_valuation / 1000000000) * 100 if current_valuation else 0
+    
     return {
         "current_arr": current.arr,
-        "current_valuation": current.estimated_valuation,
+        "current_valuation": current_valuation,
         "target_valuation": 1000000000,
-        "progress_percentage": current.progress_to_billion,
+        "progress_percentage": progress_pct,
         "arr_needed_for_billion": 100000000,  # At 10x multiple
         "arr_gap": 100000000 - current.arr,
         "months_at_current_growth": calculate_months_to_target(current.arr, 100000000, current.mom_growth_rate or 15),
