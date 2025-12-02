@@ -43,13 +43,12 @@ const Home = () => {
           >
             📊 View Metrics Dashboard
           </Link>
-          <a 
-            href="/app/DOWURK_STRATEGIC_RESOURCES.md" 
-            target="_blank"
+          <Link 
+            to="/docs" 
             className="inline-block px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
           >
             📚 Strategic Resources
-          </a>
+          </Link>
         </div>
 
         <div className="mt-12 max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 px-4">
