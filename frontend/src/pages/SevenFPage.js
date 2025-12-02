@@ -5,6 +5,9 @@ import { Button } from '@/components/ui/button';
 import { Calendar, BookOpen, Users, ArrowRight } from 'lucide-react';
 
 function SevenFPage({ fName }) {
+  // Normalize fName to handle "Finances" route
+  const normalizedName = fName === 'Finances' ? 'Finance' : fName;
+  
   const fInfo = {
     'Faith': {
       icon: '✝️',
@@ -63,7 +66,11 @@ function SevenFPage({ fName }) {
     }
   };
 
-  const currentF = fInfo[fName];
+  const currentF = fInfo[normalizedName];
+  
+  if (!currentF) {
+    return <div className="text-center py-12">Framework section not found</div>;
+  }
 
   return (
     <div className="space-y-12" data-testid={`seven-f-${fName.toLowerCase()}`}>
