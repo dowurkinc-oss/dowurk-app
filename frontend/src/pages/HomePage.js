@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { motion } from 'framer-motion';
 import { 
   Building2, 
   Bot, 
@@ -64,26 +65,52 @@ function HomePage() {
   return (
     <div className="space-y-20">
       {/* Hero Section */}
-      <section className="text-center space-y-8 py-12" data-testid="hero-section">
-        <div className="inline-block">
+      <motion.section 
+        className="text-center space-y-8 py-12" 
+        data-testid="hero-section"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        <motion.div 
+          className="inline-block"
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
           <img 
             src="https://customer-assets.emergentagent.com/job_equity-focus/artifacts/uvi8zp1o_Dowurk%20CUSTOM%20COMBO%20PLAQUE%209X12.png" 
             alt="DowUrk Custom Logo" 
             className="w-full max-w-md mx-auto mb-6 h-auto"
             style={{ aspectRatio: '9/12', objectFit: 'contain' }}
           />
-        </div>
-        <h1 className="text-5xl md:text-6xl font-bold leading-tight">
+        </motion.div>
+        <motion.h1 
+          className="text-5xl md:text-6xl font-bold leading-tight"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
           Welcome to <br />
           <span className="bg-gradient-to-r from-[#A4D65E] to-[#006847] bg-clip-text text-transparent">
             The DowUrk FramewUrk
           </span>
-        </h1>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+        </motion.h1>
+        <motion.p 
+          className="text-xl text-gray-600 max-w-3xl mx-auto"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+        >
           Heaven Upper-Echelon Bound. Your AI-powered platform connecting Louisiana's underrepresented 
           entrepreneurs with resources, community, and opportunity.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        </motion.p>
+        <motion.div 
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.7 }}
+        >
           <Link to="/register">
             <Button 
               size="lg" 
@@ -98,41 +125,69 @@ function HomePage() {
               Explore Businesses
             </Button>
           </Link>
-        </div>
-      </section>
+        </motion.div>
+      </motion.section>
 
       {/* Stats Section */}
-      <section className="bg-gradient-to-r from-[#006847] to-[#005a3c] rounded-2xl p-12 text-white">
+      <motion.section 
+        className="bg-gradient-to-r from-[#006847] to-[#005a3c] rounded-2xl p-12 text-white"
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.5 }}
+      >
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat, index) => (
-            <div key={index} className="text-center">
+            <motion.div 
+              key={index} 
+              className="text-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
               <div className="text-4xl font-bold mb-2">{stat.value}</div>
               <div className="text-sm opacity-90">{stat.label}</div>
-            </div>
+            </motion.div>
           ))}
         </div>
-      </section>
+      </motion.section>
 
       {/* Features Grid */}
       <section className="space-y-8" data-testid="features-section">
-        <div className="text-center space-y-4">
+        <motion.div 
+          className="text-center space-y-4"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
           <h2 className="text-4xl font-bold">Everything You Need to Succeed</h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Comprehensive tools and resources designed specifically for Louisiana entrepreneurs
           </p>
-        </div>
+        </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((feature, index) => (
             <Link key={index} to={feature.link}>
-              <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-[#A4D65E]" data-testid={`feature-card-${index}`}>
-                <CardHeader>
-                  <div className="mb-3">{feature.icon}</div>
-                  <CardTitle className="text-xl">{feature.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-base">{feature.description}</CardDescription>
-                </CardContent>
-              </Card>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ scale: 1.03, y: -5 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-[#A4D65E]" data-testid={`feature-card-${index}`}>
+                  <CardHeader>
+                    <div className="mb-3">{feature.icon}</div>
+                    <CardTitle className="text-xl">{feature.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-base">{feature.description}</CardDescription>
+                  </CardContent>
+                </Card>
+              </motion.div>
             </Link>
           ))}
         </div>
