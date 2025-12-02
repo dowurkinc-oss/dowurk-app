@@ -111,7 +111,10 @@ function Layout() {
 
           {/* Mobile Navigation */}
           {mobileMenuOpen && (
-            <div className="md:hidden py-4 space-y-3 border-t border-gray-200">
+            <div className="lg:hidden py-4 space-y-3 border-t border-gray-200">
+              <Link to="/about" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">
+                About
+              </Link>
               <Link to="/businesses" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">
                 Businesses
               </Link>
@@ -126,6 +129,12 @@ function Layout() {
               </Link>
               <Link to="/grants" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">
                 Grants
+              </Link>
+              <Link to="/shop" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">
+                Shop
+              </Link>
+              <Link to="/donate" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">
+                Donate
               </Link>
               <Link to="/community" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">
                 Community
