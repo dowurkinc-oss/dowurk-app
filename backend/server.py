@@ -96,6 +96,11 @@ async def get_status_checks():
 # Include the router in the main app
 app.include_router(api_router)
 
+# Include metrics router if available
+if METRICS_AVAILABLE:
+    app.include_router(metrics_router)
+    logging.info("Metrics API endpoints enabled")
+
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
@@ -111,6 +116,30 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+@app.on_event("startup")
+async def startup_event():
+    """Run on application startup"""
+    logger.info("DowUrk AI API starting up...")
+    
+    # Start rate limiter cleanup if available
+    if SECURITY_AVAILABLE:
+        rate_limiter.start_cleanup()
+        logger.info("Rate limiter cleanup task started")
+    
+    # Create indexes for better query performance
+    try:
+        await db.status_checks.create_index("id", unique=True)
+        logger.info("Database indexes created")
+    except Exception as e:
+        logger.error(f"Error creating indexes: {e}")
+    
+    logger.info("DowUrk AI API ready!")
+    logger.info(f"Security features: {'✅ Enabled' if SECURITY_AVAILABLE else '❌ Disabled'}")
+    logger.info(f"Metrics API: {'✅ Enabled' if METRICS_AVAILABLE else '❌ Disabled'}")
+
 @app.on_event("shutdown")
 async def shutdown_db_client():
+    """Run on application shutdown"""
+    logger.info("DowUrk AI API shutting down...")
     client.close()
+    logger.info("Database connections closed")
