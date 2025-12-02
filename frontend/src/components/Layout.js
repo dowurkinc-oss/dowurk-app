@@ -14,6 +14,7 @@ import { Menu, X, User } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import ChatbotWidget from '@/components/ChatbotWidget';
 import MusicPlayer from '@/components/MusicPlayer';
+import LiveActivityFeed from '@/components/LiveActivityFeed';
 
 function Layout() {
   const { user, logout } = useAuth();
@@ -274,6 +275,9 @@ function Layout() {
       
       {/* Music Player */}
       <MusicPlayer />
+      
+      {/* Live Activity Feed */}
+      <LiveActivityFeed />
     </div>
   );
 }

@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import HomePage from '@/pages/HomePage';
 import AboutUs from '@/pages/AboutUs';
 import BusinessDirectory from '@/pages/BusinessDirectory';
+import BusinessMap from '@/pages/BusinessMap';
 import AddBusiness from '@/pages/AddBusiness';
 import AIAssistant from '@/pages/AIAssistant';
 import Events from '@/pages/Events';
@@ -38,6 +39,7 @@ function App() {
             <Route index element={<HomePage />} />
             <Route path="about" element={<AboutUs />} />
             <Route path="businesses" element={<BusinessDirectory />} />
+            <Route path="business-map" element={<BusinessMap />} />
             <Route path="add-business" element={<AddBusiness />} />
             <Route path="services" element={<Services />} />
             <Route path="certifications" element={<Certifications />} />
