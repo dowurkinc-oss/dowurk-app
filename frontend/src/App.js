@@ -37,16 +37,22 @@ const Home = () => {
         <h1 className="text-3xl font-bold text-gray-900 mt-5">DowUrk AI</h1>
         <p className="mt-2 text-gray-600">The AI Operating System for Underserved Entrepreneurs</p>
         
-        <div className="mt-8 space-x-4">
+        <div className="mt-8 flex flex-wrap gap-4 justify-center">
+          <Link 
+            to="/ai-assistant" 
+            className="inline-block px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-semibold"
+          >
+            🤖 AI Business Assistant
+          </Link>
           <Link 
             to="/metrics" 
             className="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           >
-            📊 View Metrics Dashboard
+            📊 Metrics Dashboard
           </Link>
           <Link 
             to="/docs" 
-            className="inline-block px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+            className="inline-block px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
           >
             📚 Strategic Resources
           </Link>
