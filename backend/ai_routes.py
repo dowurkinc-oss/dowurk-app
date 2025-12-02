@@ -60,7 +60,7 @@ async def generate_business_plan(request: BusinessPlanRequest):
             raise HTTPException(status_code=500, detail="AI service not configured")
         
         # PROTECTED: Get proprietary system prompt from secure vault
-        system_message = ProprietaryPrompts.get_system_prompt(\"business_planning\")
+        system_message = ProprietaryPrompts.get_system_prompt("business_planning")
 
         chat = LlmChat(
             api_key=api_key,
