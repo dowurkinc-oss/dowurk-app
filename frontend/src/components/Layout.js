@@ -207,7 +207,7 @@ function Layout() {
                 <li><Link to="/add-business" className="hover:text-white">Add Your Business</Link></li>
                 <li><Link to="/framework" className="hover:text-white">Seven F's FramewUrk</Link></li>
                 <li><Link to="/blog" className="hover:text-white">Blog & Podcast</Link></li>
-                <li><Link to="/certifications" className="hover:text-white">Certifications</Link></li>
+                <li><Link to="/louisiana-biz-resources" className="hover:text-white">Louisiana Biz Resources</Link></li>
               </ul>
             </div>
             <div>
