@@ -60,6 +60,12 @@ const Home = () => {
 
         <div className="mt-6 flex flex-wrap gap-3 justify-center">
           <Link 
+            to="/pricing" 
+            className="inline-block px-6 py-2 text-green-600 hover:text-green-700 transition-colors text-sm font-semibold"
+          >
+            💰 View Pricing
+          </Link>
+          <Link 
             to="/ai-assistant" 
             className="inline-block px-6 py-2 text-purple-600 hover:text-purple-700 transition-colors text-sm"
           >
