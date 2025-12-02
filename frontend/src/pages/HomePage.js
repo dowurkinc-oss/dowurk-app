@@ -75,7 +75,7 @@ function HomePage() {
         <h1 className="text-5xl md:text-6xl font-bold leading-tight">
           Welcome to <br />
           <span className="bg-gradient-to-r from-[#A4D65E] to-[#006847] bg-clip-text text-transparent">
-            The The DowUrk FramewUrk
+            The DowUrk FramewUrk
           </span>
         </h1>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
