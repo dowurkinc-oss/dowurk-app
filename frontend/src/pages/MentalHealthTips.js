@@ -209,19 +209,62 @@ function MentalHealthTips() {
             <CardDescription>Take a moment right now to center yourself</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
-            <div className="flex justify-center">
+            {/* Enhanced Breathing Circle with Ambient Effects */}
+            <div className="flex justify-center relative">
+              {/* Ambient glow rings */}
+              {breathingActive && (
+                <>
+                  <motion.div
+                    className="absolute w-64 h-64 rounded-full border-2 border-[#A4D65E]/30"
+                    animate={{
+                      scale: breathingPhase === 'inhale' ? [1, 1.5] :
+                             breathingPhase === 'hold' ? 1.5 :
+                             breathingPhase === 'exhale' ? [1.5, 1] : 1,
+                      opacity: breathingPhase === 'hold' ? 0.6 : 0.3
+                    }}
+                    transition={{ duration: 4, ease: 'easeInOut' }}
+                  />
+                  <motion.div
+                    className="absolute w-72 h-72 rounded-full border border-[#006847]/20"
+                    animate={{
+                      scale: breathingPhase === 'inhale' ? [1, 1.6] :
+                             breathingPhase === 'hold' ? 1.6 :
+                             breathingPhase === 'exhale' ? [1.6, 1] : 1,
+                      opacity: breathingPhase === 'hold' ? 0.4 : 0.2
+                    }}
+                    transition={{ duration: 4, ease: 'easeInOut', delay: 0.2 }}
+                  />
+                </>
+              )}
+              
+              {/* Main breathing circle */}
               <motion.div
-                className="w-48 h-48 rounded-full flex items-center justify-center text-white text-xl font-bold"
+                className="w-48 h-48 rounded-full flex items-center justify-center text-white text-xl font-bold relative z-10 shadow-2xl"
                 style={{
-                  background: 'linear-gradient(135deg, #A4D65E, #006847)'
+                  background: breathingPhase === 'inhale' ? 'linear-gradient(135deg, #A4D65E, #006847)' :
+                             breathingPhase === 'hold' ? 'linear-gradient(135deg, #006847, #004830)' :
+                             breathingPhase === 'exhale' ? 'linear-gradient(135deg, #A4D65E, #7fb84a)' :
+                             'linear-gradient(135deg, #A4D65E, #006847)'
                 }}
                 animate={{
                   scale: breathingActive ? (
-                    breathingPhase === 'inhale' ? [1, 1.3] :
-                    breathingPhase === 'hold' ? 1.3 :
-                    breathingPhase === 'exhale' ? [1.3, 1] :
+                    breathingPhase === 'inhale' ? [1, 1.4] :
+                    breathingPhase === 'hold' ? 1.4 :
+                    breathingPhase === 'exhale' ? [1.4, 1] :
                     1
-                  ) : 1
+                  ) : 1,
+                  boxShadow: breathingActive ? (
+                    breathingPhase === 'inhale' ? [
+                      '0 10px 40px rgba(164, 214, 94, 0.3)',
+                      '0 20px 60px rgba(164, 214, 94, 0.6)'
+                    ] :
+                    breathingPhase === 'hold' ? '0 20px 60px rgba(0, 104, 71, 0.7)' :
+                    breathingPhase === 'exhale' ? [
+                      '0 20px 60px rgba(164, 214, 94, 0.6)',
+                      '0 10px 40px rgba(164, 214, 94, 0.3)'
+                    ] :
+                    '0 10px 40px rgba(164, 214, 94, 0.3)'
+                  ) : '0 10px 40px rgba(164, 214, 94, 0.3)'
                 }}
                 transition={{
                   duration: breathingPhase === 'rest' ? 0 : 4,
@@ -230,18 +273,29 @@ function MentalHealthTips() {
               >
                 {breathingActive ? (
                   <div className="text-center">
-                    <div className="text-3xl mb-2">
+                    <motion.div 
+                      className="text-5xl mb-3"
+                      animate={{ 
+                        y: breathingPhase === 'inhale' ? [-5, 5] : 
+                           breathingPhase === 'exhale' ? [5, -5] : 0 
+                      }}
+                      transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                    >
                       {breathingPhase === 'inhale' && '↑'}
                       {breathingPhase === 'hold' && '⊙'}
                       {breathingPhase === 'exhale' && '↓'}
                       {breathingPhase === 'rest' && '○'}
-                    </div>
-                    <div className="text-sm">
+                    </motion.div>
+                    <motion.div 
+                      className="text-base font-semibold"
+                      animate={{ opacity: [0.7, 1, 0.7] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    >
                       {breathingPhase === 'inhale' && 'Breathe In'}
                       {breathingPhase === 'hold' && 'Hold'}
                       {breathingPhase === 'exhale' && 'Breathe Out'}
                       {breathingPhase === 'rest' && 'Rest'}
-                    </div>
+                    </motion.div>
                   </div>
                 ) : (
                   <div className="text-center">
@@ -250,6 +304,32 @@ function MentalHealthTips() {
                   </div>
                 )}
               </motion.div>
+              
+              {/* Floating particles during breathing */}
+              {breathingActive && (
+                <div className="absolute inset-0 pointer-events-none">
+                  {[...Array(12)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      className="absolute w-2 h-2 bg-[#A4D65E] rounded-full"
+                      style={{
+                        left: `${50 + Math.cos((i * Math.PI * 2) / 12) * 40}%`,
+                        top: `${50 + Math.sin((i * Math.PI * 2) / 12) * 40}%`
+                      }}
+                      animate={{
+                        scale: breathingPhase === 'inhale' ? [0.5, 1.2] :
+                               breathingPhase === 'exhale' ? [1.2, 0.5] : 1,
+                        opacity: [0.3, 0.8, 0.3]
+                      }}
+                      transition={{
+                        duration: 4,
+                        repeat: Infinity,
+                        delay: i * 0.1
+                      }}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
             
             <div className="flex justify-center">
