@@ -48,8 +48,8 @@ function Donate() {
       alert('Please select or enter a donation amount');
       return;
     }
-    // TODO: Integrate with Stripe
-    alert(`Thank you for your ${amount} donation! Payment integration coming soon.`);
+    // Redirect to Stripe donation page
+    window.location.href = 'https://donate.stripe.com/test_4gM00j5skfTjg7Y3BN38400';
   };
 
   return (
