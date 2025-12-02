@@ -189,20 +189,29 @@ function AboutUs() {
         </div>
       </section>
 
-      {/* Certifications */}
+      {/* Official Certifications */}
       <section className="bg-gradient-to-r from-[#A4D65E] to-[#006847] rounded-2xl p-12 text-white text-center space-y-6">
         <Award className="h-16 w-16 mx-auto" />
         <h2 className="text-3xl font-bold">Official Certifications</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto text-left">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto text-left">
+          <div className="bg-white/10 rounded-lg p-6">
+            <h3 className="font-bold text-xl mb-2">U.S. Federal Trademark</h3>
+            <p className="text-sm opacity-90 mb-1">DowUrk™</p>
+            <p className="text-sm opacity-90">Reg. No.: 6,557,997</p>
+            <p className="text-sm opacity-90">Registered: Nov 16, 2021</p>
+            <p className="text-sm opacity-90">USPTO Principal Register</p>
+          </div>
           <div className="bg-white/10 rounded-lg p-6">
             <h3 className="font-bold text-xl mb-2">501(c)(3) Public Charity</h3>
             <p className="text-sm opacity-90">Established: August 9, 2023</p>
             <p className="text-sm opacity-90">TIN: 81-3555399</p>
+            <p className="text-sm opacity-90 mt-2">IRS Tax-Exempt Status</p>
           </div>
           <div className="bg-white/10 rounded-lg p-6">
             <h3 className="font-bold text-xl mb-2">Hudson Initiative Certified</h3>
             <p className="text-sm opacity-90">Small Entrepreneurship (SE)</p>
             <p className="text-sm opacity-90">SEBD Certification Active</p>
+            <p className="text-sm opacity-90 mt-2">Louisiana LED Program</p>
           </div>
         </div>
       </section>
