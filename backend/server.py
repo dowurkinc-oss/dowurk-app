@@ -154,6 +154,14 @@ if AI_AVAILABLE:
     app.include_router(ai_router)
     logging.info("AI API endpoints enabled")
 
+# Include payment router if available
+if PAYMENT_AVAILABLE:
+    # Set database in payment_routes
+    import payment_routes
+    payment_routes.set_database(db)
+    app.include_router(payment_router)
+    logging.info("Payment API endpoints enabled")
+
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
