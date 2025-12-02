@@ -29,7 +29,7 @@ JWT_ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 # Create the main app
-app = FastAPI(title="DowUrk H.U.B. API")
+app = FastAPI(title="The DowUrk FramewUrk API")
 api_router = APIRouter(prefix="/api")
 
 # ==================== MODELS ====================
@@ -205,7 +205,7 @@ async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(s
 
 @api_router.get("/")
 async def root():
-    return {"message": "Welcome to DowUrk H.U.B. API", "version": "1.0.0"}
+    return {"message": "Welcome to The DowUrk FramewUrk API", "version": "1.0.0"}
 
 # Auth Routes
 @api_router.post("/auth/register", response_model=Dict[str, Any])
