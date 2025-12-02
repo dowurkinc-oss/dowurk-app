@@ -138,6 +138,14 @@ if DOCS_AVAILABLE:
     app.include_router(docs_router)
     logging.info("Documentation API endpoints enabled")
 
+# Include AI router if available
+if AI_AVAILABLE:
+    # Set database in ai_routes
+    import ai_routes
+    ai_routes.set_database(db)
+    app.include_router(ai_router)
+    logging.info("AI API endpoints enabled")
+
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
