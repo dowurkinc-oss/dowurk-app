@@ -65,16 +65,19 @@ function HomePage() {
 
   return (
     <div className="space-y-20">
-      {/* Hero Section */}
+      {/* Hero Section with AI Background */}
       <motion.section 
-        className="text-center space-y-8 py-12" 
+        className="text-center space-y-8 py-12 relative overflow-hidden" 
         data-testid="hero-section"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
+        {/* AI Neural Network Background Animation */}
+        <AIBackgroundAnimation />
+        
         <motion.div 
-          className="inline-block float-animation"
+          className="inline-block float-animation relative z-10"
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
@@ -82,12 +85,12 @@ function HomePage() {
           <img 
             src="https://customer-assets.emergentagent.com/job_equity-focus/artifacts/uvi8zp1o_Dowurk%20CUSTOM%20COMBO%20PLAQUE%209X12.png" 
             alt="DowUrk Custom Logo" 
-            className="w-full max-w-md mx-auto mb-6 h-auto"
+            className="w-full max-w-md mx-auto mb-6 h-auto relative z-10"
             style={{ aspectRatio: '9/12', objectFit: 'contain' }}
           />
         </motion.div>
         <motion.h1 
-          className="text-5xl md:text-6xl font-bold leading-tight"
+          className="text-5xl md:text-6xl font-bold leading-tight relative z-10"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
@@ -98,7 +101,7 @@ function HomePage() {
           </span>
         </motion.h1>
         <motion.p 
-          className="text-xl text-gray-600 max-w-3xl mx-auto"
+          className="text-xl text-gray-600 max-w-3xl mx-auto relative z-10"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.5 }}
@@ -107,7 +110,7 @@ function HomePage() {
           entrepreneurs with resources, community, and opportunity.
         </motion.p>
         <motion.div 
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center relative z-10"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.7 }}
