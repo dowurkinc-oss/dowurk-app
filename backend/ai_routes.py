@@ -82,9 +82,19 @@ Be concise, encouraging, and provide specific actionable steps."""
         # Create user message
         user_msg = UserMessage(text=enhanced_message)
         
-        # Get response from AI
+        # Get response from AI (with timeout handling)
         logger.info(f"Sending message to AI for session: {request.session_id}")
-        ai_response = await chat.send_message(user_msg)
+        try:
+            ai_response = await asyncio.wait_for(
+                chat.send_message(user_msg),
+                timeout=90.0  # 90 second timeout for AI response
+            )
+        except asyncio.TimeoutError:
+            logger.error(f"AI request timed out for session: {request.session_id}")
+            raise HTTPException(
+                status_code=status.HTTP_504_GATEWAY_TIMEOUT,
+                detail="AI service is taking too long to respond. Please try again with a shorter question."
+            )
         
         # Store the conversation in database
         user_message_doc = ChatMessage(
