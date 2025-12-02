@@ -176,6 +176,17 @@ class Grant(GrantBase):
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
     is_active: bool = True
 
+# Blessing/Gratitude Models
+class BlessingBase(BaseModel):
+    name: str = "Anonymous"
+    blessing: str
+    is_anonymous: bool = False
+
+class Blessing(BlessingBase):
+    model_config = ConfigDict(extra="ignore")
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
 # ==================== HELPER FUNCTIONS ====================
 
 def hash_password(password: str) -> str:
