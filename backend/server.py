@@ -59,6 +59,14 @@ except ImportError:
     PAYMENT_AVAILABLE = False
     logging.warning("Payment routes not found. Payment endpoints will not be available.")
 
+# Import monitoring routes
+try:
+    from monitoring_routes import router as monitoring_router
+    MONITORING_AVAILABLE = True
+except ImportError:
+    MONITORING_AVAILABLE = False
+    logging.warning("Monitoring routes not found. Monitoring endpoints will not be available.")
+
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
