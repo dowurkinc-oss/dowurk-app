@@ -101,15 +101,18 @@ function AboutUs() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {sevenFs.map((f, index) => (
-            <Card key={index} className="hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="text-4xl mb-3">{f.icon}</div>
-                <CardTitle className="text-xl">{f.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">{f.description}</p>
-              </CardContent>
-            </Card>
+            <a key={index} href={`/framework/${f.title.toLowerCase()}`}>
+              <Card className="hover:shadow-xl transition-all cursor-pointer border-2 hover:border-[#A4D65E] h-full">
+                <CardHeader>
+                  <div className="text-4xl mb-3">{f.icon}</div>
+                  <CardTitle className="text-xl">{f.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600 mb-4">{f.description}</p>
+                  <p className="text-sm text-[#006847] font-semibold">Learn More →</p>
+                </CardContent>
+              </Card>
+            </a>
           ))}
         </div>
       </section>
