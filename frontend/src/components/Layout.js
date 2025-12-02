@@ -1,4 +1,4 @@
-import { Outlet, Link, useNavigate } from 'react-router-dom';
+import { Outlet, Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '@/context/AuthContext';
 import { Button } from '@/components/ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -11,14 +11,20 @@ import {
   NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu';
 import { Menu, X, User } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ChatbotWidget from '@/components/ChatbotWidget';
 import MusicPlayer from '@/components/MusicPlayer';
 
 function Layout() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Scroll to top when route changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [location.pathname]);
 
   const handleLogout = () => {
     logout();
