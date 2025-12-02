@@ -110,10 +110,20 @@ async def generate_business_plan(request: BusinessPlanRequest):
         
         logger.info(f"AI response generated and stored for session: {request.session_id}")
         
+        # PROTECTED: Add watermark to AI-generated content
+        watermarked_response = ContentWatermark.add_watermark(
+            ai_response,
+            {
+                \"content_type\": \"business_plan\",
+                \"session_id\": request.session_id,
+                \"user_id\": \"system\"  # Update with actual user ID when available
+            }
+        )
+        
         return BusinessPlanResponse(
             session_id=request.session_id,
             user_message=request.user_message,
-            assistant_response=ai_response,
+            assistant_response=watermarked_response,
             timestamp=datetime.now(timezone.utc)
         )
         
