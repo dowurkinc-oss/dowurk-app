@@ -17,16 +17,15 @@ from security.rate_limiter import auth_rate_limiter
 from security.input_validator import InputValidator, XSSPrevention
 from security.audit_logger import audit_logger, AuditEventType
 
-# Database will be accessed via import at function level to avoid circular import
-import os
-from motor.motor_asyncio import AsyncIOMotorClient
-
-# Get database connection
-mongo_url = os.environ.get('MONGO_URL')
-client = AsyncIOMotorClient(mongo_url) if mongo_url else None
-db = client[os.environ.get('DB_NAME', 'test_database')] if client else None
+# Database - will be set by server.py after import
+db = None
 
 router = APIRouter(prefix="/api/auth", tags=["authentication"])
+
+def set_database(database):
+    """Set database instance from server.py"""
+    global db
+    db = database
 
 # ========================================
 # MODELS
