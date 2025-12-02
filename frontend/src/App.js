@@ -42,22 +42,37 @@ const Home = () => {
         
         <div className="mt-8 flex flex-wrap gap-4 justify-center">
           <Link 
-            to="/ai-assistant" 
-            className="inline-block px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-semibold"
+            to="/register" 
+            className="inline-block px-8 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-semibold text-lg"
           >
-            🤖 AI Business Assistant
+            Get Started Free
+          </Link>
+          <Link 
+            to="/login" 
+            className="inline-block px-8 py-3 bg-white text-purple-600 border-2 border-purple-600 rounded-lg hover:bg-purple-50 transition-colors font-semibold text-lg"
+          >
+            Sign In
+          </Link>
+        </div>
+
+        <div className="mt-6 flex flex-wrap gap-3 justify-center">
+          <Link 
+            to="/ai-assistant" 
+            className="inline-block px-6 py-2 text-purple-600 hover:text-purple-700 transition-colors text-sm"
+          >
+            🤖 Try AI Assistant
           </Link>
           <Link 
             to="/metrics" 
-            className="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="inline-block px-6 py-2 text-blue-600 hover:text-blue-700 transition-colors text-sm"
           >
-            📊 Metrics Dashboard
+            📊 View Metrics
           </Link>
           <Link 
             to="/docs" 
-            className="inline-block px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
+            className="inline-block px-6 py-2 text-indigo-600 hover:text-indigo-700 transition-colors text-sm"
           >
-            📚 Strategic Resources
+            📚 Resources
           </Link>
         </div>
 
