@@ -4,7 +4,10 @@ from typing import List, Dict
 import json
 
 # Initialize OpenAI client with Emergent Universal Key
-client = AsyncOpenAI(api_key=os.environ.get('OPENAI_API_KEY'))
+client = AsyncOpenAI(
+    api_key=os.environ.get('OPENAI_API_KEY'),
+    base_url='https://llm.emergent.sh/v1'
+)
 
 # System prompts for different contexts
 SYSTEM_PROMPTS = {
