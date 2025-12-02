@@ -3,14 +3,14 @@
     pointer-events: none;
 }
 
-/* Custom Cursor */
+/* Custom Cursor - Using optimized local image */
 * {
-    cursor: url('/cursor.png'), auto !important;
+    cursor: url(/cursor.png), auto !important;
 }
 
 /* Clickable elements get pointer cursor */
 a, button, [role="button"], input[type="submit"], input[type="button"], .cursor-pointer {
-    cursor: url('/cursor.png'), pointer !important;
+    cursor: url(/cursor.png), pointer !important;
 }
 
 /* Smooth scrolling */
