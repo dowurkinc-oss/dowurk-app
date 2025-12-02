@@ -40,7 +40,17 @@ function App() {
             <Route path="virtual-booths" element={<VirtualBooths />} />
             <Route path="donate" element={<Donate />} />
             <Route path="contact" element={<Contact />} />
+            <Route path="blog" element={<Blog />} />
+            <Route path="blog/:slug" element={<Blog />} />
+            <Route path="privacy-policy" element={<PrivacyPolicy />} />
             <Route path="dashboard" element={<Dashboard />} />
+            <Route path="framework/faith" element={<SevenFPage fName="Faith" />} />
+            <Route path="framework/fitness" element={<SevenFPage fName="Fitness" />} />
+            <Route path="framework/foundation" element={<SevenFPage fName="Foundation" />} />
+            <Route path="framework/fashion" element={<SevenFPage fName="Fashion" />} />
+            <Route path="framework/film" element={<SevenFPage fName="Film" />} />
+            <Route path="framework/food" element={<SevenFPage fName="Food" />} />
+            <Route path="framework/finance" element={<SevenFPage fName="Finance" />} />
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
