@@ -230,34 +230,41 @@ function Services() {
         <div className="text-center space-y-3">
           <h2 className="text-3xl font-bold">Schedule a Consultation</h2>
           <p className="text-gray-600">
-            Book your appointment online and get started with our professional services
+            Book your appointment online with our professional services team
           </p>
         </div>
         
         <Card className="border-2 border-[#A4D65E]">
           <CardContent className="pt-6">
-            {/* Setmore Booking Widget Placeholder */}
-            <div className="text-center space-y-4 py-12">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-[#A4D65E] to-[#006847] rounded-full mb-4">
-                <svg className="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold">Online Booking Coming Soon</h3>
-              <p className="text-gray-600 max-w-md mx-auto">
-                We're setting up our Setmore booking system. Meanwhile, please contact us directly to schedule your consultation.
-              </p>
-              <div className="pt-4">
-                <Link to="/contact">
-                  <Button className="bg-gradient-to-r from-[#A4D65E] to-[#006847]">
-                    Contact Us to Schedule
-                  </Button>
-                </Link>
-              </div>
+            {/* Setmore Booking Widget - ACTIVE */}
+            <div className="text-center space-y-6">
+              <script 
+                id='setmore_script' 
+                type='text/javascript' 
+                src='https://assets.setmore.com/integration/static/setmoreIframeLive.js'
+              ></script>
+              <a 
+                style={{float: 'none'}} 
+                id='Setmore_button_iframe' 
+                href='https://dowurkinc.setmore.com'
+                className="inline-block"
+              >
+                <img 
+                  border='none' 
+                  src='https://assets.setmore.com/setmore/images/2.0/Settings/book-now-black.svg' 
+                  alt='Book your appointment with DowUrk Inc.' 
+                  className="mx-auto hover:opacity-80 transition-opacity"
+                  style={{maxWidth: '200px'}}
+                />
+              </a>
               
-              {/* Instructions for adding Setmore widget */}
-              <div className="mt-8 p-6 bg-gray-50 rounded-lg text-left">
-                <h4 className="font-semibold mb-3 text-[#006847]">To Activate Setmore Booking:</h4>
+              <p className="text-sm text-gray-600 mt-4">
+                Click the button above to view available appointments and book your consultation
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+      </section>
                 <ol className="space-y-2 text-sm text-gray-600">
                   <li>1. Create account at <a href="https://www.setmore.com" target="_blank" rel="noopener noreferrer" className="text-[#006847] underline">www.setmore.com</a></li>
                   <li>2. Go to Integrations → Website Booking → Booking Widget</li>
