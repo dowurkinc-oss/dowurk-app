@@ -111,6 +111,9 @@ if METRICS_AVAILABLE:
 
 # Include auth router if available
 if AUTH_AVAILABLE:
+    # Set database in auth_routes
+    import auth_routes
+    auth_routes.set_database(db)
     app.include_router(auth_router)
     logging.info("Authentication API endpoints enabled")
 
