@@ -35,6 +35,14 @@ except ImportError:
     AUTH_AVAILABLE = False
     logging.warning("Auth routes not found. Authentication endpoints will not be available.")
 
+# Import docs routes
+try:
+    from docs_routes import router as docs_router
+    DOCS_AVAILABLE = True
+except ImportError:
+    DOCS_AVAILABLE = False
+    logging.warning("Docs routes not found. Documentation endpoints will not be available.")
+
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
