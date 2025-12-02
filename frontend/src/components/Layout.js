@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/navigation-menu';
 import { Menu, X, User } from 'lucide-react';
 import { useState } from 'react';
+import ChatbotWidget from '@/components/ChatbotWidget';
 
 function Layout() {
   const { user, logout } = useAuth();
