@@ -5,6 +5,9 @@ import axios from "axios";
 import MetricsDashboard from "./components/MetricsDashboard";
 import DocsViewer from "./components/DocsViewer";
 import AIBusinessAssistant from "./components/AIBusinessAssistant";
+import Login from "./components/Login";
+import Register from "./components/Register";
+import Dashboard from "./components/Dashboard";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
