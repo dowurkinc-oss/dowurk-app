@@ -259,7 +259,14 @@ function GratitudeWall() {
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-gray-700 leading-relaxed italic">"{blessing.blessing}"</p>
+                    <p className="text-gray-700 leading-relaxed italic mb-4">"{blessing.blessing}"</p>
+                    <div className="pt-3 border-t">
+                      <SocialShare 
+                        url={`https://dowurktoday.com/gratitude-wall`}
+                        title={`Blessing from ${blessing.is_anonymous ? 'Anonymous' : blessing.name}`}
+                        description={blessing.blessing.substring(0, 100) + '...'}
+                      />
+                    </div>
                   </CardContent>
                 </Card>
               </motion.div>
