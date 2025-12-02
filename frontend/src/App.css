@@ -3,15 +3,17 @@
     pointer-events: none;
 }
 
-/* Custom Cursor - Using optimized local image */
+/* Custom Cursor - Commented out temporarily */
+/* Will be re-implemented with proper path */
+/*
 * {
     cursor: url(/cursor.png), auto !important;
 }
 
-/* Clickable elements get pointer cursor */
 a, button, [role="button"], input[type="submit"], input[type="button"], .cursor-pointer {
     cursor: url(/cursor.png), pointer !important;
 }
+*/
 
 /* Smooth scrolling */
 html {
