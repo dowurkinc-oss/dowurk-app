@@ -202,13 +202,14 @@ function Layout() {
               <h4 className="font-semibold mb-3">Quick Links</h4>
               <ul className="space-y-2 text-sm text-gray-400">
                 <li><Link to="/about" className="hover:text-white">About Us</Link></li>
+                <li><Link to="/services" className="hover:text-white">Professional Services</Link></li>
                 <li><Link to="/businesses" className="hover:text-white">Business Directory</Link></li>
-                <li><Link to="/ai-assistant" className="hover:text-white">AI Assistant</Link></li>
-                <li><Link to="/events" className="hover:text-white">Events</Link></li>
-                <li><Link to="/resources" className="hover:text-white">Resources</Link></li>
-                <li><Link to="/grants" className="hover:text-white">Grants</Link></li>
-                <li><Link to="/shop" className="hover:text-white">Shop</Link></li>
-              </ul>\n            </div>
+                <li><Link to="/add-business" className="hover:text-white">Add Your Business</Link></li>
+                <li><Link to="/framework" className="hover:text-white">Seven F's FramewUrk</Link></li>
+                <li><Link to="/blog" className="hover:text-white">Blog & Podcast</Link></li>
+                <li><Link to="/certifications" className="hover:text-white">Certifications</Link></li>
+              </ul>
+            </div>
             <div>
               <h4 className="font-semibold mb-3">Get Involved</h4>
               <ul className="space-y-2 text-sm text-gray-400">
@@ -217,6 +218,8 @@ function Layout() {
                 <li><Link to="/virtual-booths" className="hover:text-white">Virtual Booths</Link></li>
                 <li><Link to="/contact" className="hover:text-white">Contact Us</Link></li>
                 <li><Link to="/register" className="hover:text-white">Join DowUrk</Link></li>
+                <li><Link to="/events" className="hover:text-white">Events</Link></li>
+                <li><Link to="/grants" className="hover:text-white">Grants</Link></li>
               </ul>
             </div>
             <div>
