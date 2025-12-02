@@ -46,14 +46,14 @@ function MusicPlayer() {
 
   return (
     <div className="fixed bottom-24 left-6 z-40 bg-white rounded-2xl shadow-2xl border-2 border-[#A4D65E] p-4 w-72">
-      {/* Hidden audio element - Replace src with actual audio file */}
+      {/* Audio element with blended hummingbird nature sounds */}
       <audio
         ref={audioRef}
         loop
         preload="auto"
       >
-        {/* TODO: Add your lo-fi nature/hummingbird audio file URL here */}
-        {/* <source src="/audio/nature-lofi-hummingbird.mp3" type="audio/mpeg" /> */}
+        <source src="/audio/nature-lofi-hummingbird.mp3" type="audio/mpeg" />
+        Your browser does not support the audio element.
       </audio>
 
       <div className="flex items-center justify-between mb-3">
