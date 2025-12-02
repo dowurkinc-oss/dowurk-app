@@ -230,6 +230,7 @@ function Layout() {
               <p className="text-gray-400 text-sm mb-3">
                 45398 Shadowood Dr.<br />
                 Hammond, LA 70401<br />
+                <a href="tel:+19852245714" className="hover:text-white">(985) 224-5714</a><br />
                 <a href="mailto:info@dowurktoday.com" className="hover:text-white">info@dowurktoday.com</a>
               </p>
               <div className="flex space-x-3 mt-4">
