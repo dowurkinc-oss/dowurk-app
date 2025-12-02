@@ -355,11 +355,9 @@ metadata:
 test_plan:
   current_focus: 
     - "AI Business Planning Assistant API"
-    - "Payment System API" 
     - "Documentation API"
   stuck_tasks:
     - "AI Business Planning Assistant API"
-    - "Payment System API"
     - "Documentation API"
   test_all: true
   test_priority: "high_first"
