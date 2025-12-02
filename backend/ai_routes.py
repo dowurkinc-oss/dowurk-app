@@ -198,19 +198,8 @@ async def generate_marketing_content(req: ContentGeneratorRequest):
         if not api_key:
             raise HTTPException(status_code=500, detail="AI service not configured")
         
-        # Build system prompt based on content type
-        system_prompts = {
-            "social_post": "You are a social media expert specializing in engaging, shareable content for businesses and nonprofits.",
-            "blog_intro": "You are a content marketing expert specializing in compelling blog introductions that hook readers.",
-            "email": "You are an email marketing expert specializing in persuasive, action-oriented email copy.",
-            "ad_copy": "You are an advertising copywriter specializing in concise, high-converting ad copy.",
-            "tagline": "You are a brand strategist specializing in memorable, impactful taglines and slogans."
-        }
-        
-        system_message = system_prompts.get(
-            req.content_type,
-            "You are a creative content writer specializing in marketing and branding."
-        )
+        # PROTECTED: Get proprietary system prompt from secure vault
+        system_message = ProprietaryPrompts.get_system_prompt(req.content_type)
         
         # Build user prompt
         length_guidance = {
