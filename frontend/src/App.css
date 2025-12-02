@@ -5,12 +5,12 @@
 
 /* Custom Cursor */
 * {
-    cursor: url('https://customer-assets.emergentagent.com/job_1dc8832b-f338-4702-aaed-8947f56a5ae3/artifacts/d68t1t72_ChatGPT%20Image%20Nov%2024%2C%202025%2C%2004_22_37%20PM.png'), auto !important;
+    cursor: url('/cursor.png'), auto !important;
 }
 
 /* Clickable elements get pointer cursor */
-a, button, [role="button"], input[type="submit"], input[type="button"] {
-    cursor: url('https://customer-assets.emergentagent.com/job_1dc8832b-f338-4702-aaed-8947f56a5ae3/artifacts/d68t1t72_ChatGPT%20Image%20Nov%2024%2C%202025%2C%2004_22_37%20PM.png'), pointer !important;
+a, button, [role="button"], input[type="submit"], input[type="button"], .cursor-pointer {
+    cursor: url('/cursor.png'), pointer !important;
 }
 
 /* Smooth scrolling */
