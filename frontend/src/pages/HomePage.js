@@ -263,19 +263,23 @@ function HomePage() {
 
       {/* CTA Section */}
       <motion.section 
-        className="text-center space-y-6 py-12"
+        className="text-center space-y-6 py-12 relative overflow-hidden bg-gradient-to-br from-white via-green-50/30 to-white rounded-2xl"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <h2 className="text-4xl font-bold">Ready to Transform Your Business?</h2>
-        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+        {/* Inspirational Particles with Dark Theme */}
+        <InspirationalParticles theme="dark" />
+        
+        <h2 className="text-4xl font-bold relative z-10">Ready to Transform Your Business?</h2>
+        <p className="text-xl text-gray-600 max-w-2xl mx-auto relative z-10">
           Join thousands of Louisiana entrepreneurs building their dreams with The DowUrk FramewUrk
         </p>
         <motion.div
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
+          className="relative z-10"
         >
           <Link to="/register">
             <Button 
