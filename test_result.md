@@ -215,9 +215,7 @@ metadata:
   run_ui: true
 
 test_plan:
-  current_focus:
-    - "AI Business Planning Assistant API"
-    - "AI Business Assistant UI Component"
+  current_focus: []
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
