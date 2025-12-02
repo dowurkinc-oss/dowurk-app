@@ -74,6 +74,8 @@ class BusinessBase(BaseModel):
     social_media: Dict[str, str] = {}  # {"facebook": "url", "instagram": "url"}
     hours_of_operation: Optional[str] = None
     services_offered: List[str] = []
+    organization_type: str = "for-profit"  # for-profit or non-profit
+    certifications: List[str] = []  # List of business certifications
     
 class Business(BusinessBase):
     model_config = ConfigDict(extra="ignore")
@@ -82,6 +84,7 @@ class Business(BusinessBase):
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
     updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
     is_verified: bool = False
+    is_pending_approval: bool = True  # New businesses need approval
     logo_url: Optional[str] = None
     images: List[str] = []
     rating: float = 0.0
