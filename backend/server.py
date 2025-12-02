@@ -125,6 +125,11 @@ if AUTH_AVAILABLE:
     app.include_router(auth_router)
     logging.info("Authentication API endpoints enabled")
 
+# Include docs router if available
+if DOCS_AVAILABLE:
+    app.include_router(docs_router)
+    logging.info("Documentation API endpoints enabled")
+
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
