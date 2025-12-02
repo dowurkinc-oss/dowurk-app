@@ -45,10 +45,7 @@ class ChatHistory(BaseModel):
     messages: List[ChatMessage]
 
 @router.post("/business-plan", response_model=BusinessPlanResponse)
-async def generate_business_plan(
-    request: BusinessPlanRequest,
-    rate_limit_headers: dict = Depends(apply_rate_limit)
-):
+async def generate_business_plan(request: BusinessPlanRequest):
     """
     AI Business Planning Assistant
     Generates business plans, strategies, and advice using GPT-5
