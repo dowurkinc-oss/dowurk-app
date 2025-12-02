@@ -10,6 +10,23 @@ from typing import List
 import uuid
 from datetime import datetime, timezone
 
+# Import security middleware
+try:
+    from security.middleware import SecurityHeadersMiddleware, RequestLoggingMiddleware
+    from security.rate_limiter import rate_limiter
+    SECURITY_AVAILABLE = True
+except ImportError:
+    SECURITY_AVAILABLE = False
+    logging.warning("Security modules not found. Running without enhanced security.")
+
+# Import metrics API
+try:
+    from metrics_api import router as metrics_router
+    METRICS_AVAILABLE = True
+except ImportError:
+    METRICS_AVAILABLE = False
+    logging.warning("Metrics API not found. Metrics endpoints will not be available.")
+
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -20,7 +37,17 @@ client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
 # Create the main app without a prefix
-app = FastAPI()
+app = FastAPI(
+    title="DowUrk AI API",
+    version="1.0.0",
+    description="The AI Operating System for Underserved Entrepreneurs"
+)
+
+# Add security middleware if available
+if SECURITY_AVAILABLE:
+    app.add_middleware(SecurityHeadersMiddleware)
+    app.add_middleware(RequestLoggingMiddleware)
+    logging.info("Security middleware enabled")
 
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
