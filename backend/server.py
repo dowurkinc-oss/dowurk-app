@@ -170,6 +170,14 @@ if PAYMENT_AVAILABLE:
     app.include_router(payment_router)
     logging.info("Payment API endpoints enabled")
 
+# Include monitoring router if available
+if MONITORING_AVAILABLE:
+    # Set database in monitoring_routes
+    import monitoring_routes
+    monitoring_routes.set_database(db)
+    app.include_router(monitoring_router)
+    logging.info("Monitoring API endpoints enabled")
+
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
