@@ -93,7 +93,7 @@ const MetricsDashboard = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
               <p className="text-blue-100 text-sm mb-1">Current Valuation</p>
-              <p className="text-3xl font-bold">{formatCurrency(valuation.current_valuation)}</p>
+              <p className="text-3xl font-bold">{formatCurrency(valuation.current_valuation || valuation.current_arr * 10)}</p>
             </div>
             <div>
               <p className="text-blue-100 text-sm mb-1">Progress to $1B</p>
@@ -101,7 +101,7 @@ const MetricsDashboard = () => {
                 <div className="flex-1 bg-white bg-opacity-20 rounded-full h-4 mr-3">
                   <div 
                     className="bg-white h-4 rounded-full transition-all duration-500"
-                    style={{ width: `${Math.min(valuation.progress_percentage, 100)}%` }}
+                    style={{ width: `${Math.min(valuation.progress_percentage || 0, 100)}%` }}
                   ></div>
                 </div>
                 <span className="text-2xl font-bold">{formatPercentage(valuation.progress_percentage)}</span>
@@ -109,7 +109,7 @@ const MetricsDashboard = () => {
             </div>
             <div>
               <p className="text-blue-100 text-sm mb-1">Months to $1B</p>
-              <p className="text-3xl font-bold">{valuation.months_at_current_growth} mo</p>
+              <p className="text-3xl font-bold">{valuation.months_at_current_growth || 'N/A'} {valuation.months_at_current_growth ? 'mo' : ''}</p>
             </div>
           </div>
           <div className="mt-4 pt-4 border-t border-white border-opacity-20">
