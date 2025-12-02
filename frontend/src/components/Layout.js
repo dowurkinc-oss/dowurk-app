@@ -247,6 +247,9 @@ function Layout() {
           </div>
         </div>
       </footer>
+      
+      {/* Chatbot Widget */}
+      <ChatbotWidget />
     </div>
   );
 }
