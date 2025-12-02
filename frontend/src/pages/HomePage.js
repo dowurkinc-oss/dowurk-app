@@ -99,7 +99,7 @@ function HomePage() {
         >
           Welcome to <br />
           <span className="bg-gradient-to-r from-[#A4D65E] to-[#006847] bg-clip-text text-transparent">
-            The DowUrk FramewUrk
+            The DowUrk<sup className="text-2xl">®</sup> FramewUrk
           </span>
         </motion.h1>
         <motion.p 

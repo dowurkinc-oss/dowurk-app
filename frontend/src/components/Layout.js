@@ -46,7 +46,7 @@ function Layout() {
                 className="h-10 w-10 object-contain"
               />
               <span className="text-xl font-bold bg-gradient-to-r from-[#A4D65E] to-[#006847] bg-clip-text text-transparent">
-                The DowUrk FramewUrk
+                The DowUrk<sup className="text-xs">®</sup> FramewUrk
               </span>
             </Link>
 
@@ -198,7 +198,7 @@ function Layout() {
                 alt="DowUrk Shield" 
                 className="w-16 h-16 mb-4 object-contain"
               />
-              <h3 className="text-lg font-bold mb-4">DowUrk Inc.</h3>
+              <h3 className="text-lg font-bold mb-4">DowUrk<sup className="text-xs">®</sup> Inc.</h3>
               <p className="text-gray-400 text-sm mb-4">
                 Empowering Louisiana's underrepresented entrepreneurs through technology, community, and opportunity.
               </p>
@@ -267,7 +267,7 @@ function Layout() {
             </div>
           </div>
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
-            <p>© 2025 DowUrk Inc. All rights reserved. | Cultivating Originality.</p>
+            <p>© 2025 DowUrk<sup className="text-xs">®</sup> Inc. All rights reserved. | Cultivating Originality.</p>
           </div>
         </div>
       </footer>

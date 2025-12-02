@@ -28,7 +28,7 @@ function AboutUs() {
     <div className="space-y-20" data-testid="about-page">
       {/* Hero Section */}
       <section className="text-center space-y-6">
-        <Badge className="bg-[#A4D65E] text-black text-base px-4 py-1">About DowUrk Inc.</Badge>
+        <Badge className="bg-[#A4D65E] text-black text-base px-4 py-1">About DowUrk<sup className="text-xs">®</sup> Inc.</Badge>
         <h1 className="text-5xl md:text-6xl font-bold leading-tight">
           <span className="bg-gradient-to-r from-[#A4D65E] to-[#006847] bg-clip-text text-transparent">
             Cultivating Originality
