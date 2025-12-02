@@ -171,7 +171,7 @@ function SevenFramework() {
       <section className="text-center space-y-6 py-12">
         <h2 className="text-4xl font-bold">Ready to Transform Your Life?</h2>
         <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-          Start your journey with The DowUrk FramewUrk today
+          Start your journey with The DowUrk<sup className="text-sm">®</sup> FramewUrk today
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link to="/register">
