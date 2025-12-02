@@ -81,6 +81,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/metrics" element={<MetricsDashboard />} />
+          <Route path="/docs" element={<DocsViewer />} />
+          <Route path="/docs/:docId" element={<DocsViewer />} />
         </Routes>
       </BrowserRouter>
     </div>
