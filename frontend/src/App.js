@@ -111,6 +111,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/payment/success" element={<PaymentSuccess />} />
+          <Route path="/payment/cancel" element={<PaymentCancel />} />
           <Route path="/ai-assistant" element={<AIBusinessAssistant />} />
           <Route path="/metrics" element={<MetricsDashboard />} />
           <Route path="/docs" element={<DocsViewer />} />
