@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Calendar, User, Video, BookOpen, ArrowRight } from 'lucide-react';
+import { Calendar, User, Video, BookOpen, ArrowRight, Mic } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 function Blog() {
