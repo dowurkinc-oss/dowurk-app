@@ -51,8 +51,8 @@ function Contact() {
     {
       icon: <Phone className="h-6 w-6 text-[#006847]" />,
       title: 'Phone',
-      content: '985-351-8873',
-      link: 'tel:985-351-8873'
+      content: '(985) 224-5714',
+      link: 'tel:+19852245714'
     },
     {
       icon: <Clock className="h-6 w-6 text-[#006847]" />,
