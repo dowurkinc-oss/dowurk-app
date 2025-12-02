@@ -113,7 +113,7 @@ function ChatbotWidget() {
   return (
     <div 
       className={`fixed bottom-6 right-6 z-50 transition-all ${
-        isMinimized ? 'w-80' : 'w-96'
+        isMinimized ? 'w-72' : 'w-80'
       }`}
       data-testid="chatbot-widget"
     >
