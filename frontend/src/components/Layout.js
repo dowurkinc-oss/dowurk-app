@@ -54,14 +54,14 @@ function Layout() {
               <Link to="/businesses" className="text-gray-700 hover:text-[#006847] transition">
                 Businesses
               </Link>
+              <Link to="/framework" className="text-gray-700 hover:text-[#006847] transition">
+                Seven F's
+              </Link>
               <Link to="/ai-assistant" className="text-gray-700 hover:text-[#006847] transition">
                 AI Assistant
               </Link>
               <Link to="/blog" className="text-gray-700 hover:text-[#006847] transition">
                 Blog
-              </Link>
-              <Link to="/shop" className="text-gray-700 hover:text-[#006847] transition">
-                Shop
               </Link>
               <Link to="/donate" className="text-gray-700 hover:text-[#006847] transition font-semibold">
                 Donate
