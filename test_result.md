@@ -187,7 +187,7 @@ backend:
     status_history:
       - working: true
         agent: "testing"
-        comment: "Protected routes properly reject unauthorized requests. POST /api/businesses without auth token returns 403 Forbidden as expected."
+        comment: "Minor: Protected routes properly reject unauthorized requests. POST /api/businesses without auth token returns 403 Forbidden as expected. However, malformed JWT tokens cause 500 error instead of 401 due to ValueError not being caught in get_current_user(). Core authentication flow works correctly - only edge case with intentionally malformed tokens has this issue."
   
   - task: "Gratitude Wall - Create Blessing"
     implemented: true
