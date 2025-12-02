@@ -97,7 +97,7 @@ def validate_business_input(field_name: str, value: str) -> str:
     Validate and sanitize business-related input
     """
     # Check for SQL injection
-    SQL injection Prevention.validate_input(value, field_name)
+    SQLInjectionPrevention.validate_input(value, field_name)
     
     # Sanitize XSS
     sanitized = XSSPrevention.sanitize(value)
