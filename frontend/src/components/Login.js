@@ -35,11 +35,12 @@ const Login = () => {
         }
       );
 
-      const data = await response.json();
-
       if (!response.ok) {
-        throw new Error(data.detail || 'Login failed');
+        const data = await response.json();
+        throw new Error(data.detail || 'Login failed. Please check your credentials.');
       }
+
+      const data = await response.json();
 
       // Store tokens and user data
       localStorage.setItem('access_token', data.access_token);
