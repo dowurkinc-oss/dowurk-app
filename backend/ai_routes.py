@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, HTTPException, Depends, Request
 from pydantic import BaseModel, Field
 from typing import List, Optional
 from datetime import datetime, timezone
@@ -7,6 +7,7 @@ from uuid import uuid4
 import logging
 
 from emergentintegrations.llm.chat import LlmChat, UserMessage
+from security.dependencies import apply_rate_limit
 
 logger = logging.getLogger(__name__)
 
