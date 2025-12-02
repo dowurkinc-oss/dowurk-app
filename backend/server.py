@@ -1,4 +1,4 @@
-from fastapi import FastAPI, APIRouter, HTTPException, Depends, status
+from fastapi import FastAPI, APIRouter, HTTPException, Depends, status, Request
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
@@ -444,7 +444,22 @@ async def create_marketing_content(business_name: str, business_description: str
 
 # Blessings/Gratitude Wall Routes
 @api_router.post("/blessings", response_model=Blessing)
-async def create_blessing(blessing_data: BlessingBase):
+async def create_blessing(blessing_data: BlessingBase, request: Request):
+    from rate_limit_helper import check_rate_limit
+    
+    # Rate limiting: 1 blessing per 5 minutes per IP
+    client_ip = request.client.host
+    if not check_rate_limit(client_ip, limit_minutes=5):
+        raise HTTPException(
+            status_code=429, 
+            detail="Please wait 5 minutes between blessing submissions"
+        )
+    
+    # Validate word count (approximate)
+    word_count = len(blessing_data.blessing.split())
+    if word_count > 300:
+        raise HTTPException(status_code=400, detail="Blessing must be 300 words or less")
+    
     blessing = Blessing(**blessing_data.model_dump())
     doc = blessing.model_dump()
     doc['created_at'] = doc['created_at'].isoformat()
