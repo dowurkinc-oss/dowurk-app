@@ -534,7 +534,7 @@ Every Louisiana entrepreneur who's been overlooked, underfunded, and underestima
           <BookOpen className="h-12 w-12 text-[#006847]" />
           <h1 className="text-5xl font-bold">
             <span className="bg-gradient-to-r from-[#A4D65E] to-[#006847] bg-clip-text text-transparent">
-              DowUrk Blog
+              DowUrk<sup className="text-2xl">®</sup> Blog
             </span>
           </h1>
         </div>

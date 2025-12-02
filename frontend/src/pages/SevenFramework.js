@@ -90,7 +90,7 @@ function SevenFramework() {
               />
             </div>
             <div className="space-y-4">
-              <h2 className="text-3xl font-bold">The DowUrk Mobile Podcast</h2>
+              <h2 className="text-3xl font-bold">The DowUrk<sup className="text-lg">®</sup> Mobile Podcast</h2>
               <p className="text-lg opacity-90">
                 This inspiring podcast focuses on entrepreneurial experiences while learning about yourself 
                 so that you can have a fulfilling and purposeful life completing your soul's mission here on Earth.
