@@ -173,10 +173,7 @@ class ContentGeneratorResponse(BaseModel):
     timestamp: datetime
 
 @router.post("/content-generator", response_model=ContentGeneratorResponse)
-async def generate_marketing_content(
-    req: ContentGeneratorRequest,
-    rate_limit_headers: dict = Depends(apply_rate_limit)
-):
+async def generate_marketing_content(req: ContentGeneratorRequest):
     """
     AI Content Generator for Marketing & Branding
     Generates social posts, blog intros, emails, ad copy, and taglines
