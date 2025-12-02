@@ -32,10 +32,11 @@ function MusicPlayer() {
 
   if (isMinimized) {
     return (
-      <div className="fixed bottom-24 right-6 z-40">
+      <div className="fixed bottom-24 left-6 z-40">
         <Button
           onClick={() => setIsMinimized(false)}
           className="rounded-full w-14 h-14 bg-gradient-to-r from-[#A4D65E] to-[#006847] hover:opacity-90 shadow-lg"
+          title="Open Music Player"
         >
           <Music className="h-6 w-6" />
         </Button>
@@ -44,7 +45,7 @@ function MusicPlayer() {
   }
 
   return (
-    <div className="fixed bottom-24 right-6 z-40 bg-white rounded-2xl shadow-2xl border-2 border-[#A4D65E] p-4 w-72">
+    <div className="fixed bottom-24 left-6 z-40 bg-white rounded-2xl shadow-2xl border-2 border-[#A4D65E] p-4 w-72">
       {/* Hidden audio element - Replace src with actual audio file */}
       <audio
         ref={audioRef}
