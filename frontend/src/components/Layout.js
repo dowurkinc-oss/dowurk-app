@@ -186,7 +186,8 @@ function Layout() {
               <img 
                 src="https://customer-assets.emergentagent.com/job_equity-focus/artifacts/875dlk3n_dowurk_color_shield.png" 
                 alt="DowUrk Shield" 
-                className="h-12 w-12 mb-4"
+                className="h-16 w-auto mb-4"
+                style={{ objectFit: 'contain', maxWidth: '80px' }}
               />
               <h3 className="text-lg font-bold mb-4">DowUrk Inc.</h3>
               <p className="text-gray-400 text-sm mb-4">
