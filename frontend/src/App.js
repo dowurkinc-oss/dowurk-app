@@ -59,19 +59,19 @@ const Home = () => {
         </div>
 
         <div className="mt-12 max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 px-4">
-          <div className="bg-white rounded-lg shadow-lg p-6">
+          <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">🤖 AI Business Planning</h3>
+            <p className="text-sm text-gray-600">Get expert AI guidance for your business journey</p>
+          </div>
+          <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
             <h3 className="text-lg font-semibold text-gray-900 mb-2">🚀 Fundraising Strategy</h3>
             <p className="text-sm text-gray-600">Complete roadmap to $1B valuation with pitch deck framework</p>
           </div>
-          <div className="bg-white rounded-lg shadow-lg p-6">
+          <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
             <h3 className="text-lg font-semibold text-gray-900 mb-2">🔒 Security Implementation</h3>
             <p className="text-sm text-gray-600">Enterprise-grade security features ready for SOC 2</p>
           </div>
-          <div className="bg-white rounded-lg shadow-lg p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">🎯 Competitive Analysis</h3>
-            <p className="text-sm text-gray-600">Deep market intelligence and positioning framework</p>
-          </div>
-          <div className="bg-white rounded-lg shadow-lg p-6">
+          <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
             <h3 className="text-lg font-semibold text-gray-900 mb-2">📊 Metrics Dashboard</h3>
             <p className="text-sm text-gray-600">Track progress toward unicorn status</p>
           </div>
