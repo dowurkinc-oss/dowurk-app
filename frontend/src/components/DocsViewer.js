@@ -58,8 +58,9 @@ const DocsViewer = () => {
       setError(null);
       
       try {
-        // Try to fetch from backend
-        const response = await fetch(`/docs/${currentDoc.file}`);
+        // Fetch from backend API
+        const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
+        const response = await fetch(`${BACKEND_URL}/docs/${currentDoc.file}`);
         if (!response.ok) {
           throw new Error('Document not found');
         }
