@@ -212,6 +212,7 @@ function Layout() {
                 <li><Link to="/about" className="hover:text-white">About Us</Link></li>
                 <li><Link to="/services" className="hover:text-white">Professional Services</Link></li>
                 <li><Link to="/businesses" className="hover:text-white">Business Directory</Link></li>
+                <li><Link to="/business-map" className="hover:text-white">Business Map</Link></li>
                 <li><Link to="/add-business" className="hover:text-white">Add Your Business</Link></li>
                 <li><Link to="/framework" className="hover:text-white">Seven F's FramewUrk</Link></li>
                 <li><Link to="/blog" className="hover:text-white">Blog & Podcast</Link></li>
