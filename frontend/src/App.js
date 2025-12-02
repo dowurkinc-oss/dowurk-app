@@ -13,9 +13,12 @@ import Shop from '@/pages/Shop';
 import VirtualBooths from '@/pages/VirtualBooths';
 import Donate from '@/pages/Donate';
 import Contact from '@/pages/Contact';
+import Blog from '@/pages/Blog';
+import PrivacyPolicy from '@/pages/PrivacyPolicy';
 import Login from '@/pages/Login';
 import Register from '@/pages/Register';
 import Dashboard from '@/pages/Dashboard';
+import SevenFPage from '@/pages/SevenFPage';
 import { AuthProvider } from '@/context/AuthContext';
 import Layout from '@/components/Layout';
 
