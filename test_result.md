@@ -438,10 +438,10 @@ metadata:
 
 test_plan:
   current_focus:
-    - "AI Assistant - Chat"
+    - "All frontend features tested and working"
   stuck_tasks: []
-  test_all: false
-  test_priority: "high_first"
+  test_all: true
+  test_priority: "completed"
 
 agent_communication:
   - agent: "testing"
