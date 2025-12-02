@@ -158,3 +158,88 @@ async def clear_chat_history(session_id: str):
     except Exception as e:
         logger.error(f"Error clearing chat history: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Database error: {str(e)}")
+
+# ========================================
+# AI CONTENT GENERATOR
+# ========================================
+
+class ContentGeneratorRequest(BaseModel):
+    content_type: str = Field(..., description="Type: social_post, blog_intro, email, ad_copy, tagline")
+    topic: str = Field(..., description="Main topic or product")
+    tone: str = Field(default="professional", description="Tone: professional, casual, friendly, bold")
+    length: str = Field(default="short", description="Length: short, medium, long")
+    additional_context: Optional[str] = None
+
+class ContentGeneratorResponse(BaseModel):
+    content_type: str
+    generated_content: str
+    timestamp: datetime
+
+@router.post("/content-generator", response_model=ContentGeneratorResponse)
+async def generate_marketing_content(
+    req: ContentGeneratorRequest,
+    rate_limit_headers: dict = Depends(apply_rate_limit)
+):
+    """
+    AI Content Generator for Marketing & Branding
+    Generates social posts, blog intros, emails, ad copy, and taglines
+    """
+    try:
+        # Get API key
+        api_key = os.environ.get('EMERGENT_LLM_KEY')
+        if not api_key:
+            raise HTTPException(status_code=500, detail="AI service not configured")
+        
+        # Build system prompt based on content type
+        system_prompts = {
+            "social_post": "You are a social media expert specializing in engaging, shareable content for businesses and nonprofits.",
+            "blog_intro": "You are a content marketing expert specializing in compelling blog introductions that hook readers.",
+            "email": "You are an email marketing expert specializing in persuasive, action-oriented email copy.",
+            "ad_copy": "You are an advertising copywriter specializing in concise, high-converting ad copy.",
+            "tagline": "You are a brand strategist specializing in memorable, impactful taglines and slogans."
+        }
+        
+        system_message = system_prompts.get(
+            req.content_type,
+            "You are a creative content writer specializing in marketing and branding."
+        )
+        
+        # Build user prompt
+        length_guidance = {
+            "short": "Keep it brief (1-2 sentences or under 100 words)",
+            "medium": "Make it moderate length (3-5 sentences or 100-200 words)",
+            "long": "Make it comprehensive (200-400 words)"
+        }
+        
+        user_prompt = f"""Create {req.content_type} content about: {req.topic}
+
+Tone: {req.tone}
+Length: {length_guidance.get(req.length, 'short')}"""
+        
+        if req.additional_context:
+            user_prompt += f"\nAdditional Context: {req.additional_context}"
+        
+        user_prompt += "\n\nGenerate the content now (no explanations, just the content):"
+        
+        # Generate content using GPT-5
+        session_id = f"content-gen-{uuid4()}"
+        chat = LlmChat(
+            api_key=api_key,
+            session_id=session_id,
+            system_message=system_message
+        ).with_model("openai", "gpt-5")
+        
+        user_msg = UserMessage(text=user_prompt)
+        generated_content = await chat.send_message(user_msg)
+        
+        logger.info(f"Content generated: {req.content_type}")
+        
+        return ContentGeneratorResponse(
+            content_type=req.content_type,
+            generated_content=generated_content,
+            timestamp=datetime.now(timezone.utc)
+        )
+        
+    except Exception as e:
+        logger.error(f"Error generating content: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Content generation error: {str(e)}")
