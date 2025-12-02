@@ -155,15 +155,18 @@ backend:
   
   - task: "Documentation API"
     implemented: true
-    working: true
+    working: false
     file: "/app/backend/docs_routes.py"
-    stuck_count: 0
+    stuck_count: 1
     priority: "medium"
     needs_retesting: false
     status_history:
       - working: true
         agent: "main"
         comment: "Already implemented and working from previous session"
+      - working: false
+        agent: "testing"
+        comment: "ISSUE FOUND: Documentation API endpoints not accessible. The docs routes are configured with prefix='/docs' but should be '/api/docs' to match the API structure. GET /docs/ returns 404 Not Found. The router is not properly integrated with the main API router. This is a configuration issue in server.py where the docs router needs to be included with the correct prefix or the router prefix needs to be updated to '/api/docs'."
 
 frontend:
   - task: "User Registration Component"
