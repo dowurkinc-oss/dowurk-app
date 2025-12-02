@@ -230,9 +230,19 @@ Emphasis: {config['length_config']['emphasis']}"""
         
         logger.info(f"Content generated: {req.content_type}")
         
+        # PROTECTED: Add watermark to AI-generated content
+        watermarked_content = ContentWatermark.add_watermark(
+            generated_content,
+            {
+                "content_type": req.content_type,
+                "user_id": "system",  # Update with actual user ID when available
+                "topic": req.topic
+            }
+        )
+        
         return ContentGeneratorResponse(
             content_type=req.content_type,
-            generated_content=generated_content,
+            generated_content=watermarked_content,
             timestamp=datetime.now(timezone.utc)
         )
         
