@@ -107,9 +107,9 @@ user_problem_statement: "DowUrk AI - An all-in-one AI-powered platform for under
 backend:
   - task: "AI Business Planning Assistant API"
     implemented: true
-    working: true
+    working: false
     file: "/app/backend/ai_routes.py"
-    stuck_count: 0
+    stuck_count: 1
     priority: "high"
     needs_retesting: false
     status_history:
@@ -119,6 +119,9 @@ backend:
       - working: true
         agent: "testing"
         comment: "Comprehensive backend testing completed. All core API endpoints working correctly: ✅ Basic API connectivity (200 OK), ✅ Chat history retrieval for empty/existing sessions (proper JSON structure, chronological order), ✅ Error handling (422 for invalid requests), ✅ AI business plan generation (GPT-5 integration working, 25-44s response times), ✅ Message persistence in MongoDB (ai_conversations collection), ✅ Session isolation, ✅ Chat history deletion. GPT-5 API occasionally returns 502 errors but this is external service issue, not application bug. Database storage confirmed with 4+ conversations in MongoDB."
+      - working: false
+        agent: "testing"
+        comment: "CRITICAL: AI Business Planning endpoints experiencing timeout issues. POST /api/ai/business-plan and GET /api/ai/chat-history/{session_id} both timing out after 120+ seconds. This appears to be a performance/connectivity issue with the GPT-5 API integration or network latency. AI Content Generator endpoints are working fine, suggesting the issue is specific to the business planning chat functionality. Requires investigation of GPT-5 API calls and potential optimization."
   
   - task: "User Authentication System"
     implemented: true
