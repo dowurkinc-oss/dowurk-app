@@ -35,7 +35,7 @@ function Layout() {
               <img 
                 src="https://customer-assets.emergentagent.com/job_equity-focus/artifacts/875dlk3n_dowurk_color_shield.png" 
                 alt="DowUrk Logo" 
-                className="h-10 w-10"
+                className="h-10 w-10 object-contain"
               />
               <span className="text-xl font-bold bg-gradient-to-r from-[#A4D65E] to-[#006847] bg-clip-text text-transparent">
                 The DowUrk FramewUrk
