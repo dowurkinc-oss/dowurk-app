@@ -27,6 +27,14 @@ except ImportError:
     METRICS_AVAILABLE = False
     logging.warning("Metrics API not found. Metrics endpoints will not be available.")
 
+# Import auth routes
+try:
+    from auth_routes import router as auth_router
+    AUTH_AVAILABLE = True
+except ImportError:
+    AUTH_AVAILABLE = False
+    logging.warning("Auth routes not found. Authentication endpoints will not be available.")
+
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
