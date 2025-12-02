@@ -14,6 +14,7 @@ from datetime import datetime, timezone
 try:
     from security.middleware import SecurityHeadersMiddleware, RequestLoggingMiddleware
     from security.rate_limiter import rate_limiter
+    from ip_protection.middleware import IPProtectionMiddleware, RateLimitByIPMiddleware
     SECURITY_AVAILABLE = True
 except ImportError:
     SECURITY_AVAILABLE = False
