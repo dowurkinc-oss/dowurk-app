@@ -114,9 +114,9 @@ async def generate_business_plan(request: BusinessPlanRequest):
         watermarked_response = ContentWatermark.add_watermark(
             ai_response,
             {
-                \"content_type\": \"business_plan\",
-                \"session_id\": request.session_id,
-                \"user_id\": \"system\"  # Update with actual user ID when available
+                "content_type": "business_plan",
+                "session_id": request.session_id,
+                "user_id": "system"  # Update with actual user ID when available
             }
         )
         
