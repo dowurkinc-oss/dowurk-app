@@ -265,34 +265,6 @@ function Services() {
           </CardContent>
         </Card>
       </section>
-                <ol className="space-y-2 text-sm text-gray-600">
-                  <li>1. Create account at <a href="https://www.setmore.com" target="_blank" rel="noopener noreferrer" className="text-[#006847] underline">www.setmore.com</a></li>
-                  <li>2. Go to Integrations → Website Booking → Booking Widget</li>
-                  <li>3. Click "Get Instructions" and select "I'll embed the code myself"</li>
-                  <li>4. Copy your booking page URL or embed code</li>
-                  <li>5. Replace the placeholder below with: 
-                    <code className="block mt-2 p-2 bg-white rounded text-xs">
-                      {'<iframe src="YOUR_SETMORE_BOOKING_URL" width="100%" height="800px" frameBorder="0"></iframe>'}
-                    </code>
-                  </li>
-                </ol>
-              </div>
-              
-              {/* Placeholder iframe - Replace with actual Setmore URL */}
-              {/* 
-              <iframe 
-                src="YOUR_SETMORE_BOOKING_PAGE_URL_HERE"
-                width="100%" 
-                height="800px" 
-                frameBorder="0"
-                allow="web-share; payment"
-                className="rounded-lg"
-              ></iframe>
-              */}
-            </div>
-          </CardContent>
-        </Card>
-      </section>
 
       {/* CTA */}
       <section className="text-center space-y-6 py-12">
