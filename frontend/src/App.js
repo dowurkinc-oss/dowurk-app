@@ -22,6 +22,7 @@ import Login from '@/pages/Login';
 import Register from '@/pages/Register';
 import Dashboard from '@/pages/Dashboard';
 import SevenFPage from '@/pages/SevenFPage';
+import SevenFramework from '@/pages/SevenFramework';
 import { AuthProvider } from '@/context/AuthContext';
 import Layout from '@/components/Layout';
 
@@ -50,6 +51,7 @@ function App() {
             <Route path="blog/:slug" element={<Blog />} />
             <Route path="privacy-policy" element={<PrivacyPolicy />} />
             <Route path="dashboard" element={<Dashboard />} />
+            <Route path="framework" element={<SevenFramework />} />
             <Route path="framework/faith" element={<SevenFPage fName="Faith" />} />
             <Route path="framework/fitness" element={<SevenFPage fName="Fitness" />} />
             <Route path="framework/foundation" element={<SevenFPage fName="Foundation" />} />
