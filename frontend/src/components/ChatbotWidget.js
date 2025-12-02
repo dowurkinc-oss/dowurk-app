@@ -25,7 +25,7 @@ function ChatbotWidget() {
         setIsOpen(true);
         setMessages([{
           role: 'assistant',
-          content: "👋 Welcome to DowUrk H.U.B.! I'm your AI guide. I can help you find the perfect resources for your entrepreneurial journey. What brings you here today?"
+          content: "👋 Welcome to The DowUrk FramewUrk! I'm your AI guide. I can help you find the perfect resources for your entrepreneurial journey. What brings you here today?"
         }]);
       }, 2000); // Show after 2 seconds
     }
