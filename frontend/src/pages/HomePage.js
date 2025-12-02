@@ -194,47 +194,91 @@ function HomePage() {
       </section>
 
       {/* Mission Section */}
-      <section className="bg-gray-50 rounded-2xl p-12 space-y-6">
-        <div className="flex items-center justify-center space-x-3 mb-6">
+      <motion.section 
+        className="bg-gray-50 rounded-2xl p-12 space-y-6"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        <motion.div 
+          className="flex items-center justify-center space-x-3 mb-6"
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
           <Heart className="h-8 w-8 text-[#006847]" />
           <h2 className="text-3xl font-bold">Our Mission</h2>
-        </div>
-        <p className="text-lg text-gray-700 max-w-4xl mx-auto text-center leading-relaxed">
+        </motion.div>
+        <motion.p 
+          className="text-lg text-gray-700 max-w-4xl mx-auto text-center leading-relaxed"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
           DowUrk Inc. is dedicated to empowering underrepresented businesses across Louisiana by providing 
           comprehensive training, resources, and access to the capital they need to succeed. We promote 
           self-affirmation and solidarity among entrepreneurs while advocating for regional social and economic growth.
-        </p>
-        <div className="flex items-center justify-center space-x-8 pt-6">
-          <div className="text-center">
+        </motion.p>
+        <motion.div 
+          className="flex items-center justify-center space-x-8 pt-6"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+        >
+          <motion.div 
+            className="text-center"
+            whileHover={{ scale: 1.1 }}
+          >
             <Target className="h-10 w-10 text-[#006847] mx-auto mb-2" />
             <p className="font-semibold">Cultivating Originality</p>
-          </div>
-          <div className="text-center">
+          </motion.div>
+          <motion.div 
+            className="text-center"
+            whileHover={{ scale: 1.1 }}
+          >
             <Sparkles className="h-10 w-10 text-[#A4D65E] mx-auto mb-2" />
             <p className="font-semibold">Building Community</p>
-          </div>
-          <div className="text-center">
+          </motion.div>
+          <motion.div 
+            className="text-center"
+            whileHover={{ scale: 1.1 }}
+          >
             <Users className="h-10 w-10 text-[#006847] mx-auto mb-2" />
             <p className="font-semibold">Creating Opportunity</p>
-          </div>
-        </div>
-      </section>
+          </motion.div>
+        </motion.div>
+      </motion.section>
 
       {/* CTA Section */}
-      <section className="text-center space-y-6 py-12">
+      <motion.section 
+        className="text-center space-y-6 py-12"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
         <h2 className="text-4xl font-bold">Ready to Transform Your Business?</h2>
         <p className="text-xl text-gray-600 max-w-2xl mx-auto">
           Join thousands of Louisiana entrepreneurs building their dreams with The DowUrk FramewUrk
         </p>
-        <Link to="/register">
-          <Button 
-            size="lg" 
-            className="bg-gradient-to-r from-[#A4D65E] to-[#006847] hover:opacity-90 text-white px-12"
-          >
-            Create Your Free Account
-          </Button>
-        </Link>
-      </section>
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <Link to="/register">
+            <Button 
+              size="lg" 
+              className="bg-gradient-to-r from-[#A4D65E] to-[#006847] hover:opacity-90 text-white px-12"
+            >
+              Create Your Free Account
+            </Button>
+          </Link>
+        </motion.div>
+      </motion.section>
     </div>
   );
 }
