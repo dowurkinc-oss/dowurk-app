@@ -1,0 +1,13 @@
+# DowUrk FramewUrk - Robots.txt
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://dowurktoday.com/sitemap.xml
+
+# Disallow admin/private areas
+Disallow: /dashboard
+Disallow: /admin
+
+# Crawl delay
+Crawl-delay: 1
