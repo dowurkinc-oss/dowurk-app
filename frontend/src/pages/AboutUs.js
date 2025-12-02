@@ -174,16 +174,33 @@ function AboutUs() {
           <h2 className="text-4xl font-bold">Leadership</h2>
           <p className="text-xl text-gray-600">Meet the team behind DowUrk Inc.</p>
         </div>
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-3xl mx-auto">
           {team.map((member, index) => (
-            <Card key={index} className="border-2">
-              <CardHeader>
-                <CardTitle className="text-2xl">{member.name}</CardTitle>
-                <Badge className="bg-[#A4D65E] text-black w-fit">{member.role}</Badge>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 leading-relaxed">{member.description}</p>
-              </CardContent>
+            <Card key={index} className="border-2 border-[#A4D65E] overflow-hidden">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="md:col-span-1">
+                  <img 
+                    src="https://customer-assets.emergentagent.com/job_1dc8832b-f338-4702-aaed-8947f56a5ae3/artifacts/yfqh5qwc_IMG_7907.jpg"
+                    alt={member.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="md:col-span-2 p-6">
+                  <CardHeader className="p-0 mb-4">
+                    <CardTitle className="text-2xl">{member.name}</CardTitle>
+                    <Badge className="bg-[#A4D65E] text-black w-fit mt-2">{member.role}</Badge>
+                  </CardHeader>
+                  <CardContent className="p-0">
+                    <p className="text-gray-600 leading-relaxed mb-4">{member.description}</p>
+                    <div className="space-y-2 text-sm text-gray-600">
+                      <p>• Founded DowUrk Inc. in 2016</p>
+                      <p>• Master's in Strategic Communication (2024)</p>
+                      <p>• DBE Certified, Alpha Phi Alpha Fraternity, Inc.</p>
+                      <p>• Professional Photographer & Creative Entrepreneur</p>
+                    </div>
+                  </CardContent>
+                </div>
+              </div>
             </Card>
           ))}
         </div>
