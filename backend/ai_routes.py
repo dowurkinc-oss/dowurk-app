@@ -201,17 +201,16 @@ async def generate_marketing_content(req: ContentGeneratorRequest):
         # PROTECTED: Get proprietary system prompt from secure vault
         system_message = ProprietaryPrompts.get_system_prompt(req.content_type)
         
-        # Build user prompt
-        length_guidance = {
-            "short": "Keep it brief (1-2 sentences or under 100 words)",
-            "medium": "Make it moderate length (3-5 sentences or 100-200 words)",
-            "long": "Make it comprehensive (200-400 words)"
-        }
+        # PROTECTED: Get proprietary content generation configuration
+        config = ProprietaryPrompts.get_content_generation_config(
+            req.content_type, req.tone, req.length
+        )
         
         user_prompt = f"""Create {req.content_type} content about: {req.topic}
 
-Tone: {req.tone}
-Length: {length_guidance.get(req.length, 'short')}"""
+Tone: {config['tone_modifier']}
+Length: {config['length_config']['guidance']}
+Emphasis: {config['length_config']['emphasis']}"""
         
         if req.additional_context:
             user_prompt += f"\nAdditional Context: {req.additional_context}"
