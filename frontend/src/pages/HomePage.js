@@ -73,7 +73,7 @@ function HomePage() {
         transition={{ duration: 0.6 }}
       >
         <motion.div 
-          className="inline-block"
+          className="inline-block float-animation"
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
