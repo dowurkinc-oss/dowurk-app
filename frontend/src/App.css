@@ -3,6 +3,57 @@
     pointer-events: none;
 }
 
+/* Custom Cursor */
+* {
+    cursor: url('https://customer-assets.emergentagent.com/job_1dc8832b-f338-4702-aaed-8947f56a5ae3/artifacts/d68t1t72_ChatGPT%20Image%20Nov%2024%2C%202025%2C%2004_22_37%20PM.png'), auto !important;
+}
+
+/* Clickable elements get pointer cursor */
+a, button, [role="button"], input[type="submit"], input[type="button"] {
+    cursor: url('https://customer-assets.emergentagent.com/job_1dc8832b-f338-4702-aaed-8947f56a5ae3/artifacts/d68t1t72_ChatGPT%20Image%20Nov%2024%2C%202025%2C%2004_22_37%20PM.png'), pointer !important;
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Engaging animations */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(164, 214, 94, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(164, 214, 94, 0.6);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+.float-animation {
+    animation: float 3s ease-in-out infinite;
+}
+
+.pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: no-preference) {
     .App-logo {
         animation: App-logo-spin infinite 20s linear;
