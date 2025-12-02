@@ -51,6 +51,14 @@ except ImportError:
     AI_AVAILABLE = False
     logging.warning("AI routes not found. AI endpoints will not be available.")
 
+# Import payment routes
+try:
+    from payment_routes import router as payment_router
+    PAYMENT_AVAILABLE = True
+except ImportError:
+    PAYMENT_AVAILABLE = False
+    logging.warning("Payment routes not found. Payment endpoints will not be available.")
+
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
