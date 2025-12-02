@@ -6,7 +6,7 @@ from fastapi import APIRouter, HTTPException
 from fastapi.responses import PlainTextResponse
 from pathlib import Path
 
-router = APIRouter(prefix="/docs", tags=["documentation"])
+router = APIRouter(prefix="/api/docs", tags=["documentation"])
 
 DOCS_DIR = Path(__file__).parent.parent  # /app directory
 
