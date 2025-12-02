@@ -109,6 +109,11 @@ if METRICS_AVAILABLE:
     app.include_router(metrics_router)
     logging.info("Metrics API endpoints enabled")
 
+# Include auth router if available
+if AUTH_AVAILABLE:
+    app.include_router(auth_router)
+    logging.info("Authentication API endpoints enabled")
+
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
