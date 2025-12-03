@@ -219,6 +219,7 @@ function Layout() {
                 <li><Link to="/blog" className="hover:text-white">Blog & Podcast</Link></li>
                 <li><Link to="/louisiana-biz-resources" className="hover:text-white">Louisiana Biz Resources</Link></li>
                 <li><Link to="/mental-health" className="hover:text-white">Mental Health Tips</Link></li>
+                <li><Link to="/test-your-knowledge" className="hover:text-white">Test Your Knowledge</Link></li>
               </ul>
             </div>
             <div>
