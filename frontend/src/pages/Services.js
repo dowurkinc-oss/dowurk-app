@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import QuizPopup from '@/components/QuizPopup';
 import { 
   Megaphone, Code, GraduationCap, FileText, LineChart, Video, 
   Share2, PenTool, Mic, Scale, Cpu, CloudRain, Users, 
