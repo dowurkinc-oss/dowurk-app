@@ -79,7 +79,34 @@ function AboutUs() {
         </Card>
       </section>
 
-      {/* Stats */}
+      {/* Why "DowUrk" Spelling */}
+      <section className="max-w-4xl mx-auto">
+        <Card className="border-2 border-[#A4D65E] bg-gradient-to-br from-white to-gray-50">
+          <CardHeader className="text-center">
+            <CardTitle className="text-3xl text-[#006847]">Why "DowUrk" with a U?</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4 text-gray-700 leading-relaxed">
+            <p className="text-lg">
+              <strong>DowUrk<sup className="text-xs">®</sup></strong> isn't just a creative spelling—it's intentional branding that represents our philosophy.
+            </p>
+            <p>
+              The <strong className="text-[#006847]">"U"</strong> in DowUrk places <strong>YOU</strong> at the center of the work. 
+              It's a reminder that success isn't about what we do <em>for</em> you—it's about empowering <em>you</em> to do the work yourself.
+            </p>
+            <div className="bg-[#A4D65E]/10 border-l-4 border-[#A4D65E] p-4 rounded">
+              <p className="italic">
+                "Do <span className="font-bold text-[#006847]">U</span> Work" = <span className="font-bold">Your hands, your effort, your vision.</span> 
+                We provide the tools, resources, and guidance—but the work, the transformation, the success? That's all <strong>U</strong>.
+              </p>
+            </div>
+            <p className="text-sm text-gray-600">
+              This unique spelling also makes us memorable, searchable, and trademarked—reflecting our commitment to originality and authenticity in everything we do.
+            </p>
+          </CardContent>
+        </Card>
+      </section>
+
+      {/* Our Impact By The Numbers */}
       <section className="bg-gradient-to-r from-[#006847] to-[#005a3c] rounded-2xl p-12 text-white">
         <h2 className="text-3xl font-bold text-center mb-12">Our Impact By The Numbers</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
