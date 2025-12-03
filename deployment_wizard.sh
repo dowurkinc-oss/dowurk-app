@@ -4,6 +4,9 @@
 
 set -e
 
+# Set TERM if not set (for compatibility)
+export TERM=${TERM:-xterm}
+
 # Colors for better readability
 RED='\033[0;31m'
 GREEN='\033[0;32m'
