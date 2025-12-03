@@ -125,7 +125,7 @@ function BusinessMap() {
       </motion.div>
 
       {/* Search & Filter */}
-      <Card className="border-2 border-[#A4D65E]">
+      <Card className="border-2 border-[#A4D65E] relative z-10">
         <CardHeader>
           <CardTitle className="flex items-center">
             <Filter className="mr-2 h-5 w-5" />
@@ -140,10 +140,10 @@ function BusinessMap() {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
             <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-              <SelectTrigger>
+              <SelectTrigger className="relative z-[100]">
                 <SelectValue placeholder="All Categories" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="relative z-[100]">
                 {categories.map(cat => (
                   <SelectItem key={cat} value={cat}>
                     {cat === 'all' ? 'All Categories' : cat.charAt(0).toUpperCase() + cat.slice(1)}
