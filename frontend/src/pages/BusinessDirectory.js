@@ -70,7 +70,7 @@ function BusinessDirectory() {
       <div className="text-center space-y-4">
         <h1 className="text-4xl font-bold">Louisiana Business Directory</h1>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          Discover and support Black-owned and underrepresented businesses across Louisiana
+          Discover and support Louisiana small businesses and entrepreneurs
         </p>
         <Link to="/add-business">
           <Button className="bg-gradient-to-r from-[#A4D65E] to-[#006847] hover:opacity-90">
