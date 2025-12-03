@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { 
   Mail, 
   Phone, 
@@ -191,13 +192,18 @@ function Contact() {
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="subject">Subject *</Label>
-                      <Input
-                        id="subject"
-                        required
-                        value={formData.subject}
-                        onChange={(e) => setFormData({...formData, subject: e.target.value})}
-                        placeholder="What is this about?"
-                      />
+                      <Select value={formData.subject} onValueChange={(value) => setFormData({...formData, subject: value})} required>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select a topic" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="general">General Question</SelectItem>
+                          <SelectItem value="consultation">Book a Consultation</SelectItem>
+                          <SelectItem value="service">Schedule a Service</SelectItem>
+                          <SelectItem value="feedback">Client Feedback</SelectItem>
+                          <SelectItem value="other">Other</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </div>
                   </div>
 
