@@ -15,6 +15,7 @@ import { useState, useEffect } from 'react';
 import ChatbotWidget from '@/components/ChatbotWidget';
 import MusicPlayer from '@/components/MusicPlayer';
 import LiveActivityFeed from '@/components/LiveActivityFeed';
+import BackButton from '@/components/BackButton';
 
 function Layout() {
   const { user, logout } = useAuth();
@@ -280,6 +281,9 @@ function Layout() {
       
       {/* Live Activity Feed */}
       <LiveActivityFeed />
+      
+      {/* Back Button */}
+      {location.pathname !== '/' && <BackButton />}
     </div>
   );
 }
