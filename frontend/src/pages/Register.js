@@ -51,10 +51,10 @@ function Register() {
             <img 
               src="https://customer-assets.emergentagent.com/job_equity-focus/artifacts/875dlk3n_dowurk_color_shield.png" 
               alt="DowUrk Logo" 
-              className="h-16 w-16"
+              className="h-16 w-16 object-contain"
             />
           </div>
-          <CardTitle className="text-2xl text-center">Join The DowUrk FramewUrk</CardTitle>
+          <CardTitle className="text-2xl text-center">Join The DowUrk<sup className="text-sm">®</sup> FramewUrk</CardTitle>
           <CardDescription className="text-center">
             Start your entrepreneurial journey with Louisiana's premier business community
           </CardDescription>
