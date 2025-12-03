@@ -110,6 +110,9 @@ function Services() {
 
   return (
     <div className="space-y-12">
+      {/* Quiz Popup - Auto-appears after 5 seconds */}
+      <QuizPopup delay={5000} />
+      
       {/* Hero */}
       <motion.section
         className="text-center space-y-6"
