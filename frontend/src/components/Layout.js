@@ -119,57 +119,43 @@ function Layout() {
 
           {/* Mobile Navigation */}
           {mobileMenuOpen && (
-            <div className="lg:hidden py-4 space-y-3 border-t border-gray-200">
-              <Link to="/about" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">
-                About
-              </Link>
-              <Link to="/businesses" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">
-                Businesses
-              </Link>
-              <Link to="/ai-assistant" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">
-                AI Assistant
-              </Link>
-              <Link to="/events" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">
-                Events
-              </Link>
-              <Link to="/resources" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">
-                Resources
-              </Link>
-              <Link to="/grants" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">
-                Grants
-              </Link>
-              <Link to="/blog" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">
-                Blog
-              </Link>
-              <Link to="/shop" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">
-                Shop
-              </Link>
-              <Link to="/donate" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">
-                Donate
-              </Link>
-              <Link to="/community" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">
-                Community
-              </Link>
+            <div className="lg:hidden py-4 space-y-1 border-t border-gray-200" onClick={() => setMobileMenuOpen(false)}>
+              {/* Quick Links Category */}
+              <div className="px-4 py-2 text-xs font-bold text-gray-500 uppercase">Quick Links</div>
+              <Link to="/about" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">About</Link>
+              <Link to="/services" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">Services</Link>
+              <Link to="/businesses" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">Businesses</Link>
+              <Link to="/business-map" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">Business Map</Link>
+              <Link to="/framework" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">Seven F's</Link>
+              <Link to="/blog" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">Blog</Link>
+              <Link to="/shop" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">Shop</Link>
+              
+              {/* Get Involved Category */}
+              <div className="px-4 py-2 text-xs font-bold text-gray-500 uppercase mt-3">Get Involved</div>
+              <Link to="/donate" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">Donate</Link>
+              <Link to="/gratitude-wall" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">Gratitude Wall</Link>
+              <Link to="/partnerships" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">Partnerships</Link>
+              <Link to="/community" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">Community</Link>
+              <Link to="/contact" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">Contact</Link>
+              
+              {/* Resources Category */}
+              <div className="px-4 py-2 text-xs font-bold text-gray-500 uppercase mt-3">Resources</div>
+              <Link to="/louisiana-biz-resources" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">Louisiana Resources</Link>
+              <Link to="/mental-health" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">Mental Health</Link>
+              <Link to="/test-your-knowledge" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">Test Knowledge</Link>
+              <Link to="/ai-assistant" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">AI Assistant</Link>
+              
               {user ? (
                 <>
-                  <Link to="/dashboard" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">
-                    Dashboard
-                  </Link>
-                  <button 
-                    onClick={handleLogout} 
-                    className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 rounded"
-                  >
-                    Logout
-                  </button>
+                  <div className="px-4 py-2 text-xs font-bold text-gray-500 uppercase mt-3">Account</div>
+                  <Link to="/dashboard" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">Dashboard</Link>
+                  <button onClick={handleLogout} className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">Logout</button>
                 </>
               ) : (
                 <>
-                  <Link to="/login" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">
-                    Login
-                  </Link>
-                  <Link to="/register" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">
-                    Sign Up
-                  </Link>
+                  <div className="px-4 py-2 text-xs font-bold text-gray-500 uppercase mt-3">Account</div>
+                  <Link to="/login" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">Login</Link>
+                  <Link to="/register" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded">Sign Up</Link>
                 </>
               )}
             </div>
