@@ -201,15 +201,18 @@ function HomePage() {
 
       {/* Peaceful Video Section */}
       <motion.section
-        className="relative overflow-hidden rounded-3xl h-96 shadow-2xl bg-cover bg-center"
-        style={{ backgroundImage: 'url(https://customer-assets.emergentagent.com/job_1dc8832b-f338-4702-aaed-8947f56a5ae3/artifacts/zkjerxl6_CX6A6776%20copy.jpg)' }}
+        className="relative overflow-hidden rounded-3xl h-96 shadow-2xl"
         initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
-        {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/60" />
+        {/* Video Background */}
+        <VideoBackground 
+          videoUrl="/video/peaceful-nature.mp4"
+          opacity={0.5}
+          overlay={true}
+        />
         
         {/* Content overlay */}
         <div className="relative z-10 h-full flex flex-col items-center justify-center text-center space-y-6 px-8">
@@ -219,10 +222,10 @@ function HomePage() {
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
           >
-            <h2 className="text-5xl font-bold text-white mb-4 drop-shadow-lg">
+            <h2 className="text-5xl font-bold text-[#006847] mb-4">
               Find Your Peace
             </h2>
-            <p className="text-2xl text-white max-w-3xl mx-auto font-medium drop-shadow">
+            <p className="text-2xl text-gray-800 max-w-3xl mx-auto font-medium">
               Where Technology Meets Tranquility. Experience the perfect blend of innovation and nature.
             </p>
           </motion.div>
@@ -235,12 +238,12 @@ function HomePage() {
             transition={{ delay: 0.6 }}
           >
             <Link to="/mental-health">
-              <Button size="lg" className="bg-white text-[#006847] hover:bg-gray-100 border-2 border-white shadow-lg">
+              <Button size="lg" className="bg-white text-[#006847] hover:bg-gray-100 border-2 border-[#006847]">
                 Explore Wellness Tools
               </Button>
             </Link>
             <Link to="/framework">
-              <Button size="lg" variant="outline" className="bg-white/90 border-white text-[#006847] hover:bg-white shadow-lg">
+              <Button size="lg" variant="outline" className="bg-white/90 border-[#A4D65E] text-[#006847] hover:bg-white">
                 Discover Seven F's
               </Button>
             </Link>
