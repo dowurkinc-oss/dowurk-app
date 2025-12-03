@@ -20,6 +20,14 @@ function MusicPlayer() {
     }
   }, [isPlaying, volume]);
 
+  // Auto-minimize after 5 seconds (especially on mobile)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsMinimized(true);
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, []);
+
   const togglePlay = () => {
     setIsPlaying(!isPlaying);
   };
