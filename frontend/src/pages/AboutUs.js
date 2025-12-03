@@ -206,6 +206,43 @@ function AboutUs() {
         </div>
       </section>
 
+      {/* Inspirational Message - The Power of Hands */}
+      <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#006847] via-[#005a3c] to-[#004830] text-white p-16">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{ 
+            backgroundImage: 'radial-gradient(circle, #A4D65E 1px, transparent 1px)',
+            backgroundSize: '30px 30px'
+          }} />
+        </div>
+        
+        <div className="relative z-10 max-w-4xl mx-auto space-y-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="space-y-6"
+          >
+            <div className="text-7xl mb-6">🙌</div>
+            
+            <blockquote className="text-2xl md:text-3xl leading-relaxed font-light italic">
+              "Before we had tools, computers, or capital, we had our hands. And with these hands, our ancestors 
+              built cities, fed families, raised nations, and survived systems built to break them.
+            </blockquote>
+            
+            <blockquote className="text-2xl md:text-3xl leading-relaxed font-light italic">
+              Today, when I say <span className="font-bold not-italic text-[#A4D65E]">DowUrk®</span> — I'm not talking 
+              about busywork. I'm talking about showing up with your whole self. Your mind plans it. Your heart drives it. 
+              But your hands? <span className="font-bold not-italic">Your hands make it real.</span>"
+            </blockquote>
+            
+            <div className="pt-6 border-t border-white/20">
+              <p className="text-lg opacity-90">— Robert Jerrod Brown</p>
+              <p className="text-sm opacity-75">CEO, Founder & Executive Director, DowUrk® Inc.</p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Official Certifications */}
       <section className="bg-gradient-to-r from-[#A4D65E] to-[#006847] rounded-2xl p-12 text-white text-center space-y-6">
         <Award className="h-16 w-16 mx-auto" />
