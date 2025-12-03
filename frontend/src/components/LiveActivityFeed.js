@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { TrendingUp, Heart, Building2, UserPlus } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
@@ -9,12 +10,23 @@ const API = `${BACKEND_URL}/api`;
 function LiveActivityFeed() {
   const [activities, setActivities] = useState([]);
   const [isVisible, setIsVisible] = useState(true);
+  const location = useLocation();
 
   useEffect(() => {
     fetchRecentActivity();
     const interval = setInterval(fetchRecentActivity, 30000);
     return () => clearInterval(interval);
   }, []);
+
+  // Auto-hide after 10 seconds on homepage
+  useEffect(() => {
+    if (location.pathname === '/') {
+      const timer = setTimeout(() => {
+        setIsVisible(false);
+      }, 10000);
+      return () => clearTimeout(timer);
+    }
+  }, [location.pathname]);
 
   const fetchRecentActivity = async () => {
     try {
