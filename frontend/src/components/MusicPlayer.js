@@ -38,7 +38,7 @@ function MusicPlayer() {
 
   if (isMinimized) {
     return (
-      <div className="fixed bottom-24 left-6 z-30">
+      <div className="fixed bottom-28 left-6 z-30">
         <Button
           onClick={() => setIsMinimized(false)}
           className="rounded-full w-12 h-12 bg-white/20 backdrop-blur-md border border-white/30 hover:bg-white/30 shadow-lg"
@@ -51,7 +51,7 @@ function MusicPlayer() {
   }
 
   return (
-    <div className="fixed bottom-24 left-6 z-30 bg-white/70 backdrop-blur-md rounded-2xl shadow-lg border border-white/40 p-3 w-64">
+    <div className="fixed bottom-28 left-6 z-30 bg-white/70 backdrop-blur-md rounded-2xl shadow-lg border border-white/40 p-3 w-64">
       <audio ref={audioRef} loop preload="auto">
         <source src="/audio/nature-lofi-hummingbird.mp3" type="audio/mpeg" />
       </audio>

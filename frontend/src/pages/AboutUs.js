@@ -93,6 +93,10 @@ function AboutUs() {
               The <strong className="text-[#006847]">"U"</strong> in DowUrk places <strong>YOU</strong> at the center of the work. 
               It's a reminder that success isn't about what we do <em>for</em> you—it's about empowering <em>you</em> to do the work yourself.
             </p>
+            <p>
+              The "U" also represents <strong className="text-[#006847]">Unity</strong> within humankind—recognizing that we rise together, 
+              support one another, and build stronger communities through collaboration and shared purpose.
+            </p>
             <div className="bg-[#A4D65E]/10 border-l-4 border-[#A4D65E] p-4 rounded">
               <p className="italic">
                 "Do <span className="font-bold text-[#006847]">U</span> Work" = <span className="font-bold">Your hands, your effort, your vision.</span> 
