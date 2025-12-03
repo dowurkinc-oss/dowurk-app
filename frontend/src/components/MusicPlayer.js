@@ -2,12 +2,15 @@ import { useState, useEffect, useRef } from 'react';
 import { Volume2, VolumeX, Music } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
+import { useLocation } from 'react-router-dom';
 
 function MusicPlayer() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(0.3);
   const [isMinimized, setIsMinimized] = useState(false);
   const audioRef = useRef(null);
+  const location = useLocation();
+  const hasAutoPlayed = useRef(false);
 
   useEffect(() => {
     if (audioRef.current) {
@@ -19,6 +22,26 @@ function MusicPlayer() {
       }
     }
   }, [isPlaying, volume]);
+
+  // Auto-start music on homepage
+  useEffect(() => {
+    if (location.pathname === '/' && !hasAutoPlayed.current) {
+      hasAutoPlayed.current = true;
+      // Small delay to ensure audio element is ready
+      setTimeout(() => {
+        if (audioRef.current) {
+          audioRef.current.play()
+            .then(() => {
+              setIsPlaying(true);
+            })
+            .catch(err => {
+              console.log('Auto-play blocked by browser:', err);
+              // Auto-play blocked - user will need to click Play
+            });
+        }
+      }, 500);
+    }
+  }, [location.pathname]);
 
   // Auto-minimize after 5 seconds (especially on mobile)
   useEffect(() => {
