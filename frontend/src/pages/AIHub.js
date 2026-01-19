@@ -9,7 +9,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { 
   Bot, Target, DollarSign, Users, BookOpen, Sparkles, 
   ArrowRight, Crown, Zap, TrendingUp, Calendar, Award,
-  MessageSquare, Rocket, Heart, Star
+  MessageSquare, Rocket, Heart, Star, FileText, Workflow,
+  Shield, Copy
 } from 'lucide-react';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
@@ -39,13 +40,13 @@ function AIHub() {
     }
   };
 
-  const features = [
+  const coreFeatures = [
     {
       title: 'AI Business Coach',
       description: 'Personalized coaching with stage-based guidance, weekly check-ins, and milestone tracking',
       icon: Target,
       color: 'from-green-500 to-emerald-600',
-      link: '/ai-hub/coach',
+      link: '/ai-coach',
       badge: 'Popular'
     },
     {
@@ -53,7 +54,7 @@ function AIHub() {
       description: 'Smart grant discovery, eligibility analysis, and AI-powered application assistance',
       icon: DollarSign,
       color: 'from-yellow-500 to-orange-500',
-      link: '/ai-hub/grants',
+      link: '/ai-grants',
       badge: 'New'
     },
     {
@@ -61,16 +62,46 @@ function AIHub() {
       description: 'AI-powered mentor matching, networking suggestions, and peer accountability groups',
       icon: Users,
       color: 'from-blue-500 to-indigo-600',
-      link: '/ai-hub/community',
+      link: '/ai-community',
       badge: null
     },
     {
-      title: 'Learning Hub',
-      description: 'Micro-courses, business templates, and resources tailored to your stage',
-      icon: BookOpen,
+      title: 'Business Verification',
+      description: 'Verify Louisiana businesses, check name availability, and validate compliance status',
+      icon: Shield,
+      color: 'from-teal-500 to-cyan-600',
+      link: '/business-verification',
+      badge: 'LA SOS'
+    }
+  ];
+
+  const hackbookFeatures = [
+    {
+      title: 'AI Prompt Library',
+      description: '15+ ready-to-use prompts for business planning, grants, marketing, and more',
+      icon: Copy,
       color: 'from-purple-500 to-pink-500',
-      link: '/ai-hub/learning',
-      badge: null
+      link: '/prompts',
+      badge: 'New',
+      stats: '15+ Prompts'
+    },
+    {
+      title: 'Automation Hub',
+      description: 'No-code automation templates that save 20+ hours per week',
+      icon: Zap,
+      color: 'from-orange-500 to-red-500',
+      link: '/automations',
+      badge: 'New',
+      stats: '8 Templates'
+    },
+    {
+      title: 'AI Workflow Pipelines',
+      description: 'Multi-tool workflows for content, coding, and learning acceleration',
+      icon: Workflow,
+      color: 'from-cyan-500 to-blue-500',
+      link: '/workflows',
+      badge: 'New',
+      stats: '3 Pipelines'
     }
   ];
 
@@ -108,19 +139,19 @@ function AIHub() {
           </h1>
           <p className="text-xl text-white/90 max-w-2xl mb-6">
             Your comprehensive AI-powered entrepreneurial ecosystem. Get personalized coaching, 
-            find grants, connect with mentors, and grow your business.
+            find grants, connect with mentors, and grow your business with ready-to-use AI tools.
           </p>
           <div className="flex flex-wrap gap-4">
-            <Link to="/ai-hub/coach">
+            <Link to="/ai-coach">
               <Button size="lg" className="bg-white text-[#006847] hover:bg-white/90">
                 <Rocket className="mr-2 h-5 w-5" />
                 Start AI Coaching
               </Button>
             </Link>
-            <Link to="/ai-hub/grants">
+            <Link to="/prompts">
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/20">
-                <DollarSign className="mr-2 h-5 w-5" />
-                Find Grants
+                <Copy className="mr-2 h-5 w-5" />
+                Browse Prompts
               </Button>
             </Link>
           </div>
@@ -144,33 +175,83 @@ function AIHub() {
         ))}
       </div>
 
-      {/* Main Features Grid */}
-      <div className="grid md:grid-cols-2 gap-6">
-        {features.map((feature, index) => (
-          <Link key={index} to={feature.link}>
-            <Card className="h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer group">
-              <CardHeader>
-                <div className="flex items-start justify-between">
-                  <div className={`p-3 rounded-xl bg-gradient-to-r ${feature.color}`}>
-                    <feature.icon className="h-6 w-6 text-white" />
+      {/* AI Hackbook Features - NEW SECTION */}
+      <div>
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <h2 className="text-2xl font-bold flex items-center">
+              <BookOpen className="mr-2 h-6 w-6 text-[#006847]" />
+              AI Hackbook Tools
+            </h2>
+            <p className="text-gray-600">Ready-to-use AI resources from the DowUrk AI Hackbook</p>
+          </div>
+          <Badge className="bg-[#A4D65E] text-black">2026 Edition</Badge>
+        </div>
+        <div className="grid md:grid-cols-3 gap-4">
+          {hackbookFeatures.map((feature, index) => (
+            <Link key={index} to={feature.link}>
+              <Card className="h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer group border-2 border-dashed border-[#A4D65E]/50 hover:border-[#006847]">
+                <CardHeader>
+                  <div className="flex items-start justify-between">
+                    <div className={`p-3 rounded-xl bg-gradient-to-r ${feature.color}`}>
+                      <feature.icon className="h-6 w-6 text-white" />
+                    </div>
+                    <div className="text-right">
+                      {feature.badge && (
+                        <Badge className="bg-[#A4D65E] text-black mb-1">{feature.badge}</Badge>
+                      )}
+                      <div className="text-xs text-gray-500">{feature.stats}</div>
+                    </div>
                   </div>
-                  {feature.badge && (
-                    <Badge className="bg-[#A4D65E] text-black">{feature.badge}</Badge>
-                  )}
-                </div>
-                <CardTitle className="mt-4 group-hover:text-[#006847] transition-colors">
-                  {feature.title}
-                </CardTitle>
-                <CardDescription>{feature.description}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="flex items-center text-[#006847] font-medium">
-                  Explore <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </CardContent>
-            </Card>
-          </Link>
-        ))}
+                  <CardTitle className="mt-4 group-hover:text-[#006847] transition-colors">
+                    {feature.title}
+                  </CardTitle>
+                  <CardDescription>{feature.description}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex items-center text-[#006847] font-medium">
+                    Explore <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      {/* Core Features Grid */}
+      <div>
+        <h2 className="text-2xl font-bold mb-4 flex items-center">
+          <Sparkles className="mr-2 h-6 w-6 text-[#006847]" />
+          Core AI Features
+        </h2>
+        <div className="grid md:grid-cols-2 gap-6">
+          {coreFeatures.map((feature, index) => (
+            <Link key={index} to={feature.link}>
+              <Card className="h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer group">
+                <CardHeader>
+                  <div className="flex items-start justify-between">
+                    <div className={`p-3 rounded-xl bg-gradient-to-r ${feature.color}`}>
+                      <feature.icon className="h-6 w-6 text-white" />
+                    </div>
+                    {feature.badge && (
+                      <Badge className="bg-[#A4D65E] text-black">{feature.badge}</Badge>
+                    )}
+                  </div>
+                  <CardTitle className="mt-4 group-hover:text-[#006847] transition-colors">
+                    {feature.title}
+                  </CardTitle>
+                  <CardDescription>{feature.description}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex items-center text-[#006847] font-medium">
+                    Explore <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+          ))}
+        </div>
       </div>
 
       {/* Subscription Tiers */}
@@ -184,9 +265,11 @@ function AIHub() {
               </CardTitle>
               <CardDescription>Choose the plan that fits your entrepreneurial journey</CardDescription>
             </div>
-            <Badge variant="outline" className="text-[#006847] border-[#006847]">
-              7-day free trial
-            </Badge>
+            <Link to="/pricing">
+              <Badge variant="outline" className="text-[#006847] border-[#006847] cursor-pointer hover:bg-[#006847] hover:text-white">
+                View Full Details
+              </Badge>
+            </Link>
           </div>
         </CardHeader>
         <CardContent>
@@ -202,7 +285,7 @@ function AIHub() {
                   <li className="flex items-center"><Zap className="h-4 w-4 mr-2 text-[#A4D65E]" /> 20 AI chats/month</li>
                   <li className="flex items-center"><Zap className="h-4 w-4 mr-2 text-[#A4D65E]" /> Basic community access</li>
                   <li className="flex items-center"><Zap className="h-4 w-4 mr-2 text-[#A4D65E]" /> 3 grant matches</li>
-                  <li className="flex items-center"><Zap className="h-4 w-4 mr-2 text-[#A4D65E]" /> 1 mentor request/month</li>
+                  <li className="flex items-center"><Zap className="h-4 w-4 mr-2 text-[#A4D65E]" /> All prompt templates</li>
                 </ul>
                 <Button variant="outline" className="w-full">Current Plan</Button>
               </CardContent>
@@ -222,13 +305,14 @@ function AIHub() {
                   <li className="flex items-center"><Zap className="h-4 w-4 mr-2 text-[#A4D65E]" /> Unlimited AI chats</li>
                   <li className="flex items-center"><Zap className="h-4 w-4 mr-2 text-[#A4D65E]" /> Full AI Business Coach</li>
                   <li className="flex items-center"><Zap className="h-4 w-4 mr-2 text-[#A4D65E]" /> Unlimited grant matching</li>
-                  <li className="flex items-center"><Zap className="h-4 w-4 mr-2 text-[#A4D65E]" /> 3 mentor matches/month</li>
-                  <li className="flex items-center"><Zap className="h-4 w-4 mr-2 text-[#A4D65E]" /> Live workshops access</li>
+                  <li className="flex items-center"><Zap className="h-4 w-4 mr-2 text-[#A4D65E]" /> Automation setup guides</li>
                   <li className="flex items-center"><Zap className="h-4 w-4 mr-2 text-[#A4D65E]" /> Priority support</li>
                 </ul>
-                <Button className="w-full bg-[#006847] hover:bg-[#005238]">
-                  Upgrade to Pro
-                </Button>
+                <Link to="/pricing">
+                  <Button className="w-full bg-[#006847] hover:bg-[#005238]">
+                    Upgrade to Pro
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
 
@@ -244,14 +328,15 @@ function AIHub() {
                 <ul className="space-y-2 text-sm">
                   <li className="flex items-center"><Zap className="h-4 w-4 mr-2 text-yellow-500" /> Everything in Pro</li>
                   <li className="flex items-center"><Zap className="h-4 w-4 mr-2 text-yellow-500" /> 1:1 AI coaching sessions</li>
-                  <li className="flex items-center"><Zap className="h-4 w-4 mr-2 text-yellow-500" /> Pitch deck review</li>
+                  <li className="flex items-center"><Zap className="h-4 w-4 mr-2 text-yellow-500" /> Custom automations built</li>
                   <li className="flex items-center"><Zap className="h-4 w-4 mr-2 text-yellow-500" /> Investor introductions</li>
-                  <li className="flex items-center"><Zap className="h-4 w-4 mr-2 text-yellow-500" /> Custom business reports</li>
                   <li className="flex items-center"><Zap className="h-4 w-4 mr-2 text-yellow-500" /> Dedicated success manager</li>
                 </ul>
-                <Button className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600">
-                  Go Elite
-                </Button>
+                <Link to="/pricing">
+                  <Button className="w-full bg-yellow-500 hover:bg-yellow-600 text-black">
+                    Go Elite
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
           </div>
@@ -360,7 +445,7 @@ function AIHub() {
             Join thousands of Louisiana entrepreneurs building their dreams with the DowUrk AI Hub
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link to="/ai-hub/coach">
+            <Link to="/ai-coach">
               <Button size="lg" className="bg-white text-[#006847] hover:bg-white/90">
                 Start Free Coaching
               </Button>

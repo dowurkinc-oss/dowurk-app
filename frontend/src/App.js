@@ -36,6 +36,10 @@ import AIGrants from '@/pages/AIGrants';
 import AICommunity from '@/pages/AICommunity';
 import Pricing from '@/pages/Pricing';
 import BusinessVerification from '@/pages/BusinessVerification';
+// AI Hackbook Features
+import PromptLibrary from '@/pages/PromptLibrary';
+import AutomationHub from '@/pages/AutomationHub';
+import AIWorkflows from '@/pages/AIWorkflows';
 import { AuthProvider } from '@/context/AuthContext';
 import Layout from '@/components/Layout';
 
@@ -85,6 +89,10 @@ function App() {
             <Route path="ai-community" element={<AICommunity />} />
             <Route path="pricing" element={<Pricing />} />
             <Route path="business-verification" element={<BusinessVerification />} />
+            {/* AI Hackbook Features */}
+            <Route path="prompts" element={<PromptLibrary />} />
+            <Route path="automations" element={<AutomationHub />} />
+            <Route path="workflows" element={<AIWorkflows />} />
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
