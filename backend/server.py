@@ -478,8 +478,16 @@ async def get_blessings():
     
     return {"total": total, "blessings": blessings}
 
-# Include router
+# Include routers
 app.include_router(api_router)
+
+# Include AI Hub router
+from ai_hub_routes import ai_hub_router
+app.include_router(ai_hub_router)
+
+# Include Louisiana SOS router
+from la_sos_routes import la_sos_router
+app.include_router(la_sos_router)
 
 # CORS
 app.add_middleware(

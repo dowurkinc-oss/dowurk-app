@@ -29,6 +29,13 @@ import Partnerships from '@/pages/Partnerships';
 import SevenFPage from '@/pages/SevenFPage';
 import TestYourKnowledge from '@/pages/TestYourKnowledge';
 import SevenFramework from '@/pages/SevenFramework';
+// AI Hub Pages
+import AIHub from '@/pages/AIHub';
+import AICoach from '@/pages/AICoach';
+import AIGrants from '@/pages/AIGrants';
+import AICommunity from '@/pages/AICommunity';
+import Pricing from '@/pages/Pricing';
+import BusinessVerification from '@/pages/BusinessVerification';
 import { AuthProvider } from '@/context/AuthContext';
 import Layout from '@/components/Layout';
 
@@ -71,6 +78,13 @@ function App() {
             <Route path="framework/film" element={<SevenFPage fName="Film" />} />
             <Route path="framework/food" element={<SevenFPage fName="Food" />} />
             <Route path="framework/finances" element={<SevenFPage fName="Finances" />} />
+            {/* AI Hub Routes */}
+            <Route path="ai-hub" element={<AIHub />} />
+            <Route path="ai-coach" element={<AICoach />} />
+            <Route path="ai-grants" element={<AIGrants />} />
+            <Route path="ai-community" element={<AICommunity />} />
+            <Route path="pricing" element={<Pricing />} />
+            <Route path="business-verification" element={<BusinessVerification />} />
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
