@@ -1,0 +1,1752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DowUrk AI - Empowering Entrepreneurs</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #0a0e14;
+            --color-surface: #1a1f2e;
+            --color-surface-hover: #252b3f;
+            --color-primary: #ffa500;
+            --color-primary-glow: rgba(255, 165, 0, 0.3);
+            --color-secondary: #00d4ff;
+            --color-accent: #ff6b9d;
+            --color-text: #e8eaed;
+            --color-text-dim: #9aa0b0;
+            --color-border: #2a3142;
+            --color-success: #4ade80;
+            --gradient-hero: linear-gradient(135deg, #ff6b00 0%, #ffa500 50%, #ff6b9d 100%);
+            --gradient-card: linear-gradient(145deg, #1e2433 0%, #151a26 100%);
+            --gradient-hackbook: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+            --shadow-glow: 0 0 40px var(--color-primary-glow);
+            --shadow-deep: 0 10px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .app-container {
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Animated background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.15;
+            background: 
+                radial-gradient(circle at 20% 30%, var(--color-primary-glow) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(0, 212, 255, 0.2) 0%, transparent 50%);
+            animation: bgPulse 15s ease-in-out infinite;
+        }
+
+        @keyframes bgPulse {
+            0%, 100% { opacity: 0.15; }
+            50% { opacity: 0.25; }
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(to bottom, rgba(26, 31, 46, 0.95), rgba(26, 31, 46, 0));
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--color-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1.5rem 2rem;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-hero);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: white;
+            box-shadow: var(--shadow-glow);
+            animation: logoFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .logo-text h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: var(--gradient-hero);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo-text p {
+            font-size: 0.85rem;
+            color: var(--color-text-dim);
+            font-family: 'Space Mono', monospace;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 0.5rem;
+            background: var(--color-surface);
+            padding: 0.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+        }
+
+        .nav-tab {
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            border: none;
+            color: var(--color-text-dim);
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-tab:hover {
+            color: var(--color-text);
+            background: var(--color-surface-hover);
+        }
+
+        .nav-tab.active {
+            background: var(--gradient-hero);
+            color: white;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .nav-tab.hackbook-tab.active {
+            background: var(--gradient-hackbook);
+            box-shadow: 0 0 40px rgba(139, 92, 246, 0.4);
+        }
+
+        /* Main Container */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Section */
+        .section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--gradient-card);
+            border-radius: 24px;
+            border: 1px solid var(--color-border);
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero.hackbook-hero {
+            border-color: rgba(139, 92, 246, 0.5);
+        }
+
+        .hero.hackbook-hero::before {
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, transparent 70%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--color-primary-glow) 0%, transparent 70%);
+            animation: heroGlow 10s linear infinite;
+        }
+
+        @keyframes heroGlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h2 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: var(--gradient-hero);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero.hackbook-hero h2 {
+            background: var(--gradient-hackbook);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--color-text-dim);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: var(--gradient-card);
+            border: 1px solid var(--color-border);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-hero);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .card.hackbook-card::before {
+            background: var(--gradient-hackbook);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-deep), var(--shadow-glow);
+            border-color: var(--color-primary);
+        }
+
+        .card.hackbook-card:hover {
+            border-color: #8b5cf6;
+            box-shadow: var(--shadow-deep), 0 0 40px rgba(139, 92, 246, 0.4);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-hero);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .card.hackbook-card .card-icon {
+            background: var(--gradient-hackbook);
+            box-shadow: 0 0 40px rgba(139, 92, 246, 0.4);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--color-text);
+        }
+
+        .card p {
+            color: var(--color-text-dim);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Badge */
+        .badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .badge-new {
+            background: var(--gradient-hackbook);
+            color: white;
+        }
+
+        .badge-popular {
+            background: var(--gradient-hero);
+            color: white;
+        }
+
+        .badge-free {
+            background: var(--color-success);
+            color: #0a0e14;
+        }
+
+        /* Button Styles */
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--gradient-hero);
+            color: white;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 60px var(--color-primary-glow);
+        }
+
+        .btn-hackbook {
+            background: var(--gradient-hackbook);
+            color: white;
+            box-shadow: 0 0 40px rgba(139, 92, 246, 0.3);
+        }
+
+        .btn-hackbook:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 60px rgba(139, 92, 246, 0.5);
+        }
+
+        .btn-secondary {
+            background: var(--color-surface);
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-surface-hover);
+            border-color: var(--color-primary);
+        }
+
+        /* AI Chat Interface */
+        .ai-chat-container {
+            background: var(--gradient-card);
+            border: 1px solid var(--color-border);
+            border-radius: 24px;
+            overflow: hidden;
+            margin-bottom: 3rem;
+        }
+
+        .chat-header {
+            background: var(--gradient-hero);
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .chat-header-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .chat-header h3 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: white;
+        }
+
+        .chat-header p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .chat-messages {
+            height: 400px;
+            overflow-y: auto;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .message {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .message.user {
+            align-items: flex-end;
+        }
+
+        .message.ai {
+            align-items: flex-start;
+        }
+
+        .message-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--color-text-dim);
+            font-family: 'Space Mono', monospace;
+        }
+
+        .message-content {
+            background: var(--color-surface);
+            padding: 1rem 1.5rem;
+            border-radius: 16px;
+            max-width: 80%;
+            border: 1px solid var(--color-border);
+        }
+
+        .message.user .message-content {
+            background: var(--gradient-hero);
+            color: white;
+            border: none;
+        }
+
+        .chat-input-container {
+            padding: 1.5rem 2rem;
+            background: var(--color-surface);
+            border-top: 1px solid var(--color-border);
+            display: flex;
+            gap: 1rem;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            color: var(--color-text);
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 1rem;
+        }
+
+        .chat-input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px var(--color-primary-glow);
+        }
+
+        .quick-prompts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .quick-prompt {
+            padding: 0.5rem 1rem;
+            background: var(--color-surface-hover);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            color: var(--color-text-dim);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quick-prompt:hover {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+        }
+
+        /* Resource List */
+        .resource-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .resource-item {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .resource-item:hover {
+            background: var(--color-surface-hover);
+            border-color: var(--color-primary);
+            transform: translateX(8px);
+        }
+
+        .resource-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-hero);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .resource-content {
+            flex: 1;
+        }
+
+        .resource-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .resource-description {
+            color: var(--color-text-dim);
+            font-size: 0.95rem;
+        }
+
+        .resource-badge {
+            padding: 0.5rem 1rem;
+            background: var(--color-surface-hover);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            font-family: 'Space Mono', monospace;
+        }
+
+        /* Loading Spinner */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid var(--color-surface);
+            border-top-color: var(--color-primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Stats Dashboard */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: var(--gradient-card);
+            border: 1px solid var(--color-border);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--gradient-hero);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--color-text-dim);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* Hackbook Section Styles */
+        .hackbook-section-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .hackbook-section-title h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: var(--gradient-hackbook);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hackbook-section-title .edition-badge {
+            background: var(--gradient-hackbook);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        /* Prompt Card */
+        .prompt-card {
+            background: var(--gradient-card);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .prompt-card:hover {
+            border-color: #8b5cf6;
+            transform: translateX(8px);
+        }
+
+        .prompt-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .prompt-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .prompt-category {
+            font-size: 0.8rem;
+            padding: 0.3rem 0.8rem;
+            background: var(--color-surface-hover);
+            border-radius: 20px;
+            color: var(--color-text-dim);
+        }
+
+        .prompt-text {
+            background: var(--color-bg);
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--color-text-dim);
+            margin-bottom: 1rem;
+            border: 1px solid var(--color-border);
+        }
+
+        .prompt-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .prompt-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.85rem;
+            color: var(--color-text-dim);
+        }
+
+        .copy-btn {
+            padding: 0.5rem 1rem;
+            background: var(--gradient-hackbook);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+        }
+
+        /* Workflow Pipeline */
+        .workflow-pipeline {
+            background: var(--gradient-card);
+            border: 1px solid var(--color-border);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .workflow-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .workflow-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+        }
+
+        .workflow-savings {
+            background: var(--color-success);
+            color: #0a0e14;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .workflow-steps {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .workflow-step {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            text-align: center;
+            min-width: 150px;
+        }
+
+        .workflow-step-number {
+            font-size: 0.8rem;
+            color: var(--color-text-dim);
+            margin-bottom: 0.3rem;
+        }
+
+        .workflow-step-tool {
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        .workflow-step-action {
+            font-size: 0.85rem;
+            color: var(--color-text-dim);
+        }
+
+        .workflow-arrow {
+            font-size: 1.5rem;
+            color: var(--color-primary);
+        }
+
+        /* Automation Template */
+        .automation-template {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .automation-template:hover {
+            border-color: #8b5cf6;
+            transform: translateX(8px);
+        }
+
+        .automation-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-hackbook);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .automation-content {
+            flex: 1;
+        }
+
+        .automation-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .automation-description {
+            color: var(--color-text-dim);
+            font-size: 0.95rem;
+        }
+
+        .automation-time {
+            padding: 0.5rem 1rem;
+            background: var(--color-surface-hover);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--color-success);
+            font-family: 'Space Mono', monospace;
+            white-space: nowrap;
+        }
+
+        /* Pricing Tiers */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pricing-card {
+            background: var(--gradient-card);
+            border: 1px solid var(--color-border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--color-primary);
+            box-shadow: var(--shadow-glow);
+            transform: scale(1.05);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px) scale(1.02);
+        }
+
+        .pricing-tier {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .pricing-price {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: var(--gradient-hero);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-period {
+            color: var(--color-text-dim);
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-check {
+            color: var(--color-success);
+            font-size: 1.2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .nav-tabs {
+                width: 100%;
+                overflow-x: auto;
+            }
+
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .message-content {
+                max-width: 90%;
+            }
+
+            .workflow-steps {
+                flex-direction: column;
+            }
+
+            .workflow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="bg-animation"></div>
+        
+        <div class="content">
+            <header class="header">
+                <div class="header-content">
+                    <div class="logo">
+                        <div class="logo-icon">D</div>
+                        <div class="logo-text">
+                            <h1>DowUrk AI</h1>
+                            <p>Empowering Entrepreneurs</p>
+                        </div>
+                    </div>
+                    <nav class="nav-tabs">
+                        <button class="nav-tab active" onclick="switchTab('home')">Home</button>
+                        <button class="nav-tab" onclick="switchTab('ai-mentor')">AI Mentor</button>
+                        <button class="nav-tab hackbook-tab" onclick="switchTab('hackbook')">AI Hackbook</button>
+                        <button class="nav-tab" onclick="switchTab('resources')">Resources</button>
+                        <button class="nav-tab" onclick="switchTab('community')">Community</button>
+                        <button class="nav-tab" onclick="switchTab('pricing')">Pricing</button>
+                    </nav>
+                </div>
+            </header>
+
+            <main class="main-container">
+                <!-- HOME SECTION -->
+                <section id="home" class="section active">
+                    <div class="hero">
+                        <div class="hero-content">
+                            <h2>Build Your Dream Business</h2>
+                            <p>AI-powered guidance, mentorship, and resources for underrepresented entrepreneurs. Your success story starts here.</p>
+                            <button class="btn btn-primary" onclick="switchTab('ai-mentor')">Start Your Journey</button>
+                        </div>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">10K+</div>
+                            <div class="stat-label">Entrepreneurs Supported</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">$50M</div>
+                            <div class="stat-label">Funding Secured</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">500+</div>
+                            <div class="stat-label">Expert Mentors</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">95%</div>
+                            <div class="stat-label">Success Rate</div>
+                        </div>
+                    </div>
+
+                    <!-- AI HACKBOOK TOOLS SECTION - NEW -->
+                    <div class="hackbook-section-title">
+                        <h3>🚀 AI Hackbook Tools</h3>
+                        <span class="edition-badge">2026 Edition</span>
+                    </div>
+
+                    <div class="cards-grid">
+                        <div class="card hackbook-card">
+                            <span class="badge badge-new">NEW</span>
+                            <div class="card-icon">📋</div>
+                            <h3>AI Prompt Library</h3>
+                            <p>15+ ready-to-use prompts for business planning, grants, marketing, and more. Copy, paste, and accelerate your work.</p>
+                            <button class="btn btn-hackbook" onclick="switchTab('hackbook')">Browse Prompts</button>
+                        </div>
+
+                        <div class="card hackbook-card">
+                            <span class="badge badge-new">NEW</span>
+                            <div class="card-icon">⚡</div>
+                            <h3>Automation Hub</h3>
+                            <p>8 no-code automation templates that save 20+ hours per week. Set up once, run forever.</p>
+                            <button class="btn btn-hackbook" onclick="switchTab('hackbook')">View Automations</button>
+                        </div>
+
+                        <div class="card hackbook-card">
+                            <span class="badge badge-new">NEW</span>
+                            <div class="card-icon">🔄</div>
+                            <h3>AI Workflow Pipelines</h3>
+                            <p>Multi-tool workflows for content creation (60-70% faster), coding (40-50% faster), and learning (50-60% faster).</p>
+                            <button class="btn btn-hackbook" onclick="switchTab('hackbook')">Explore Workflows</button>
+                        </div>
+                    </div>
+
+                    <!-- Original Cards -->
+                    <div class="cards-grid">
+                        <div class="card">
+                            <div class="card-icon">🤖</div>
+                            <h3>AI-Powered Mentorship</h3>
+                            <p>Get personalized guidance from our AI mentor trained on successful entrepreneurial strategies. Available 24/7 to answer your questions.</p>
+                            <button class="btn btn-secondary" onclick="switchTab('ai-mentor')">Get Started</button>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-icon">📚</div>
+                            <h3>Resource Hub</h3>
+                            <p>Access comprehensive guides, templates, and tools for every stage of your business journey - from ideation to scaling.</p>
+                            <button class="btn btn-secondary" onclick="switchTab('resources')">Explore Resources</button>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-icon">🌍</div>
+                            <h3>Vibrant Community</h3>
+                            <p>Connect with fellow entrepreneurs, share experiences, and build lasting partnerships in our supportive ecosystem.</p>
+                            <button class="btn btn-secondary" onclick="switchTab('community')">Join Community</button>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-icon">💰</div>
+                            <h3>Funding Opportunities</h3>
+                            <p>Discover grants, investor connections, and funding resources tailored for minority-owned businesses.</p>
+                            <button class="btn btn-secondary" onclick="openFundingTracker()">Find Funding</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- AI MENTOR SECTION -->
+                <section id="ai-mentor" class="section">
+                    <div class="ai-chat-container">
+                        <div class="chat-header">
+                            <div class="chat-header-icon">🤖</div>
+                            <div>
+                                <h3>DowUrk AI Mentor</h3>
+                                <p>Your 24/7 business advisor</p>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="message ai">
+                                <div class="message-label">AI Mentor</div>
+                                <div class="message-content">
+                                    Welcome to DowUrk AI! I'm here to help you build and grow your business. Whether you're just starting out or looking to scale, I can assist with business planning, marketing strategies, funding opportunities, legal compliance, and more. What would you like to work on today?
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quick-prompts">
+                            <button class="quick-prompt" onclick="askAI('How do I write a business plan?')">📝 Write a Business Plan</button>
+                            <button class="quick-prompt" onclick="askAI('What grants are available for minority-owned businesses?')">💰 Find Grants</button>
+                            <button class="quick-prompt" onclick="askAI('How do I market my business on a budget?')">📣 Marketing Tips</button>
+                            <button class="quick-prompt" onclick="askAI('What legal requirements do I need to start a business in Louisiana?')">⚖️ Legal Requirements</button>
+                        </div>
+
+                        <div class="chat-input-container">
+                            <input type="text" class="chat-input" id="chatInput" placeholder="Ask me anything about your business..." onkeypress="handleChatKeypress(event)">
+                            <button class="btn btn-primary" onclick="sendMessage()">Send</button>
+                        </div>
+                    </div>
+
+                    <div class="cards-grid">
+                        <div class="card">
+                            <div class="card-icon">📊</div>
+                            <h3>Business Health Check</h3>
+                            <p>Get a comprehensive analysis of your business model, financials, and growth potential.</p>
+                            <button class="btn btn-secondary" onclick="askAI('Can you do a business health check for my company?')">Start Analysis</button>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-icon">🎯</div>
+                            <h3>Goal Setting Workshop</h3>
+                            <p>Set SMART goals and create actionable plans to achieve your business milestones.</p>
+                            <button class="btn btn-secondary" onclick="askAI('Help me set SMART goals for my business')">Set Goals</button>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-icon">💡</div>
+                            <h3>Idea Validator</h3>
+                            <p>Test your business idea against market realities and get honest feedback.</p>
+                            <button class="btn btn-secondary" onclick="askAI('I have a business idea I want to validate')">Validate Idea</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- AI HACKBOOK SECTION - NEW -->
+                <section id="hackbook" class="section">
+                    <div class="hero hackbook-hero">
+                        <div class="hero-content">
+                            <h2>AI Hackbook Tools</h2>
+                            <p>Ready-to-use AI prompts, automations, and workflows designed for Louisiana entrepreneurs. Save 20+ hours per week.</p>
+                            <button class="btn btn-hackbook">Download Full Hackbook PDF</button>
+                        </div>
+                    </div>
+
+                    <!-- Prompt Library -->
+                    <div class="hackbook-section-title">
+                        <h3>📋 Prompt Library</h3>
+                        <span class="edition-badge">15+ Prompts</span>
+                    </div>
+
+                    <div class="prompt-card">
+                        <div class="prompt-header">
+                            <span class="prompt-title">🎯 Business Operating System</span>
+                            <span class="prompt-category">Business Planning</span>
+                        </div>
+                        <div class="prompt-text">
+                            You are my AI Business Operating System. I run [BUSINESS TYPE] in Louisiana. Help me with: 1) Daily priorities based on my current stage, 2) Weekly review of key metrics, 3) Monthly strategic planning, 4) Quarterly goal setting. My current biggest challenge is [CHALLENGE]. Start by asking me 3 questions to understand my business better.
+                        </div>
+                        <div class="prompt-footer">
+                            <div class="prompt-meta">
+                                <span>⏱️ Saves 5+ hrs/week</span>
+                                <span>📊 Intermediate</span>
+                            </div>
+                            <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy</button>
+                        </div>
+                    </div>
+
+                    <div class="prompt-card">
+                        <div class="prompt-header">
+                            <span class="prompt-title">💰 Grant Application Writer</span>
+                            <span class="prompt-category">Grants & Funding</span>
+                        </div>
+                        <div class="prompt-text">
+                            Act as a grant writing expert specializing in minority-owned business funding. I'm applying for [GRANT NAME] with a deadline of [DATE]. My business is [DESCRIPTION]. Help me: 1) Identify the key criteria they're looking for, 2) Draft compelling narrative sections, 3) Quantify my impact with specific metrics, 4) Review and strengthen my application. Focus on Louisiana-specific opportunities and requirements.
+                        </div>
+                        <div class="prompt-footer">
+                            <div class="prompt-meta">
+                                <span>⏱️ Saves 10+ hrs/application</span>
+                                <span>📊 Advanced</span>
+                            </div>
+                            <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy</button>
+                        </div>
+                    </div>
+
+                    <div class="prompt-card">
+                        <div class="prompt-header">
+                            <span class="prompt-title">📱 Social Media Content Creator</span>
+                            <span class="prompt-category">Marketing</span>
+                        </div>
+                        <div class="prompt-text">
+                            You are a social media strategist for small businesses. Create a week's worth of content for my [BUSINESS TYPE] targeting [AUDIENCE] in Louisiana. Include: 1) 5 post ideas with captions, 2) Best posting times, 3) Relevant hashtags, 4) One viral-potential idea. My brand voice is [TONE]. My goal is [OBJECTIVE].
+                        </div>
+                        <div class="prompt-footer">
+                            <div class="prompt-meta">
+                                <span>⏱️ Saves 3+ hrs/week</span>
+                                <span>📊 Beginner</span>
+                            </div>
+                            <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy</button>
+                        </div>
+                    </div>
+
+                    <div class="prompt-card">
+                        <div class="prompt-header">
+                            <span class="prompt-title">🔍 Louisiana Business Compliance Checker</span>
+                            <span class="prompt-category">Operations</span>
+                        </div>
+                        <div class="prompt-text">
+                            Act as a Louisiana business compliance expert. My business is a [BUSINESS TYPE] located in [CITY/PARISH]. Check my compliance status for: 1) Louisiana Secretary of State registration, 2) Required licenses and permits, 3) Tax obligations (state, parish, city), 4) Annual report deadlines, 5) Industry-specific regulations. Flag any urgent items and create a compliance calendar.
+                        </div>
+                        <div class="prompt-footer">
+                            <div class="prompt-meta">
+                                <span>⏱️ Saves 5+ hrs/quarter</span>
+                                <span>📊 Intermediate</span>
+                            </div>
+                            <button class="copy-btn" onclick="copyPrompt(this)">📋 Copy</button>
+                        </div>
+                    </div>
+
+                    <!-- Workflow Pipelines -->
+                    <div class="hackbook-section-title" style="margin-top: 3rem;">
+                        <h3>🔄 AI Workflow Pipelines</h3>
+                        <span class="edition-badge">3 Pipelines</span>
+                    </div>
+
+                    <div class="workflow-pipeline">
+                        <div class="workflow-header">
+                            <span class="workflow-title">📝 Content Production Line</span>
+                            <span class="workflow-savings">Saves 60-70%</span>
+                        </div>
+                        <div class="workflow-steps">
+                            <div class="workflow-step">
+                                <div class="workflow-step-number">Step 1</div>
+                                <div class="workflow-step-tool">Perplexity</div>
+                                <div class="workflow-step-action">Research</div>
+                            </div>
+                            <span class="workflow-arrow">→</span>
+                            <div class="workflow-step">
+                                <div class="workflow-step-number">Step 2</div>
+                                <div class="workflow-step-tool">Claude</div>
+                                <div class="workflow-step-action">Draft + Style</div>
+                            </div>
+                            <span class="workflow-arrow">→</span>
+                            <div class="workflow-step">
+                                <div class="workflow-step-number">Step 3</div>
+                                <div class="workflow-step-tool">ChatGPT</div>
+                                <div class="workflow-step-action">Technical Polish</div>
+                            </div>
+                            <span class="workflow-arrow">→</span>
+                            <div class="workflow-step">
+                                <div class="workflow-step-number">Step 4</div>
+                                <div class="workflow-step-tool">You</div>
+                                <div class="workflow-step-action">Final Review</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="workflow-pipeline">
+                        <div class="workflow-header">
+                            <span class="workflow-title">💻 Coding Sprint Pipeline</span>
+                            <span class="workflow-savings">Saves 40-50%</span>
+                        </div>
+                        <div class="workflow-steps">
+                            <div class="workflow-step">
+                                <div class="workflow-step-number">Step 1</div>
+                                <div class="workflow-step-tool">Cursor</div>
+                                <div class="workflow-step-action">Plan Mode</div>
+                            </div>
+                            <span class="workflow-arrow">→</span>
+                            <div class="workflow-step">
+                                <div class="workflow-step-number">Step 2</div>
+                                <div class="workflow-step-tool">Multi-Agents</div>
+                                <div class="workflow-step-action">Parallel Build</div>
+                            </div>
+                            <span class="workflow-arrow">→</span>
+                            <div class="workflow-step">
+                                <div class="workflow-step-number">Step 3</div>
+                                <div class="workflow-step-tool">Browser</div>
+                                <div class="workflow-step-action">Testing</div>
+                            </div>
+                            <span class="workflow-arrow">→</span>
+                            <div class="workflow-step">
+                                <div class="workflow-step-number">Step 4</div>
+                                <div class="workflow-step-tool">Copilot</div>
+                                <div class="workflow-step-action">Code Review</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="workflow-pipeline">
+                        <div class="workflow-header">
+                            <span class="workflow-title">🎓 Learning Accelerator</span>
+                            <span class="workflow-savings">Saves 50-60%</span>
+                        </div>
+                        <div class="workflow-steps">
+                            <div class="workflow-step">
+                                <div class="workflow-step-number">Step 1</div>
+                                <div class="workflow-step-tool">NotebookLM</div>
+                                <div class="workflow-step-action">Process Docs</div>
+                            </div>
+                            <span class="workflow-arrow">→</span>
+                            <div class="workflow-step">
+                                <div class="workflow-step-number">Step 2</div>
+                                <div class="workflow-step-tool">ChatGPT</div>
+                                <div class="workflow-step-action">Custom GPT</div>
+                            </div>
+                            <span class="workflow-arrow">→</span>
+                            <div class="workflow-step">
+                                <div class="workflow-step-number">Step 3</div>
+                                <div class="workflow-step-tool">Perplexity</div>
+                                <div class="workflow-step-action">Knowledge Base</div>
+                            </div>
+                            <span class="workflow-arrow">→</span>
+                            <div class="workflow-step">
+                                <div class="workflow-step-number">Step 4</div>
+                                <div class="workflow-step-tool">You</div>
+                                <div class="workflow-step-action">Practice</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Automation Templates -->
+                    <div class="hackbook-section-title" style="margin-top: 3rem;">
+                        <h3>⚡ Automation Templates</h3>
+                        <span class="edition-badge">8 Templates</span>
+                    </div>
+
+                    <div class="automation-template">
+                        <div class="automation-icon">📊</div>
+                        <div class="automation-content">
+                            <div class="automation-title">Weekly Business Report Generator</div>
+                            <div class="automation-description">Auto-pull data from Sheets → AI summarizes insights → Email to your inbox every Monday</div>
+                        </div>
+                        <div class="automation-time">Saves 2-3 hrs/week</div>
+                    </div>
+
+                    <div class="automation-template">
+                        <div class="automation-icon">💬</div>
+                        <div class="automation-content">
+                            <div class="automation-title">Customer Inquiry Auto-Responder</div>
+                            <div class="automation-description">Email/form received → AI drafts personalized response → You approve or auto-send</div>
+                        </div>
+                        <div class="automation-time">Saves 5-10 hrs/week</div>
+                    </div>
+
+                    <div class="automation-template">
+                        <div class="automation-icon">📱</div>
+                        <div class="automation-content">
+                            <div class="automation-title">Social Media Content Pipeline</div>
+                            <div class="automation-description">Notion content calendar → AI generates posts → Auto-schedule to Buffer/Later</div>
+                        </div>
+                        <div class="automation-time">Saves 4-6 hrs/week</div>
+                    </div>
+
+                    <div class="automation-template">
+                        <div class="automation-icon">🎯</div>
+                        <div class="automation-content">
+                            <div class="automation-title">Grant Deadline Monitor</div>
+                            <div class="automation-description">Track Louisiana grants → AI alerts on new opportunities → Auto-add to calendar</div>
+                        </div>
+                        <div class="automation-time">Never miss a deadline</div>
+                    </div>
+
+                    <div class="automation-template">
+                        <div class="automation-icon">📋</div>
+                        <div class="automation-content">
+                            <div class="automation-title">Louisiana Compliance Monitor</div>
+                            <div class="automation-description">LA SOS API checks status → Alerts before annual reports due → Keeps you in good standing</div>
+                        </div>
+                        <div class="automation-time">Avoid penalties</div>
+                    </div>
+
+                    <div class="automation-template">
+                        <div class="automation-icon">💰</div>
+                        <div class="automation-content">
+                            <div class="automation-title">Invoice & Payment Tracker</div>
+                            <div class="automation-description">QuickBooks syncs → AI categorizes expenses → Weekly financial summary</div>
+                        </div>
+                        <div class="automation-time">Saves 3-5 hrs/week</div>
+                    </div>
+
+                    <div class="automation-template">
+                        <div class="automation-icon">📝</div>
+                        <div class="automation-content">
+                            <div class="automation-title">Meeting Notes & Action Items</div>
+                            <div class="automation-description">Zoom/Meet recording → AI transcribes → Extracts action items → Sends to Notion/Slack</div>
+                        </div>
+                        <div class="automation-time">Saves 2-4 hrs/week</div>
+                    </div>
+
+                    <div class="automation-template">
+                        <div class="automation-icon">🎯</div>
+                        <div class="automation-content">
+                            <div class="automation-title">Lead Qualification Bot</div>
+                            <div class="automation-description">Form submission → AI scores lead quality → Routes hot leads to you immediately</div>
+                        </div>
+                        <div class="automation-time">Saves 5-8 hrs/week</div>
+                    </div>
+                </section>
+
+                <!-- RESOURCES SECTION -->
+                <section id="resources" class="section">
+                    <div class="hero">
+                        <div class="hero-content">
+                            <h2>Resource Hub</h2>
+                            <p>Everything you need to build and scale your business, all in one place.</p>
+                        </div>
+                    </div>
+
+                    <div class="resource-list">
+                        <div class="resource-item">
+                            <div class="resource-icon">📝</div>
+                            <div class="resource-content">
+                                <div class="resource-title">Business Plan Templates</div>
+                                <div class="resource-description">Professional templates for every industry with AI-powered customization</div>
+                            </div>
+                            <div class="resource-badge">FREE</div>
+                        </div>
+
+                        <div class="resource-item">
+                            <div class="resource-icon">💡</div>
+                            <div class="resource-content">
+                                <div class="resource-title">Grant Writing Guide</div>
+                                <div class="resource-description">Step-by-step guide to winning grants for minority-owned businesses</div>
+                            </div>
+                            <div class="resource-badge">PRO</div>
+                        </div>
+
+                        <div class="resource-item">
+                            <div class="resource-icon">📊</div>
+                            <div class="resource-content">
+                                <div class="resource-title">Financial Modeling Tools</div>
+                                <div class="resource-description">Excel templates and calculators for forecasting and budgeting</div>
+                            </div>
+                            <div class="resource-badge">FREE</div>
+                        </div>
+
+                        <div class="resource-item">
+                            <div class="resource-icon">🎯</div>
+                            <div class="resource-content">
+                                <div class="resource-title">Marketing Playbook</div>
+                                <div class="resource-description">Digital marketing strategies for bootstrapped startups</div>
+                            </div>
+                            <div class="resource-badge">PRO</div>
+                        </div>
+
+                        <div class="resource-item">
+                            <div class="resource-icon">⚖️</div>
+                            <div class="resource-content">
+                                <div class="resource-title">Legal Compliance Checklist</div>
+                                <div class="resource-description">State-by-state requirements for business registration and licensing</div>
+                            </div>
+                            <div class="resource-badge">ELITE</div>
+                        </div>
+
+                        <div class="resource-item">
+                            <div class="resource-icon">🤝</div>
+                            <div class="resource-content">
+                                <div class="resource-title">Investor Pitch Deck Template</div>
+                                <div class="resource-description">Winning pitch deck structure with real examples</div>
+                            </div>
+                            <div class="resource-badge">ELITE</div>
+                        </div>
+
+                        <div class="resource-item">
+                            <div class="resource-icon">📈</div>
+                            <div class="resource-content">
+                                <div class="resource-title">Scaling Frameworks</div>
+                                <div class="resource-description">Proven strategies to grow from startup to sustainable business</div>
+                            </div>
+                            <div class="resource-badge">PRO</div>
+                        </div>
+
+                        <div class="resource-item">
+                            <div class="resource-icon">🎓</div>
+                            <div class="resource-content">
+                                <div class="resource-title">Certification Courses</div>
+                                <div class="resource-description">Earn credentials in finance, marketing, and business management</div>
+                            </div>
+                            <div class="resource-badge">ELITE</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- COMMUNITY SECTION -->
+                <section id="community" class="section">
+                    <div class="hero">
+                        <div class="hero-content">
+                            <h2>Join Our Community</h2>
+                            <p>Connect, collaborate, and grow with thousands of entrepreneurs just like you.</p>
+                        </div>
+                    </div>
+
+                    <div class="cards-grid">
+                        <div class="card">
+                            <div class="card-icon">💬</div>
+                            <h3>Discussion Forums</h3>
+                            <p>Share experiences, ask questions, and get advice from peers across industries.</p>
+                            <button class="btn btn-secondary">Join Forums</button>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-icon">👥</div>
+                            <h3>Mentor Matching</h3>
+                            <p>Get paired with experienced entrepreneurs and industry experts who understand your journey.</p>
+                            <button class="btn btn-secondary">Find a Mentor</button>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-icon">🎤</div>
+                            <h3>Live Events</h3>
+                            <p>Attend workshops, Q&A sessions, and networking events with industry leaders.</p>
+                            <button class="btn btn-secondary">View Events</button>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-icon">🏆</div>
+                            <h3>Success Stories</h3>
+                            <p>Get inspired by entrepreneurs who've built successful businesses with DowUrk.</p>
+                            <button class="btn btn-secondary">Read Stories</button>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-icon">🤝</div>
+                            <h3>Collaboration Hub</h3>
+                            <p>Find co-founders, partners, and team members to build with.</p>
+                            <button class="btn btn-secondary">Start Collaborating</button>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-icon">📱</div>
+                            <h3>Accountability Groups</h3>
+                            <p>Join small peer groups for weekly check-ins and mutual support.</p>
+                            <button class="btn btn-secondary">Join a Group</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PRICING SECTION -->
+                <section id="pricing" class="section">
+                    <div class="hero">
+                        <div class="hero-content">
+                            <h2>Choose Your Path</h2>
+                            <p>Flexible pricing to support entrepreneurs at every stage of their journey.</p>
+                        </div>
+                    </div>
+
+                    <div class="pricing-grid">
+                        <div class="pricing-card">
+                            <div class="pricing-tier">Free</div>
+                            <div class="pricing-price">$0</div>
+                            <div class="pricing-period">Forever</div>
+                            <ul class="pricing-features">
+                                <li><span class="feature-check">✓</span> Community forum access</li>
+                                <li><span class="feature-check">✓</span> Basic AI mentor (5 questions/day)</li>
+                                <li><span class="feature-check">✓</span> Essential resources & templates</li>
+                                <li><span class="feature-check">✓</span> Monthly workshops</li>
+                                <li><span class="feature-check">✓</span> All AI Hackbook prompts</li>
+                            </ul>
+                            <button class="btn btn-secondary">Get Started</button>
+                        </div>
+
+                        <div class="pricing-card featured">
+                            <div class="pricing-tier">Pro</div>
+                            <div class="pricing-price">$19.99</div>
+                            <div class="pricing-period">per month</div>
+                            <ul class="pricing-features">
+                                <li><span class="feature-check">✓</span> Everything in Free</li>
+                                <li><span class="feature-check">✓</span> Unlimited AI mentor access</li>
+                                <li><span class="feature-check">✓</span> Premium resources & toolkits</li>
+                                <li><span class="feature-check">✓</span> Weekly live workshops</li>
+                                <li><span class="feature-check">✓</span> Mentor matching (1 mentor)</li>
+                                <li><span class="feature-check">✓</span> Automation setup guides</li>
+                                <li><span class="feature-check">✓</span> Funding opportunity alerts</li>
+                            </ul>
+                            <button class="btn btn-primary">Start Pro Trial</button>
+                        </div>
+
+                        <div class="pricing-card">
+                            <div class="pricing-tier">Elite</div>
+                            <div class="pricing-price">$99</div>
+                            <div class="pricing-period">per month</div>
+                            <ul class="pricing-features">
+                                <li><span class="feature-check">✓</span> Everything in Pro</li>
+                                <li><span class="feature-check">✓</span> 1:1 expert coaching (2hrs/month)</li>
+                                <li><span class="feature-check">✓</span> Custom automations built for you</li>
+                                <li><span class="feature-check">✓</span> Direct investor introductions</li>
+                                <li><span class="feature-check">✓</span> Legal & accounting consultations</li>
+                                <li><span class="feature-check">✓</span> Priority event access</li>
+                                <li><span class="feature-check">✓</span> Dedicated success manager</li>
+                            </ul>
+                            <button class="btn btn-secondary">Go Elite</button>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching
+        function switchTab(tabName) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Remove active from all tabs
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show selected section
+            document.getElementById(tabName).classList.add('active');
+
+            // Highlight active tab
+            event.target.classList.add('active');
+        }
+
+        // Copy prompt to clipboard
+        function copyPrompt(button) {
+            const promptCard = button.closest('.prompt-card');
+            const promptText = promptCard.querySelector('.prompt-text').textContent.trim();
+            
+            navigator.clipboard.writeText(promptText).then(() => {
+                const originalText = button.textContent;
+                button.textContent = '✓ Copied!';
+                button.style.background = 'var(--color-success)';
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = '';
+                }, 2000);
+            });
+        }
+
+        // AI Chat functionality
+        async function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+
+            // Add user message to chat
+            addMessage(message, 'user');
+            input.value = '';
+
+            // Show loading indicator
+            const loadingId = addMessage('<span class="loading"></span> Thinking...', 'ai');
+
+            try {
+                // Simulated AI response (replace with actual API call)
+                setTimeout(() => {
+                    removeMessage(loadingId);
+                    const responses = [
+                        "Great question! Let me help you with that. Based on my knowledge of Louisiana business requirements and best practices for minority-owned businesses...",
+                        "I'd be happy to assist! Here's what I recommend based on successful strategies I've seen work for entrepreneurs like you...",
+                        "That's an important consideration for your business. Let me break this down into actionable steps..."
+                    ];
+                    const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                    addMessage(randomResponse + " [This is a demo response. Connect to your AI backend for full functionality.]", 'ai');
+                }, 1500);
+
+            } catch (error) {
+                console.error('Error:', error);
+                removeMessage(loadingId);
+                addMessage('I apologize, but I encountered an error. Please try again.', 'ai');
+            }
+        }
+
+        function addMessage(content, type) {
+            const messagesContainer = document.getElementById('chatMessages');
+            const messageId = 'msg-' + Date.now();
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            messageDiv.id = messageId;
+            
+            const label = type === 'user' ? 'You' : 'AI Mentor';
+            messageDiv.innerHTML = `
+                <div class="message-label">${label}</div>
+                <div class="message-content">${content}</div>
+            `;
+            
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            return messageId;
+        }
+
+        function removeMessage(messageId) {
+            const message = document.getElementById(messageId);
+            if (message) {
+                message.remove();
+            }
+        }
+
+        function handleChatKeypress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function askAI(question) {
+            document.getElementById('chatInput').value = question;
+            sendMessage();
+        }
+
+        // Placeholder functions for other features
+        function openFundingTracker() {
+            alert('Funding Tracker feature - Track grants, loans, and investor opportunities tailored for your business!');
+        }
+
+        function openProgressDashboard() {
+            alert('Progress Dashboard - Monitor your business KPIs, milestones, and growth metrics!');
+        }
+
+        function openLearning() {
+            alert('Learning Paths - Access structured courses on marketing, finance, legal compliance, and scaling!');
+        }
+    </script>
+</body>
+</html>
