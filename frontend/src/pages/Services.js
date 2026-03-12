@@ -128,7 +128,7 @@ function Services() {
           Comprehensive business services to help Louisiana entrepreneurs succeed at every stage
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link to="/contact">
+          <Link to="/service-order">
             <Button size="lg" className="bg-gradient-to-r from-[#A4D65E] to-[#006847]">
               Request Services
             </Button>

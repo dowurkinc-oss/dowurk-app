@@ -20,6 +20,7 @@ import Donate from '@/pages/Donate';
 import Contact from '@/pages/Contact';
 import Blog from '@/pages/Blog';
 import Services from '@/pages/Services';
+import ServiceOrderForm from '@/pages/ServiceOrderForm';
 import Certifications from '@/pages/Certifications';
 import PrivacyPolicy from '@/pages/PrivacyPolicy';
 import Login from '@/pages/Login';
@@ -55,6 +56,7 @@ function App() {
             <Route path="business-map" element={<BusinessMap />} />
             <Route path="add-business" element={<AddBusiness />} />
             <Route path="services" element={<Services />} />
+            <Route path="service-order" element={<ServiceOrderForm />} />
             <Route path="certifications" element={<Certifications />} />
             <Route path="ai-assistant" element={<AIAssistant />} />
             <Route path="events" element={<Events />} />
