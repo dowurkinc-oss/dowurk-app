@@ -11,7 +11,7 @@
         <meta property="og:title" content="The DowUrk FramewUrk - Cultivating Originality" />
         <meta property="og:description" content="Your one-stop shop for entrepreneurial success in Louisiana. AI-powered business assistance, resources, grants, and community." />
         <meta property="og:image" content="https://customer-assets.emergentagent.com/job_1dc8832b-f338-4702-aaed-8947f56a5ae3/artifacts/yfqh5qwc_IMG_7907.jpg" />
-        <meta property="og:url" content="https://dowurktoday.com" />
+        <meta property="og:url" content="https://www.dowurktoday.org" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="The DowUrk FramewUrk" />
@@ -79,18 +79,34 @@
         <script id='setmore_script' type='text/javascript' src='https://assets.setmore.com/integration/static/setmoreIframeLive.js'></script>
         <!-- Cookie Consent -->
         <script>
-            window.addEventListener('load', function() {
-                if (!localStorage.getItem('cookieConsent')) {
-                    setTimeout(function() {
-                        const consent = document.getElementById('cookie-consent');
-                        if (consent) consent.style.display = 'block';
-                    }, 1000);
+            // Check consent immediately on script parse (before load event)
+            // to prevent flash of banner on returning visits
+            (function() {
+                if (localStorage.getItem('cookieConsent') === 'accepted') {
+                    // Already accepted — ensure banner stays hidden
+                    document.addEventListener('DOMContentLoaded', function() {
+                        var el = document.getElementById('cookie-consent');
+                        if (el) el.style.display = 'none';
+                    });
+                } else {
+                    // Not yet accepted — show banner after a short delay
+                    window.addEventListener('load', function() {
+                        setTimeout(function() {
+                            var el = document.getElementById('cookie-consent');
+                            if (el) el.style.display = 'block';
+                        }, 1000);
+                    });
                 }
-            });
-            
+            })();
+
             function acceptCookies() {
-                localStorage.setItem('cookieConsent', 'true');
-                document.getElementById('cookie-consent').style.display = 'none';
+                localStorage.setItem('cookieConsent', 'accepted');
+                var el = document.getElementById('cookie-consent');
+                if (el) {
+                    el.style.transition = 'opacity 0.3s ease';
+                    el.style.opacity = '0';
+                    setTimeout(function() { el.style.display = 'none'; }, 300);
+                }
             }
         </script>
     </head>

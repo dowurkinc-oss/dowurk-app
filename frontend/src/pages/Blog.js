@@ -322,7 +322,7 @@ Together, we're not just building businesses—we're building generational wealt
       date: '2025-01-03',
       category: 'Resources',
       image: null,
-      videoUrl: 'https://www.youtube.com/embed/videoseries?list=UUDFERb6RQLbxlErcPrUA94w',
+      videoUrl: 'https://www.youtube-nocookie.com/embed/videoseries?list=UUDFERb6RQLbxlErcPrUA94w',
       featured: false
     },
     {

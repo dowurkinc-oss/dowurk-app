@@ -16,6 +16,7 @@ function BusinessDirectory() {
   const [businesses, setBusinesses] = useState([]);
   const [filteredBusinesses, setFilteredBusinesses] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [fetchError, setFetchError] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedParish, setSelectedParish] = useState('all');
@@ -36,8 +37,10 @@ function BusinessDirectory() {
       const response = await axios.get(`${API}/businesses`);
       setBusinesses(response.data);
       setFilteredBusinesses(response.data);
+      setFetchError(false);
     } catch (error) {
       console.error('Error fetching businesses:', error);
+      setFetchError(true);
     } finally {
       setLoading(false);
     }
@@ -141,6 +144,21 @@ function BusinessDirectory() {
           <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-[#006847]"></div>
           <p className="mt-4 text-gray-600">Loading businesses...</p>
         </div>
+      ) : fetchError ? (
+        <Alert>
+          <AlertDescription>
+            <div className="text-center space-y-3">
+              <p className="font-semibold text-red-700">Unable to load the business directory right now.</p>
+              <p className="text-gray-600">Please check your connection or try again in a moment.</p>
+              <button
+                onClick={() => { setLoading(true); setFetchError(false); fetchBusinesses(); }}
+                className="px-4 py-2 bg-[#006847] text-white rounded-md hover:bg-[#005035] transition"
+              >
+                Retry
+              </button>
+            </div>
+          </AlertDescription>
+        </Alert>
       ) : filteredBusinesses.length === 0 ? (
         <Alert>
           <AlertDescription>

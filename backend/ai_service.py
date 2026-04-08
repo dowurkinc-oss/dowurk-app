@@ -3,10 +3,12 @@ from openai import AsyncOpenAI
 from typing import List, Dict
 import json
 
-# Initialize OpenAI client with Emergent Universal Key
+# Initialize OpenAI client
+# Uses OPENAI_BASE_URL env var if set, otherwise defaults to standard OpenAI API
+_base_url = os.environ.get('OPENAI_BASE_URL', None)
 client = AsyncOpenAI(
     api_key=os.environ.get('OPENAI_API_KEY'),
-    base_url='https://llm.emergent.sh/v1'
+    **(dict(base_url=_base_url) if _base_url else {})
 )
 
 # System prompts for different contexts
@@ -75,7 +77,7 @@ async def generate_ai_response(
     try:
         # Call OpenAI API
         response = await client.chat.completions.create(
-            model="gpt-4o-mini",  # Using cost-effective model
+            model="gpt-4.1-mini",  # Using cost-effective model
             messages=messages,
             temperature=0.7,
             max_tokens=1000
@@ -121,7 +123,7 @@ async def generate_business_plan_outline(business_idea: str, industry: str) -> D
     
     try:
         response = await client.chat.completions.create(
-            model="gpt-4o-mini",
+            model="gpt-4.1-mini",
             messages=[
                 {"role": "system", "content": "You are a business planning expert. Respond only with valid JSON."},
                 {"role": "user", "content": prompt}
@@ -165,7 +167,7 @@ async def analyze_grant_eligibility(business_description: str, grant_criteria: L
     
     try:
         response = await client.chat.completions.create(
-            model="gpt-4o-mini",
+            model="gpt-4.1-mini",
             messages=[
                 {"role": "system", "content": "You are a grant funding expert. Respond only with valid JSON."},
                 {"role": "user", "content": prompt}
@@ -195,7 +197,7 @@ async def generate_marketing_content(business_name: str, business_description: s
     
     try:
         response = await client.chat.completions.create(
-            model="gpt-4o-mini",
+            model="gpt-4.1-mini",
             messages=[
                 {"role": "system", "content": "You are a creative marketing copywriter."},
                 {"role": "user", "content": prompt}

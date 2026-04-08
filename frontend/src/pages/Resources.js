@@ -13,6 +13,7 @@ function Resources() {
   const [resources, setResources] = useState([]);
   const [filteredResources, setFilteredResources] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [fetchError, setFetchError] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedType, setSelectedType] = useState('all');
 
@@ -32,8 +33,10 @@ function Resources() {
       const response = await axios.get(`${API}/resources`);
       setResources(response.data);
       setFilteredResources(response.data);
+      setFetchError(false);
     } catch (error) {
       console.error('Error fetching resources:', error);
+      setFetchError(true);
     } finally {
       setLoading(false);
     }
@@ -111,6 +114,17 @@ function Resources() {
         <div className="text-center py-12">
           <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-[#006847]"></div>
           <p className="mt-4 text-gray-600">Loading resources...</p>
+        </div>
+      ) : fetchError ? (
+        <div className="text-center py-12 space-y-4">
+          <p className="text-lg font-semibold text-red-700">Unable to load resources right now.</p>
+          <p className="text-gray-600">Please check your connection or try again in a moment.</p>
+          <button
+            onClick={() => { setLoading(true); setFetchError(false); fetchResources(); }}
+            className="px-4 py-2 bg-[#006847] text-white rounded-md hover:bg-[#005035] transition"
+          >
+            Retry
+          </button>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
