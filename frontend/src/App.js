@@ -20,7 +20,6 @@ import Donate from '@/pages/Donate';
 import Contact from '@/pages/Contact';
 import Blog from '@/pages/Blog';
 import Services from '@/pages/Services';
-import ServiceOrderForm from '@/pages/ServiceOrderForm';
 import Certifications from '@/pages/Certifications';
 import PrivacyPolicy from '@/pages/PrivacyPolicy';
 import Login from '@/pages/Login';
@@ -39,6 +38,9 @@ import Pricing from '@/pages/Pricing';
 import BusinessVerification from '@/pages/BusinessVerification';
 // AI Hackbook Features
 import PromptLibrary from '@/pages/PromptLibrary';
+// PROOF & Community Tools
+import ProofBadges from '@/pages/ProofBadges';
+import NeedsAssessment from '@/pages/NeedsAssessment';
 import AutomationHub from '@/pages/AutomationHub';
 import AIWorkflows from '@/pages/AIWorkflows';
 import { AuthProvider } from '@/context/AuthContext';
@@ -56,7 +58,6 @@ function App() {
             <Route path="business-map" element={<BusinessMap />} />
             <Route path="add-business" element={<AddBusiness />} />
             <Route path="services" element={<Services />} />
-            <Route path="service-order" element={<ServiceOrderForm />} />
             <Route path="certifications" element={<Certifications />} />
             <Route path="ai-assistant" element={<AIAssistant />} />
             <Route path="events" element={<Events />} />
@@ -95,6 +96,9 @@ function App() {
             <Route path="prompts" element={<PromptLibrary />} />
             <Route path="automations" element={<AutomationHub />} />
             <Route path="workflows" element={<AIWorkflows />} />
+            {/* PROOF & Community Tools */}
+            <Route path="proof-badges" element={<ProofBadges />} />
+            <Route path="needs-assessment" element={<NeedsAssessment />} />
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
